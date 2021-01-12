@@ -1,7 +1,14 @@
 \documentclass[12pt,reqno]{amsart}
 
+%============%============%============%============%
+\usepackage[draft]{marktext} 
+%% Remove draft for real article, put twocolumn for two columns
 
 
+%% commentary bubble
+\newcommand{\YH}[2][]{\sidenote[colback=green!10]{\textbf{YH\xspace #1:} #2}}
+\newcommand{\ST}[2][]{\sidenote[colback=orange!10]{\textbf{ST\xspace #1:} #2}}
+%============%============%============%============%
 
 \setlength{\columnseprule}{0.4pt}
 \setlength{\topmargin}{0cm}
@@ -229,7 +236,7 @@ Department of Mathematics,
 University of Wisconsin Madison, 480 Lincoln  Drive, Madison, WI 53706, USA}
 \email{thaison@math.wisc.edu}
 
-%\date{\today}
+\date{\today}
 \keywords{first-order Hamilton--Jacobi equations; state-constraint problems; optimal control theory; rate of convergence; viscosity solutions.}
 \subjclass[2010]{
 35B40, %Asymptotic behavior of solutions, 
@@ -247,6 +254,9 @@ University of Wisconsin Madison, 480 Lincoln  Drive, Madison, WI 53706, USA}
 
 
 
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -255,7 +265,8 @@ Paper to read \cite{Ishii2017a}.
 
 %\nocite{*}
 
-
+\section{Questions}
+\paragraph{Jan 12, 2021.} Why do we use the distance functions to get boundary estimates? 
 
 
 
