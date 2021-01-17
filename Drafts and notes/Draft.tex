@@ -261,9 +261,18 @@ University of Wisconsin Madison, 480 Lincoln  Drive, Madison, WI 53706, USA}
 
 
 \section{Introduction}\label{sec:intro}
+
+Let $\Omega$ be an open, bounded and connected with $\mathrm{C}^2$ boundary domain of $\mathbb{R}^n$. Assume that $f\in \mathrm{C}(\overline{\Omega})\cap W^{1,\infty}(\Omega)$ and $1<p<2$. Let $u^\varepsilon$ be the solution to 
+\begin{equation}\label{eq:PDE}
+    \begin{cases}
+    \lambda u^\varepsilon(x) + |Du^\varepsilon(x)|^p - f(x) - \varepsilon \Delta u^\varepsilon(x) = 0 \qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+    \displaystyle  \lim_{\mathrm{dist}(x,\partial \Omega)\to 0} u^\varepsilon(x) = +\infty.
+    \end{cases} \tag{PDE$_\varepsilon$}
+\end{equation}
+We are interested in studying the asymptotic behavior of $\{u^\varepsilon\}_{\varepsilon>0}$ as the vanishing viscosity happens: $\varepsilon\rightarrow 0$.
+
 Paper to read \cite{Ishii2017a} and \cite{Lasry1989}.
-
-
 
 \section{Preliminaries}\label{sec:prelim}
 
@@ -271,29 +280,70 @@ Paper to read \cite{Ishii2017a} and \cite{Lasry1989}.
 
 
 \subsection{Convergence result}
-\begin{thm}[Qualitative result] Assume $\Omega$ is an open, bounded and connected with $\mathrm{C}^2$ boundary domain of $\mathbb{R}^n$. Assume that $f\in \mathrm{C}(\overline{\Omega})\cap W^{1,\infty}(\Omega)$ and $1<p<2$. Let $u^\varepsilon$ be the solution to 
-\begin{equation}\label{eq:PDE}
-    \begin{cases}
-    \lambda u^\varepsilon(x) + |Du^\varepsilon(x)|^p - f(x) - \varepsilon \Delta u^\varepsilon(x) = 0 \qquad
-    \text{in}\;\Omega, \vspace{0cm}\\
-    \displaystyle  \lim_{\mathrm{dist}(x,\partial \Omega)\to 0} u(x) = +\infty.
-    \end{cases} \tag{PDE$_\varepsilon$}
+Assume $\Omega$ is an open, bounded and connected with $\mathrm{C}^2$ boundary domain of $\mathbb{R}^n$. Assume that $f\in \mathrm{C}(\overline{\Omega})\cap W^{1,\infty}(\Omega)$ and $1<p<2$. 
+
+Let $u^\varepsilon$ be the solution to \eqref{eq:PDE}, we observe that if$u^\varepsilon\rightarrow u^0$ uniformly on compact subsets of $\Omega$, we see that $u(x)\rightarrow +\infty$ as $\mathrm{dist}(x,\partial \Omega)\to 0$ as well, therefore the limiting solution is not the state-constraint solution to a limiting first order equation.
+
+\begin{lem}\label{lem:max} Let $u\in \rmC(\overline{\Omega})$ be a viscosity subsolution of 
+\begin{equation}\label{S_0}
+ \lambda u(x) + H(x,Du(x)) = 0\;\qquad\text{in}\;\Omega
 \end{equation}
-Then $u^\varepsilon \rightarrow u$ locally uniformly in $\Omega$ as $\varepsilon\rightarrow 0$ and $u$ solves
-\begin{equation*}
+such that, for all viscosity subsolution $v\in \rmC(\overline{\Omega})$ of \eqref{S_0} one has $v\leq u\in \overline{\Omega}$, then $u$ is a viscosity supersolution of \eqref{S_0} on $\overline{\Omega}$.
+\end{lem}
+
+
+
+\begin{thm}[Qualitative result] Assume $\Omega$ is an open, bounded and connected with $\mathrm{C}^2$ boundary domain of $\mathbb{R}^n$. Assume that $f\in \mathrm{C}(\overline{\Omega})\cap W^{1,\infty}(\Omega)$ and $1<p<2$. Let $u^\varepsilon$ be the solution to \eqref{eq:PDE}, then $u^\varepsilon \rightarrow u$ locally uniformly in $\Omega$ as $\varepsilon\rightarrow 0$ and $u$ solves
+\begin{equation}\label{eq:PDE0}
     \begin{cases}
     \lambda u(x) + |Du(x)|^p - f(x) \leq 0 \qquad\text{in}\;\Omega,\\
     \lambda u(x) + |Du(x)|^p - f(x) \geq 0 \qquad\text{on}\;\overline{\Omega}.
-    \end{cases}   
-\end{equation*}
+    \end{cases}\tag{PDE$_0$}   
+\end{equation}
 \end{thm}
 
 
-
-\begin{proof}
-
+\color{blue}
+\begin{proof} (\textit{Added on Jan 16, 2021 - Heuristic idea}) Assume that we can get some sort of equi-continuity of the family $\{u^\varepsilon\}_{\varepsilon>0}$ in a local way, that is, for any compact sub-domain $\Omega'\subset\subset \Omega$ there is a constant $C(\Omega')$ such that
+\begin{equation}\label{eq:bound}
+    \Vert u^\varepsilon\Vert_{L^\infty(\Omega')} +\Vert Du^\varepsilon\Vert_{L^\infty(\Omega')} \leq C(\Omega').
+\end{equation}
+This should be done using Berstein's method (fill in later, and as $u$ blows up on $\partial \Omega$, this bound \eqref{eq:bound} may not be improved). Now let us assume via some subsequence $\varepsilon_j\to 0$ we have $u^{\varepsilon_j}\rightarrow u^0$ uniformly on compact subsets of $\Omega$, the interior stability of viscosity solution should yield us that 
+\begin{equation*}
+    \lambda u^0(x) + |Du^0(x)|^p - f(x) = 0 \qquad\text{in}\;\Omega.
+\end{equation*}
+The real difficulty is describing what is the behavior of $u^0$ on the boundary. As we expect it to solves \eqref{eq:PDE0}, it should be the maximal subsolution (hence, solution) to 
+\begin{equation}\label{eq:S_lambda}
+    \lambda u(x) + |Du(x)|^p - f(x) = 0 \qquad\text{in}\;\Omega.
+\end{equation}
+Let $v^\varepsilon\in \rmC^2(\Omega)\cap \rmC(\overline{\Omega})$ be the unique solution to the Dirichlet problem
+\begin{equation}\label{eq:v_eps}
+\begin{cases}
+    \lambda v^\varepsilon(x) + |Dv^\varepsilon(x)|^p - f(x) = \varepsilon \Delta v^\varepsilon(x) &\qquad\text{in}\;\Omega,\\
+    \;\;\,\quad\quad\qquad\qquad\qquad\qquad v^\varepsilon = u &\qquad \text{on}\;\partial\Omega.
+\end{cases}
+\end{equation}
+where $u\in \rmC(\overline{\Omega})$ is the unique solution of \eqref{eq:PDE0}. Note that $v^\varepsilon\rightarrow v^0$ solves the corresponding Dirichlet problem
+\begin{equation}\label{eq:v_0}
+\begin{cases}
+    \lambda v^0(x) + |Dv^0(x)|^p - f(x) = 0 &\qquad\text{in}\;\Omega,\\
+    \;\;\,\quad\quad\qquad\qquad\qquad\qquad v^0 = u &\qquad \text{on}\;\partial\Omega.
+\end{cases}
+\end{equation}
+\begin{lem} $v^0\equiv u$ as the unique solution to \eqref{eq:PDE0}.
+\end{lem}
+\begin{proof} We observe that $u$ solves \eqref{eq:PDE0} is the unique solution to the Dirichlet problem \eqref{eq:v_0} as well, thus $v^0 \equiv u$ by comparison principle.
 \end{proof}
-
+\noindent By comparison principle, we see that
+\begin{equation*}
+    v^\varepsilon(x)\leq u^\varepsilon(x) \qquad\text{for}\;x\in \Omega.
+\end{equation*}
+Let $\varepsilon\to 0$, we deduce that
+\begin{equation*}
+    u(x)\leq u^0(x) \qquad\text{for}\;x\in \Omega.
+\end{equation*}
+\end{proof}
+\color{black}
 
 
 
