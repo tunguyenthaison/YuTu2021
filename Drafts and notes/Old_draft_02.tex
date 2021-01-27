@@ -1,0 +1,578 @@
+\documentclass[11pt,reqno]{amsart}
+%============%============%============%============%
+\usepackage{marktext}
+%============%============%============%============%
+%\setlength{\columnseprule}{0.4pt}
+%\setlength{\topmargin}{0cm}
+%\setlength{\oddsidemargin}{.25cm}
+%\setlength{\evensidemargin}{.25cm}
+%\setlength{\textheight}{22.5cm}
+%\setlength{\textwidth}{15.5cm}
+\renewcommand{\baselinestretch}{1.05}
+%============%============%============%============%
+\usepackage[toc,page]{appendix}
+%============%============%============%============%
+\usepackage{xcolor}
+\usepackage{placeins}
+\usepackage{amsfonts,amsmath,amsthm}
+\usepackage{amssymb,epsfig}
+\usepackage{enumerate} 
+\usepackage[notcite,notref]{showkeys}
+\usepackage{fullpage}
+%============%============%============%============%
+\usepackage[utf8]{inputenc}
+\usepackage{mathpazo}
+%\usepackage[euler-digits]{eulervm}
+
+\usepackage{eucal}
+\usepackage[unicode=true]{hyperref}
+\hypersetup{colorlinks = true}
+%\hypersetup{hidelinks=true}
+\hypersetup{
+     colorlinks,
+     linkcolor={black!10!red},
+     linkbordercolor = {black!100!red},
+%    <your other options...>,
+     citecolor={blue}
+}
+
+
+
+
+
+%graphic
+%\usepackage[text={425pt,650pt},centering]{geometry}
+
+\usepackage{pdfsync}
+
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm,headheight=3.5cm}
+
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{color} %color
+\definecolor{vert}{rgb}{0,0.6,0}
+
+\usepackage{comment}
+\numberwithin{figure}{section}
+%\pagestyle{plain}
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ass}{Assumption}
+\renewcommand{\theass}{}
+\newtheorem{defn}{Definition}
+\newtheorem{quest}{Question}
+\newtheorem{com}{Comment}
+\newtheorem{ex}{Example}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{remark}
+\newtheorem{rem}{\bf{Remark}}
+\numberwithin{equation}{section}
+
+
+
+%\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+
+
+%Characters -- Shortcuts
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\M}{\mathbb{M}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\bfS}{\mathbf{S}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\I}{\mathrm{I}}
+
+
+%Functional spaces
+\newcommand{\AC}{{\rm AC\,}}
+\newcommand{\ACl}{{\rm AC}_{{\rm loc}}}
+\newcommand{\BUC}{{\rm BUC\,}}
+\newcommand{\USC}{{\rm USC\,}}
+\newcommand{\LSC}{{\rm LSC\,}}
+\newcommand{\Li}{L^{\infty}}
+\newcommand{\Lip}{{\rm Lip\,}}
+\newcommand{\W}{W^{1,\infty}}
+\newcommand{\Wx}{W_x^{1,\infty}}
+
+
+%Domains
+\newcommand{\bO}{\partial\Omega}
+\newcommand{\cO}{\overline\Omega}
+\newcommand{\Q}{\mathbb{T}^{n}\times(0,\infty)}
+\newcommand{\iQ}{\mathbb{T}^{n}\times\{0\}}
+\newcommand{\cQ}{\mathbb{T}^{n}\times[0,\infty)}
+
+
+%Greek alphabets -- Shortcuts
+\newcommand{\al}{\alpha}
+\newcommand{\gam}{\gamma}
+\newcommand{\del}{\delta}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\kap}{\kappa}
+\newcommand{\lam}{\lambda}
+\newcommand{\sig}{\sigma}
+\newcommand{\om}{\omega}
+\newcommand{\Del}{\Delta}
+\newcommand{\Gam}{\Gamma}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\Om}{\Omega}
+\newcommand{\Sig}{\Sigma}
+
+
+
+%Overlines, Underlines -- Shortcuts
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\pl}{\partial}
+\newcommand{\supp}{{\rm supp}\,}
+\newcommand{\inter}{{\rm int}\,}
+\newcommand{\loc}{{\rm loc}\,}
+\newcommand{\co}{{\rm co}\,}
+\newcommand{\diam}{{\rm diam}\,}
+\newcommand{\diag}{{\rm diag}\,}
+\newcommand{\dist}{{\rm dist}\,}
+\newcommand{\Div}{{\rm div}\,}
+\newcommand{\sgn}{{\rm sgn}\,}
+\newcommand{\tr}{{\rm tr}\,}
+\newcommand{\Per}{{\rm Per}\,}
+
+\newcommand{\rmC}{\mathrm{C}}
+
+
+
+\renewcommand{\subjclassname}{%
+\textup{2010} Mathematics Subject Classification} 
+
+%Hyperlink in PDF file
+%\usepackage[dvipdfm,
+%  colorlinks=false,
+%  bookmarks=true,
+%  bookmarksnumbered=false,
+%  bookmarkstype=toc]{hyperref}
+%\makeatletter
+%\def\@pdfm@dest#1{%
+%  \Hy@SaveLastskip
+%  \@pdfm@mark{dest (#1) [@thispage /\@pdfview\space @xpos @ypos null]}%
+%  \Hy@RestoreLastskip
+%}
+
+
+%BibLatex
+%\usepackage[
+%backend=biber,
+%style=alphabetic,
+%sorting=ynt
+%]{biblatex}
+%\addbibresource{rate.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figs/}{#1.pdf_tex}
+}
+
+
+
+\begin{document}
+
+\title[Rate of convergence]
+{\textsc{Second-order state-constraint Hamilton-Jacobi equations}}
+
+
+
+
+\thanks{The authors are supported in part by NSF grant DMS-1664424.}
+
+\begin{abstract}
+
+\end{abstract}
+
+
+
+
+\author{Yuxi Han}
+\address[Y. Han]
+{
+Department of Mathematics, 
+University of Wisconsin Madison, 480 Lincoln  Drive, Madison, WI 53706, USA}
+\email{yuxi.han@wisc.edu}
+
+
+
+\author{Son N. T. Tu}
+\address[S. N.T. Tu]
+{
+Department of Mathematics, 
+University of Wisconsin Madison, 480 Lincoln  Drive, Madison, WI 53706, USA}
+\email{thaison@math.wisc.edu}
+
+\date{\today}
+\keywords{first-order Hamilton--Jacobi equations; state-constraint problems; optimal control theory; rate of convergence; viscosity solutions.}
+\subjclass[2010]{
+35B40, %Asymptotic behavior of solutions, 
+35D40, %Viscosity solutions
+49J20, %Optimal control problems involving partial differential equations
+49L25, %Viscosity solutions
+70H20 %Hamilton-Jacobi equations
+}
+
+
+\maketitle
+
+%\tableofcontents
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Introduction}\label{sec:intro}
+
+Let $\Omega$ be an open, bounded and connected with $\mathrm{C}^2$ boundary domain of $\mathbb{R}^n$. Let us consider the following Hamiltonian
+\begin{equation*}
+    H(x,\varrho) = |\varrho|^p-f(x), \qquad (x,p)\in \overline{\Omega}\times \mathbb{R}^n
+\end{equation*}
+where $f\in \mathrm{C}(\overline{\Omega})\cap W^{1,\infty}(\Omega)$ and $1<p<2$. Let $u^\varepsilon$ be the solution to 
+\begin{equation}\label{eq:PDE}
+    \begin{cases}
+    \lambda u^\varepsilon(x) + H(x,Du^\varepsilon(x)) - \varepsilon \Delta u^\varepsilon(x) = 0 \qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+    \displaystyle  \lim_{\mathrm{dist}(x,\partial \Omega)\to 0} u^\varepsilon(x) = +\infty.
+    \end{cases} \tag{PDE$_\varepsilon$}
+\end{equation}
+We are interested in studying the asymptotic behavior of $\{u^\varepsilon\}_{\varepsilon>0}$ as the vanishing viscosity happens: $\varepsilon\rightarrow 0$. The viscosity formulation of the corresponding state-constraint first order is
+\begin{equation}\label{eq:1st}
+    \begin{cases}
+     \lambda u(x) + H(x,Du(x)) \leq 0\;\qquad\text{in}\;\Omega,\\
+     \lambda u(x) + H(x,Du(x)) \geq 0\;\qquad\text{on}\;\overline{\Omega}.
+    \end{cases}
+\end{equation}
+Equation \eqref{eq:1st} admits a unique viscosity solution in the space $\rmC(\overline{\Omega})$, which is also the maximal viscosity subsolution among all viscosity subsolution $v\in\rmC(\overline{\Omega})$. However, with unbounded solutions the situation is unclear.
+
+Paper to read \cite{Ishii2017a} and \cite{Lasry1989}.
+
+\section{Preliminaries}\label{sec:prelim}
+
+
+
+
+\subsection{Convergence result}
+Assume $\Omega$ is an open, bounded and connected with $\mathrm{C}^2$ boundary domain of $\mathbb{R}^n$. Assume that $f\in \mathrm{C}(\overline{\Omega})\cap W^{1,\infty}(\Omega)$ and $1<p<2$. 
+
+Let $u^\varepsilon$ be the solution to \eqref{eq:PDE}, we observe that if $u^\varepsilon\rightarrow u^0$ uniformly on compact subsets of $\Omega$, we see that $u(x)\rightarrow +\infty$ as $\mathrm{dist}(x,\partial \Omega)\to 0$ as well, therefore the limiting solution is not the state-constraint solution to a limiting first order equation.
+
+\begin{lem}\label{lem:max} Let $u\in \rmC(\overline{\Omega})$ be a viscosity subsolution of 
+\begin{equation}\label{S_0}
+ \lambda u(x) + H(x,Du(x)) = 0\;\qquad\text{in}\;\Omega
+\end{equation}
+such that, for all viscosity subsolution $v\in \rmC(\overline{\Omega})$ of \eqref{S_0} one has $v\leq u$ in $\overline{\Omega}$, then $u$ is a viscosity supersolution of \eqref{S_0} on $\overline{\Omega}$.
+\end{lem}
+\begin{proof} We review the proof using Perron's method (see \cite{Capuzzo-Dolcetta1990}). Let $\varphi\in \rmC(\overline{\Omega})$ and $x_0\in \overline{\Omega}$ such that $u(x_0) = \varphi(x_0)$ and $u-\varphi$ has a global strict minimum over $\overline{\Omega}$ at $x_0$ and that 
+\begin{equation}\label{eq:max_a1}
+    \lambda \varphi(x_0) + H(x_0,D\varphi(x_0)) < 0.
+\end{equation}
+Let $\varphi^\varepsilon(x) = \varphi(x) - |x-x_0|^2 + \varepsilon$ for $x\in \overline{\Omega}$. Let $\delta > 0$, we see that for $x\in \partial B(x_0,\delta)\cap \overline{\Omega}$ then
+\begin{equation*}
+    \varphi^\varepsilon(x) = \varphi(x) - \delta^2 +\varepsilon \leq \varphi(x) - \varepsilon
+\end{equation*}
+if $2\varepsilon \leq \delta^2$. We observe that
+\begin{equation*}
+    \begin{split}
+    \varphi^\varepsilon(x) - \varphi(x_0)  &= \varphi(x)-\varphi(x_0) + \varepsilon - |x-x_0|^2 \\
+    D\phi^\varepsilon(x) - D\phi(x_0) &= D\varphi(x) - D\varphi(x_0) - 2(x-x_0)
+    \end{split}
+\end{equation*}
+for $x\in B(x,\delta)\cap \overline{\Omega}$. We deduce from \eqref{eq:max_a1}, the continuity of $H(x,p)$ near $(x_0,D\varphi(x_0))$ and the fact that $\varphi\in \rmC^1(\overline{\Omega})$ that if $\delta$ is small enough and $0<2\varepsilon < \delta^2$ then
+\begin{equation}\label{eq:max_a2}
+    \lambda \varphi^\varepsilon(x)+H(x,D\varphi^\varepsilon(x)) < 0 \qquad\text{for}\;x\in B(x_0,\delta)\cap \overline{\Omega}.
+\end{equation}
+We have found $\phi^\varepsilon\in \mathrm{C}^1(\overline{\Omega})$ such that $\varphi^\varepsilon(x_0)>u(x_0)$, $\varphi^\varepsilon<u$ on $\partial B(x_0,\delta)\cap \overline{\Omega}$ and \eqref{eq:max_a2}. Let
+\begin{equation*}
+    \tilde{u}(x) = \begin{cases}
+    \max \big\lbrace u(x),\phi^\varepsilon(x) \big\rbrace &x\in B(x_0,\delta)\cap \overline{\Omega},\\
+    u(x)&x\notin B(x_0,\delta)\cap \overline{\Omega},\\
+    \end{cases}
+\end{equation*}
+We see that $\tilde{u}\in \rmC(\overline{\Omega})$ is a subsolution of \eqref{S_0} in $\Omega$ with $\tilde{u}(x_0) > u(x_0)$, which is a contradiction, thus $u$ is a supersolution of \eqref{S_0} on $\overline{\Omega}$.
+\end{proof}
+
+
+\begin{thm}[Qualitative result] Assume $\Omega$ is an open, bounded and connected with $\mathrm{C}^2$ boundary domain of $\mathbb{R}^n$. Assume that $f\in \mathrm{C}(\overline{\Omega})\cap W^{1,\infty}(\Omega)$ and $1<p<2$. Let $u^\varepsilon$ be the solution to \eqref{eq:PDE}, then $u^\varepsilon \rightarrow u^0$ locally uniformly in $\Omega$ as $\varepsilon\rightarrow 0$ and $u^0$ solves
+\begin{equation}\label{eq:PDE0}
+    \begin{cases}
+    \lambda u(x) + |Du(x)|^p - f(x)=  0 \qquad\text{in}\;\Omega, \vspace{0cm}\\
+    \displaystyle  \lim_{\mathrm{dist}(x,\partial \Omega)\to 0} u^0(x) = +\infty.
+    \end{cases} \tag{PDE$_0$}
+\end{equation}
+\end{thm}
+
+
+\color{blue}
+\begin{proof} (\textit{Added on Jan 16, 2021 - Heuristic idea}) Assume that we can get some sort of equi-continuity of the family $\{u^\varepsilon\}_{\varepsilon>0}$ in a local way, that is, for any compact sub-domain $\Omega'\subset\subset \Omega$ there is a constant $C(\Omega')$ such that
+\begin{equation}\label{eq:bound}
+    \Vert u^\varepsilon\Vert_{L^\infty(\Omega')} +\Vert Du^\varepsilon\Vert_{L^\infty(\Omega')} \leq C(\Omega').
+\end{equation}
+This should be done using Berstein's method (fill in later, and as $u$ blows up on $\partial \Omega$, this bound \eqref{eq:bound} may not be improved). Now let us assume via some subsequence $\varepsilon_j\to 0$ we have $u^{\varepsilon_j}\rightarrow u^0$ uniformly on compact subsets of $\Omega$, the interior stability of viscosity solution should yield us that 
+\begin{equation*}
+    \lambda u^0(x) + |Du^0(x)|^p - f(x) = 0 \qquad\text{in}\;\Omega.
+\end{equation*}
+The real difficulty is describing what is the behavior of $u^0$ on the boundary. It is clear that
+\begin{equation*}
+    \displaystyle  \lim_{\mathrm{dist}(x,\partial \Omega)\to 0} u^0(x) = +\infty.
+\end{equation*}
+
+In fact, for each $x_0\in \partial \Omega$, let $\Vec{\mathfrak{n}}(x_0)$ be the unit outward normal vector, consider $x_s = x_0 - s\Vec{\mathfrak{n}}(x_0)$ for $s>0$. For each $j\in \mathbb{N}$ there holds $\lim_{s\to 0} u^\varepsilon(x_s) = +\infty$, therefore we can find a subsequence $s_j \to 0$ such that 
+\begin{equation*}
+    u^\varepsilon(x_{s_j}) \geq \tfrac{1}{\varepsilon_j}.
+\end{equation*}
+\vspace{2cm}
+
+
+
+
+As we expect it to solves \eqref{eq:PDE0}, it should be the maximal subsolution (hence, solution) to 
+\begin{equation}\label{eq:S_lambda}
+    \lambda u(x) + |Du(x)|^p - f(x) = 0 \qquad\text{in}\;\Omega.
+\end{equation}
+Let $v^\varepsilon\in \rmC^2(\Omega)\cap \rmC(\overline{\Omega})$ be the unique solution to the Dirichlet problem
+\begin{equation}\label{eq:v_eps}
+\begin{cases}
+    \lambda v^\varepsilon(x) + |Dv^\varepsilon(x)|^p - f(x) = \varepsilon \Delta v^\varepsilon(x) &\qquad\text{in}\;\Omega,\\
+    \;\;\,\quad\quad\qquad\qquad\qquad\qquad v^\varepsilon = u &\qquad \text{on}\;\partial\Omega.
+\end{cases}
+\end{equation}
+where $u\in \rmC(\overline{\Omega})$ is the unique solution of \eqref{eq:PDE0}. Note that $v^\varepsilon\rightarrow v^0$ solves the corresponding Dirichlet problem
+\begin{equation}\label{eq:v_0}
+\begin{cases}
+    \lambda v^0(x) + |Dv^0(x)|^p - f(x) = 0 &\qquad\text{in}\;\Omega,\\
+    \;\;\,\quad\quad\qquad\qquad\qquad\qquad v^0 = u &\qquad \text{on}\;\partial\Omega.
+\end{cases}
+\end{equation}
+\begin{lem} $v^0\equiv u$ as the unique solution to \eqref{eq:PDE0}.
+\end{lem}
+\begin{proof} We observe that $u$ solves \eqref{eq:PDE0} is the unique solution to the Dirichlet problem \eqref{eq:v_0} as well, thus $v^0 \equiv u$ by comparison principle.
+\end{proof}
+\noindent By comparison principle, we see that
+\begin{equation*}
+    v^\varepsilon(x)\leq u^\varepsilon(x) \qquad\text{for}\;x\in \Omega.
+\end{equation*}
+Let $\varepsilon\to 0$, we deduce that
+\begin{equation*}
+    u(x)\leq u^0(x) \qquad\text{for}\;x\in \Omega.
+\end{equation*}
+\end{proof}
+\color{black}
+
+\begin{lem} If $\delta$ is small enough then $u^0$ is a supersolution of \eqref{S_0} on $\overline{\Omega}_\delta$.
+\end{lem}
+\begin{proof} For $\delta>0$, let us denote $v_\delta\in\rmC(\overline{\Omega}_\delta)$ be the state-constraint viscosity subsolution to the problem $\lambda u(x) + H(x,Du(x)) = 0$ in $\Omega_\delta$, then by Lemma  \ref{lem:max} we have
+\begin{equation}\label{eq:les1}
+   u^0(x) \leq v_\delta(x) \qquad\text{for}\;x\in \overline{\Omega}_\delta
+\end{equation}
+since $u^0 \in \rmC(\overline{\Omega}_\delta)$ is a viscosity (sub)solution to $\lambda u(x) + H(x,Du(x)) = 0$ in $\Omega_\delta$. Let us denote $v^\varepsilon\in \rmC^2(\Omega_\delta)\cap \rmC(\overline{\Omega}_\delta)$ as the unique solution to the Dirichlet problem
+\begin{equation}\label{eq:vv_eps}
+\begin{cases}
+    \lambda v^\varepsilon(x) + |Dv^\varepsilon(x)|^p - f(x) = \varepsilon \Delta v^\varepsilon(x) &\qquad\text{in}\;\Omega_\delta,\\
+    \;\;\,\quad\quad\qquad\qquad\qquad\qquad v^\varepsilon = v_\delta &\qquad \text{on}\;\partial\Omega_\delta.
+\end{cases}
+\end{equation}
+Comparing $u^\varepsilon$ and $v^\varepsilon$ on $\overline{\Omega}_\delta$, for $\delta$ small enough we have $v_\delta\leq u^\varepsilon$ on $\partial \Omega_\delta$, thus by comparison principle for \eqref{eq:vv_eps} we obtain that $v^\varepsilon \leq u^\varepsilon$ on $\overline{\Omega}_\delta$, thus as $\varepsilon\to 0$ we have
+\begin{equation}\label{eq:les2}
+    v_\delta(x) \leq u^0(x)  \qquad\text{for}\;x\in \overline{\Omega}_\delta.
+\end{equation}
+From \eqref{eq:les1} and \eqref{eq:les2} we deduce that $v_\delta = u^0$ on $\overline{\Omega}_\delta$.
+\end{proof}
+
+
+
+
+
+%\nocite{*}
+
+
+
+\section{Questions}
+\begin{quest} [Jan 12, 2021.] Why do we use the distance functions to get boundary estimates? 
+\end{quest}
+
+\begin{quest} [Jan 13, 2021.] Maximum principle for sub-quadratic case.
+\end{quest}
+
+
+\begin{appendices}
+\section{Construction of solution for sub-quadratic case}
+In this section, with the specific form of the Hamiltonian $H(x,\varrho) = |\varrho|^p - f(x)$ where $1<p< 2$ and $f\in \mathrm{C}(\overline{\Omega})\cap W^{1,\infty}(\Omega)$, we show the existence and uniqueness of solutions to \eqref{eq:PDE}. 
+\begin{thm} If $H(x,\varrho) = |\varrho|^p - f(x)$ where $1<p< 2$ and $f\in \mathrm{C}(\overline{\Omega})\cap W^{1,\infty}(\Omega)$ then there exists a unique solution $u\in \mathrm{C}^2(\Omega)$ of \eqref{eq:PDE}.
+\end{thm}
+
+
+\begin{proof} For $\delta>0$, let us define $\Omega_\delta = \{x\in \Omega: \mathrm{dist}(x,\Omega) < \delta\}$ and $\Omega^\delta = \{x\in \mathbb{R}^n: \mathrm{dist}(x,\overline{\Omega}) < \delta\}$. 
+\begin{figure}[ht]
+    \centering
+    %\incfig{Domains}
+    \def\svgwidth{0.5\columnwidth}
+    \import{./figs/}{Domains.pdf_tex}
+    \caption{The domain $\Omega$ variations $\Omega_\delta, \Omega^\delta$.}
+    \label{fig:Domains}
+\end{figure}
+We consider $\delta$ small enough so that the distance function $x\mapsto \mathrm{dist}(x,\partial \Omega)$ is $\mathrm{C}^2$ in the strip $\Omega^\delta\backslash \overline{\Omega}_\delta$, we recall that $|D d(x)| = 1$ in that region. We extend the signed distance function into a $\mathrm{C}^2(\mathbb{R}^n)$ function, denoted by $d(x)$ such that 
+\begin{equation*}
+    \begin{cases}
+    d(x)\geq 0\;\text{for}\;x\in\Omega\;\text{with}\;d(x) = +\mathrm{dist}(x,\partial\Omega)\;\text{for}\;x\in \Omega\backslash \Omega_\delta,\\
+    d(x)\leq 0\;\text{for}\;x\notin \Omega\;\text{with}\;d(x) = -\mathrm{dist}(x,\partial\Omega)\;\text{for}\;x\in \Omega^\delta\backslash \Omega.
+    \end{cases}
+\end{equation*}
+We can choose $d(\cdot)$ so that $\Omega_\delta = \{x\in \mathbb{R}^n: d(x)-\delta >0 \}$ and $\Omega^\delta = \{x\in \mathbb{R}^n: d(x) +\delta>0\}$.
+
+To find candidate for subsolution and supersolution to \eqref{eq:PDE}, we use the ansatz
+\begin{equation}\label{eq:ansatz}
+    u(x) = C_0 d(x)^{-\alpha}, \qquad x\in \Omega
+\end{equation}
+as we expect it blows up near the boundary like some thing proportionate to inverse of the distance function, due to the structure of $H(x,\varrho) = |\varrho|^p - f(x)$. Let us plug \eqref{eq:ansatz} into \eqref{eq:PDE} we obtain that the highest order terms are
+\begin{equation*}
+        -C_0 \alpha(\alpha+1)d^{-(\alpha+2)} + C_0^p \alpha^p d^{-(\alpha+1)p}.
+\end{equation*}
+Setting them to zero, we deduce that
+\begin{equation*}
+    \displaystyle\alpha = \frac{2-p}{p-1} \qquad\text{and}\qquad C_0 = \frac{1}{\alpha}(\alpha+1)^\frac{1}{p-1}.
+\end{equation*}
+We can obtain the following families of subsolution on $\Omega^\delta$ and supersolution on $\Omega^\delta$ as follow.
+\begin{equation*}
+        \overline{w}_{\eta,\delta}(x) = \frac{C_0+\eta}{(d(x)-\delta)^\alpha} +\frac{C_\eta}{\lambda} \quad\text{for}\;x\in \Omega_\delta \qquad\text{and}\qquad \underline{w}_{\eta,\delta}(x) = \frac{C_0-\eta}{(d(x)+\delta)^\alpha} -\frac{C_\eta}{\lambda} \quad\text{for}\;x\in \Omega^\delta.
+\end{equation*}
+We divide the rest of the proof into 3 steps.
+\begin{itemize}
+    \item Step 1. Building a maximal solution to \eqref{eq:PDE}. 
+\end{itemize}
+\end{proof}
+
+
+
+
+\section{Gradient bounds}
+\subsection{Local interior gradient bound for elliptic equation}
+Let $\Omega\subset \R^n$ be an open, bounded, connected set with $\rmC^2$ boundary and $H(x,p):\overline{\Omega}\times \R^n\rightarrow \mathbb{R}$ be a continuously differentiable Hamiltonian satisfying
+\begin{equation}\label{eq:grow}
+\lim_{|p\rightarrow \infty} \left(\frac{1}{2}H(x,p)^2 + D_xH(x,p)\cdot p\right) = +\infty \qquad\text{uniformly in}\;x\in \overline{\Omega}. \tag{H1}
+\end{equation}
+We consider the following equation
+\begin{equation}\label{eq:C_eps}
+    \lambda u^\varepsilon(x) + H(x,Du^\varepsilon(x)) - \varepsilon \Delta u^\varepsilon(x) = 0 \qquad\text{in}\;\Omega.
+\end{equation}
+Let $u^\varepsilon\in \rmC^2(\Omega)\cap \mathrm{C}^1(\overline{\Omega})$ be a bounded solution to \eqref{eq:C_eps}, say $|\lambda u^\varepsilon(x)| \leq C_1$ for all $x\in \overline{\Omega}$. In this section we show that an interior gradient bound also holds, i.e., if $x\mapsto|Du^\varepsilon(x)|$ has a maximum over $\overline{\Omega}$ at $x_0\in \Omega$ then $|Du^\varepsilon(x_0)| \leq C_2$ for all $x\in \Omega$. Here $C_1,C_2$ are independent of $\varepsilon>0$.\\
+
+
+\noindent We will use the classical Bernstein's argument. Let $\varphi(x) = \frac{1}{2}|Du^\varepsilon(x)|^2$ for $x\in \Omega$. Differentiate \eqref{eq:C_eps} in $x_i$ then multiply the resulting equation with $u^\varepsilon_{x_i}$ and then sum over $i=1,2,\ldots, n$ we obtain 
+\begin{equation*}
+    2\lambda \varphi(x) + D_pH(x,Du^\varepsilon(x))\cdot D\varphi(x) - \varepsilon \Delta \varphi(x) + \Big(\varepsilon |D^2u^\varepsilon(x)| + D_xH(x,Du^\varepsilon(x))\cdot Du^\varepsilon(x)\Big) = 0.
+\end{equation*}
+If $\varphi(x)$ achieves its maximum over $\overline{\Omega}$ at $x_0\in \Omega$, then $D\varphi(x_0) = 0$ and $\Delta \varphi(x_0)\leq 0$, together with $\varepsilon |D^2u^\varepsilon(x)|^2\geq \frac{1}{n\varepsilon}(\varepsilon\Delta u^\varepsilon(x))^2\geq (\varepsilon\Delta u^\varepsilon(x))^2$ if $n\varepsilon < 1$ we deduce that
+\begin{equation*}
+    \lambda |D u^\varepsilon(x_0)|^2 + \Big(\lambda u^\varepsilon(x_0)+H(x_0,Du^\varepsilon(x_0))\Big)^2 + D_xH(x_0,Du^\varepsilon(x_0))\cdot Du^\varepsilon(x_0) \leq 0.
+\end{equation*}
+Assume $|\lambda u^\varepsilon(x_0)|\leq C_1$, using \eqref{eq:grow} we deduce that
+\begin{equation*}
+    \frac{1}{2}H(x_0,Du^\varepsilon(x_0))^2 + D_xH(x_0,Du^\varepsilon(x_0))\cdot Du^\varepsilon(x_0) + \left(\frac{1}{\sqrt{2}}H(x_0,Du^\varepsilon(x_0) - \sqrt{2}C_1\right)^2 - \left(C_1\right)^2\leq 0
+\end{equation*}
+which gives us $|Du^\varepsilon(x_0)|\leq C_2$ for some $C_2$ independent of $\varepsilon$. 
+\begin{rem} Assumption \eqref{eq:grow} is weaker than the combination of $p\mapsto H(x,p)$ is superlinear and $|D_xH(x,p)|\leq C(1+|p|)$.
+\end{rem}
+
+
+\section{Differentiability with respect to the parameter}
+For the vanishing viscosity problem with the Dirichlet boundary condition,
+\begin{equation}
+\label{dir}
+\left\{
+  \begin{aligned}
+    H(x, Du^\epsilon(x)) &= \epsilon \Delta u^\epsilon \quad \, \text{in } U, \\
+              u^\epsilon &= 0 \quad \qquad \text{on } \partial U,
+  \end{aligned}
+\right.
+\end{equation}
+we want to show the smooth dependence of $u^\epsilon$ on $\epsilon$.
+Formally, if we differentiate \eqref{dir} with respect to $\epsilon$, we get
+\begin{equation}
+\label{dir_dif}
+\left\{
+  \begin{aligned}
+    D_pH(x, Du^\epsilon(x))\cdot Du^\epsilon_\epsilon &= \epsilon \Delta u^\epsilon_\epsilon +\Delta u^\epsilon \quad \, \text{in } U, \\
+              u^\epsilon_\epsilon &= 0 \quad \qquad  \qquad  \text{on } \partial U.
+  \end{aligned}
+\right.
+\end{equation}
+By Schaefer's fixed point theorem and the maximal principle, $u^\epsilon_\epsilon$ is the unique solution in $C^2(\overline{U})$ of \eqref{dir_dif} \textcolor{orange}{(needs double check)}. The main idea is, we look at the difference quotients $\displaystyle \frac{u^{\epsilon+h}-u^\epsilon}{h}$and prove that as $h \to 0^+$, they converge to a limiting function $w^{\ast}$ in the uniform norm \textcolor{orange}{(maybe weaker convergence is fine)} such that $w^{\ast}$ solves \eqref{dir_dif}. Since \eqref{dir_dif} has a unique solution, we have $$u^\epsilon_\epsilon=\lim_{h \to 0^+}\frac{u^{\epsilon+h}-u^\epsilon}{h}.$$
+
+Fix $\epsilon >0$. Let $$w^h(x):=\frac{u^{\epsilon+h}(x)-u^\epsilon(x)}{h} \in C^2(\overline{U}).$$
+
+A little computation will show that $w^h$ solves
+
+\begin{equation}
+\label{dir_quo}
+\left\{
+  \begin{aligned}
+   \epsilon \Delta w^h(x) + \frac{\epsilon}{\epsilon + h}\Delta u^\epsilon &= \frac{\epsilon}{\epsilon +h} \int_0^1 D_pH(x, Du^\epsilon+\theta (Du^{\epsilon+h}-Du^\epsilon)) d\theta \cdot Dw^h \quad \, \text{in } U, \\
+              w^h &= 0 \quad \qquad \text{on } \partial U.
+  \end{aligned}
+\right.
+\end{equation}
+Heuristically, we see as $h \to 0^+$, \eqref{dir_quo} "converges" to \eqref{dir_dif}.
+
+
+\textcolor{orange}{Still thinking about how to show $w^h$ converges uniformly as $h \to 0^+$. I am tring to show $\| w^h-w^\ast\|_\infty \to 0$ by looking at the equation solved by $v^h:=w^h-w^\ast$. More to fill in...}
+
+\end{appendices}
+
+%\section*{Acknowledgement}
+
+
+
+
+\bibliography{zzzzlibrary}{}
+%\bibliographystyle{ieeetr}
+\bibliographystyle{acm}
+
+
+
+
+
+
+
+
+
+
+\end{document}
