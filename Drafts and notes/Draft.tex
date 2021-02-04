@@ -23,7 +23,7 @@
 \usepackage[utf8]{inputenc}
 %\usepackage{mathpazo}
 
-%\usepackage[libertine,cmintegrals,cmbraces,vvarbb]{newtxmath}
+%\usepackage[libertine,cmintegrals,cmbraceFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfs,vvarbb]{newtxmath}
 \usepackage{eucal}
 \usepackage[euler-digits]{eulervm}
 \usepackage[unicode=true]{hyperref}
@@ -272,7 +272,26 @@ We list the assumptions on a general Hamiltonian as follow.
 \end{itemize}
 
 \section{Preliminaries}\label{sec:prelim} 
-\subsection{Setting and simplifications} Let $\delta_0>0$ be a fixed number such that $x\mapsto \mathrm{dist}(x,\partial\Omega)$ is $\mathrm{C}^2$ on $\Omega\backslash \Omega_{\delta_0}$, i.e., in the region where $0<\mathrm{dist}(x,\partial\Omega) \leq \delta_0$. We then extend $\mathrm{dist}(x,\partial\Omega)$ to a function $d(x)\in \mathrm{C}^2(\mathbb{R}^n)$ such that 
+\subsection{Setting and simplifications} Let $\Omega$ be an open, bounded and connected subset of $\mathbb{R}^n$ with boundary $\partial$ is of class $C^2$. For $\delta>0$, let us define $\Omega_\delta = \{x\in \Omega: \mathrm{dist}(x,\Omega) > \delta\}$ and $\Omega^\delta = \{x\in \mathbb{R}^n: \mathrm{dist}(x,\overline{\Omega}) < \delta\}$. 
+\begin{figure}[ht]
+    \centering
+    %\incfig{Domains}
+    \def\svgwidth{0.47\columnwidth}
+    \import{./figs/}{Domains.pdf_tex}
+    \caption{The domain $\Omega$ variations $\Omega_\delta, \Omega^\delta$.}
+    \label{fig:Domains}
+\end{figure}
+We consider $\delta$ small enough so that the distance function $x\mapsto \mathrm{dist}(x,\partial \Omega)$ is $\mathrm{C}^2$ in the strip $\Omega^\delta\backslash \overline{\Omega}_\delta$, we recall that $|D d(x)| = 1$ in that region. We extend the signed distance function into a $\mathrm{C}^2(\mathbb{R}^n)$ function, denoted by $d(x)$ such that 
+\begin{equation*}
+    \begin{cases}
+    d(x)\geq 0\;\text{for}\;x\in\Omega\;\text{with}\;d(x) = +\mathrm{dist}(x,\partial\Omega)\;\text{for}\;x\in \Omega\backslash \Omega_\delta,\\
+    d(x)\leq 0\;\text{for}\;x\notin \Omega\;\text{with}\;d(x) = -\mathrm{dist}(x,\partial\Omega)\;\text{for}\;x\in \Omega^\delta\backslash \Omega.
+    \end{cases}
+\end{equation*}
+We can choose $d(\cdot)$ so that $\Omega_\delta = \{x\in \mathbb{R}^n: d(x)-\delta >0 \}$ and $\Omega^\delta = \{x\in \mathbb{R}^n: d(x) +\delta>0\}$.
+
+
+Let $\delta_0>0$ be a fixed number such that $x\mapsto \mathrm{dist}(x,\partial\Omega)$ is of class $\mathrm{C}^2$ on $\Omega\backslash \Omega_{\delta_0}$, i.e., in the region where $0<\mathrm{dist}(x,\partial\Omega) \leq \delta_0$. We then extend $\mathrm{dist}(x,\partial\Omega)$ to a function $d(x)\in \mathrm{C}^2(\mathbb{R}^n)$ such that 
 \begin{equation*}
     \begin{cases}
     d(x)\geq 0\;\text{for}\;x\in\Omega\;\text{with}\;d(x) = +\mathrm{dist}(x,\partial\Omega)\;\text{for}\;x\in \Omega\backslash \Omega_{\delta_0},\\
@@ -285,7 +304,7 @@ Let us denote
 \end{equation*}
 \noindent Let us denote by $\mathcal{L}^\varepsilon:\rmC^2(\Omega)\to \rmC^2(\Omega)$ the operator
 \begin{equation*}
-    \mathcal{L}^\varepsilon[u](x) := \lambda u(x) + |Du(x)|^p - f(x) - \varepsilon \Delta u(x), \qquad x\in \Omega.
+    \mathcal{L}^\varepsilon[u](x) := \lambda u(x) + H(x,Du(x)) - \varepsilon \Delta u(x), \qquad x\in \Omega.
 \end{equation*}
 \subsection{Gradient estimate} 
 
@@ -309,23 +328,7 @@ where
 \end{equation*}
 \end{thm}
 
-\begin{proof} For $\delta>0$, let us define $\Omega_\delta = \{x\in \Omega: \mathrm{dist}(x,\Omega) < \delta\}$ $\textcolor{orange}{(\mathrm{dist}(x,\partial \Omega) > \delta)}$ and $\Omega^\delta = \{x\in \mathbb{R}^n: \mathrm{dist}(x,\overline{\Omega}) < \delta\}$. 
-\begin{figure}[ht]
-    \centering
-    %\incfig{Domains}
-    \def\svgwidth{0.47\columnwidth}
-    \import{./figs/}{Domains.pdf_tex}
-    \caption{The domain $\Omega$ variations $\Omega_\delta, \Omega^\delta$.}
-    \label{fig:Domains}
-\end{figure}
-We consider $\delta$ small enough so that the distance function $x\mapsto \mathrm{dist}(x,\partial \Omega)$ is $\mathrm{C}^2$ in the strip $\Omega^\delta\backslash \overline{\Omega}_\delta$, we recall that $|D d(x)| = 1$ in that region. We extend the signed distance function into a $\mathrm{C}^2(\mathbb{R}^n)$ function, denoted by $d(x)$ such that 
-\begin{equation*}
-    \begin{cases}
-    d(x)\geq 0\;\text{for}\;x\in\Omega\;\text{with}\;d(x) = +\mathrm{dist}(x,\partial\Omega)\;\text{for}\;x\in \Omega\backslash \Omega_\delta,\\
-    d(x)\leq 0\;\text{for}\;x\notin \Omega\;\text{with}\;d(x) = -\mathrm{dist}(x,\partial\Omega)\;\text{for}\;x\in \Omega^\delta\backslash \Omega.
-    \end{cases}
-\end{equation*}
-We can choose $d(\cdot)$ so that $\Omega_\delta = \{x\in \mathbb{R}^n: d(x)-\delta >0 \}$ and $\Omega^\delta = \{x\in \mathbb{R}^n: d(x) +\delta>0\}$.
+\begin{proof} 
 
 \noindent To find a candidate for subsolution and supersolution to \eqref{eq:PDEeps}, we use the \emph{ansatz}
 \begin{equation}\label{eq:ansatz}

@@ -1,0 +1,23 @@
+\begin{thebibliography}{1}
+
+\bibitem{Capuzzo-Dolcetta1990}
+{\sc Capuzzo-Dolcetta, I., and Lions, P.-L.}
+\newblock {H}amilton--{J}acobi equations with state constraints.
+\newblock {\em Transactions of the American Mathematical Society 318}, 2
+  (1990), 643--683.
+
+\bibitem{kim_state-constraint_2020}
+{\sc Kim, Y., Tran, H.~V., and Tu, S.~N.}
+\newblock State-{Constraint} {Static} {Hamilton}--{Jacobi} {Equations} in
+  {Nested} {Domains}.
+\newblock {\em SIAM Journal on Mathematical Analysis 52}, 5 (Jan. 2020),
+  4161--4184.
+\newblock Society for Industrial and Applied Mathematics.
+
+\bibitem{Lasry1989}
+{\sc Lasry, J.~M., and Lions, P.-L.}
+\newblock Nonlinear elliptic equations with singular boundary conditions and
+  stochastic control with state constraints. {I}. the model problem.
+\newblock {\em Mathematische Annalen 283}, 4 (1989), 583--630.
+
+\end{thebibliography}
