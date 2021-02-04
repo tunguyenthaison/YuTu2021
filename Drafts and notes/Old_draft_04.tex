@@ -272,7 +272,7 @@ We list the assumptions on a general Hamiltonian as follow.
 \end{itemize}
 
 \section{Preliminaries}\label{sec:prelim} 
-\subsection{Setting and simplifications} Let $\delta_0>0$ be a fixed number such that $x\mapsto \mathrm{dist}(x,\partial\Omega)$ is $\mathrm{C}^2$ on $\Omega\backslash \Omega_{\delta_0}$, i.e., in the region where $0<\mathrm{dist}(x,\partial\Omega) \leq \delta_0$. We then extend $\mathrm{dist}(x,\partial\Omega)$ to a function $d(x)\in \mathrm{C}^2(\mathbb{R}^n)$ such that 
+\subsection{Setting and simplifications} Let $\delta_0>0$ be a fixed number such that $\mathrm{dist}(x,\partial\Omega)$ is $\mathrm{C}^2$ on $\Omega\backslash \Omega_{\delta_0}$, i.e., in the region where $0<\mathrm{dist}(x,\partial\Omega) < \delta_0$. We then extend $\mathrm{dist}(x,\partial\Omega)$ to a function $d(x)\in \mathrm{C}^2(\mathbb{R}^n)$ such that 
 \begin{equation*}
     \begin{cases}
     d(x)\geq 0\;\text{for}\;x\in\Omega\;\text{with}\;d(x) = +\mathrm{dist}(x,\partial\Omega)\;\text{for}\;x\in \Omega\backslash \Omega_{\delta_0},\\
@@ -309,7 +309,7 @@ where
 \end{equation*}
 \end{thm}
 
-\begin{proof} For $\delta>0$, let us define $\Omega_\delta = \{x\in \Omega: \mathrm{dist}(x,\Omega) < \delta\}$ $\textcolor{orange}{(\mathrm{dist}(x,\partial \Omega) > \delta)}$ and $\Omega^\delta = \{x\in \mathbb{R}^n: \mathrm{dist}(x,\overline{\Omega}) < \delta\}$. 
+\begin{proof} For $\delta>0$, let us define $\Omega_\delta = \{x\in \Omega: \mathrm{dist}(x,\Omega) < \delta\}$ and $\Omega^\delta = \{x\in \mathbb{R}^n: \mathrm{dist}(x,\overline{\Omega}) < \delta\}$. 
 \begin{figure}[ht]
     \centering
     %\incfig{Domains}
@@ -370,9 +370,9 @@ is a supersolution of \eqref{eq:PDEeps} in $\Omega_\delta$ where
 
 \begin{lem}\label{lem:supersln} For each $\eta>0$ there exists $M_\eta > 0$ such that 
 \begin{equation*}
-    \overline{w}_{\eta,\delta}(x) \textcolor{orange}{(\underline{w}_{\eta, \delta})} = \frac{C_\varepsilon-\eta}{(d(x)+\delta)^\alpha} -\frac{M_\eta}{\lambda}, \qquad x\in \Omega^\delta 
+    \overline{w}_{\eta,\delta}(x) = \frac{C_\varepsilon-\eta}{(d(x)+\delta)^\alpha} -\frac{M_\eta}{\lambda}, \qquad x\in \Omega^\delta
 \end{equation*}
-is a supersolution $\textcolor{orange}{(subsolution)}$ of \eqref{eq:PDEeps} in $\Omega^\delta$.
+is a supersolution of \eqref{eq:PDEeps} in $\Omega^\delta$.
 \end{lem}
 
 
@@ -387,7 +387,7 @@ We divide the rest of the proof into 3 steps. We first construct a minimal solut
         \qquad w_{\eta,\delta} = \underline{w}_{\eta,\delta} &\qquad\text{on}\;\partial\Omega.
     \end{cases}
     \end{equation}
-    Fix $\eta>0$, as $\delta\to 0$ the value of $\underline{w}_{\eta,\delta}$ blows up on the boundary, therefore by comparison principle we have $\delta_1 \leq  \delta_2$ implies $w_{\eta,\delta_1}\geq  w_{\eta,\delta_2}$ on $\overline{\Omega}$. 
+    Fix $\eta>0$, as $\delta\to 0$ the value of $\underline{w}_{\eta,\delta}$ blows up on the boundary, therefore by comparison principle we have $\delta_1 \leq  \delta_2$ implies $w_{\eta,\delta_1}\leq  w_{\eta,\delta_2}$ on $\overline{\Omega}$. 
 
     
     \noindent Since $\underline{w}_{\eta,\delta'}$ is a subsolution in $\overline{\Omega}$ with finite boundary, we obtain that
@@ -486,7 +486,7 @@ For given $\theta\in (0,1)$, we can always choose $\varsigma$ small enough such 
 \begin{equation*}
     u^\varepsilon(x) = \lim_{m\to \infty} u^{\varepsilon}_m(x), \qquad x\in \Omega,
 \end{equation*}
- where $u^{\varepsilon,m}\in \mathrm{C}^2(\Omega)\cap \rmC(\overline{\Omega})$ solves the Drichlet problem
+where $u^{\varepsilon,m}\in \mathrm{C}^2(\Omega)\cap \rmC(\overline{\Omega})$ solves the Drichlet problem
 \begin{equation}\label{e:uepsm}
     \begin{cases}
     \lambda u(x) + H(x,Du(x)) - \varepsilon \Delta u(x) = 0 &\qquad
@@ -528,14 +528,53 @@ For all $\delta$ small enough $v_\delta\leq u^\varepsilon$ on $\partial \Omega_\
 Let $\delta\rightarrow 0$ we obtain $w\leq u^0$ in $\Omega$, which implies $w\leq u^0$ on $\overline{\Omega}$ since both $w,u^0$ belong to $\rmC(\overline{\Omega})$.
 \end{proof}
 
-\section{Rate of convergence via Doubling variables - a toy case}
+\section{Rate of convergence via Doubling variables}
+\noindent Let $\Omega = B(0,1)$. Let $\sigma \in (0,1)$ and $\beta \in (0,1)$ to be chosen later, let us define
+\begin{align*}
+    \Phi^{\sigma}(x,y) =  u^\varepsilon(x) - u^0(y) - \frac{|x-y|^2}{\sigma}- \frac{C_\varepsilon}{d(x)^{\alpha+\beta}}, \qquad (x,y)\in \overline{\Omega}\times\overline{\Omega}.
+\end{align*}
+\paragraph{\textcolor{blue}{\textbf{Step 1.}}} Since $u^\varepsilon d(x)^\alpha \to C_\varepsilon$ as $d(x)\to 0$, we see that $\Phi^\sigma(x,y)\to -\infty$ as $d(x)\to 0$, therefore for a fixed $\varepsilon>0$, there is $(x_{\sigma},y_\sigma)\in \Omega\times\overline{\Omega}$ such that 
+\begin{equation*}
+    \max_{\overline{\Omega}\times \overline{\Omega}} \Phi^\sigma = \Phi^\sigma(x_\sigma,y_\sigma).
+\end{equation*}
+\paragraph{\textcolor{blue}{\textbf{Step 2.}}} Preliminaries estimates.
+\begin{itemize} 
+    \item[(a)] $\Phi^\sigma(x_\sigma,y_\sigma) \geq \Phi^\sigma(x_\sigma,x_\sigma)$ gives us that
+    \begin{align*}
+        u^\varepsilon(x_\sigma) - u^0(y_\sigma) - \frac{|x_\sigma-y_\sigma|^2}{\sigma}- \frac{C_\varepsilon}{d(x_\sigma)^{\alpha+\beta}} \geq u^\varepsilon(x_\sigma) - u^0(x_\sigma) -  \frac{C_\varepsilon}{d(x_\sigma)^{\alpha+\beta}}
+    \end{align*}
+    which imlies that
+    \begin{equation}\label{e:est_sigma}
+        \frac{|x_\sigma-y_\sigma|^2}{\sigma} \leq u^0(x_\sigma) - u^0(y_\sigma) \leq \mathfrak{C}|x_\sigma-y_\sigma| \qquad\Longrightarrow\qquad |x_\sigma -y _\sigma|\leq \mathfrak{C}\sigma.
+    \end{equation}
+    \item[(b)] $\Phi^\sigma(x_\sigma,y_\sigma) \geq \Phi^\sigma(y_\sigma,y_\sigma)$ gives us that
+    \begin{align*}
+        u^\varepsilon(x_\sigma) - u^0(y_\sigma) - \frac{|x_\sigma-y_\sigma|^2}{\sigma}- \frac{C_\varepsilon}{d(x_\sigma)^{\alpha+\beta}} \geq u^\varepsilon(y_\sigma) - u^0(y_\sigma) -  \frac{C_\varepsilon}{d(y_\sigma)^{\alpha+\beta}}
+    \end{align*}
+    which implies that
+    \begin{equation*}
+        \frac{|x_\sigma-y_\sigma|^2}{\sigma} + C_\varepsilon\left(\frac{1}{d(x_\sigma)^{\alpha+\beta}} - \frac{1}{d(y_\sigma)^{\alpha+\beta}}\right) \leq u^\varepsilon(x_\sigma) - u^\varepsilon(y_\sigma) .
+    \end{equation*}
+    \item[(c)] $\Phi^\sigma(x_\sigma,y_\sigma) \geq \Phi^\sigma(0,0)$ gives us that
+    \begin{align*}
+        u^\varepsilon(x_\sigma) - u^0(y_\sigma) - \frac{|x_\sigma-y_\sigma|^2}{\sigma}- \frac{C_\varepsilon}{d(x_\sigma)^{\alpha+\beta}} \geq u^\varepsilon(0) - u^0(0) -  C_\varepsilon
+    \end{align*}
+    and thus 
+    \begin{equation*}
+         \frac{|x_\sigma-y_\sigma|^2}{\sigma}+ \frac{C_\varepsilon}{d(x_\sigma)^{\alpha+\beta}}  \leq u^\varepsilon(x_\sigma) - u^\varepsilon(0) + u^0(0) - u^0(y_\sigma) + C_\varepsilon.
+    \end{equation*}
+\end{itemize}
+
+
+\newpage
+\section{New try}
 \noindent Let $\Omega = B(0,1)$. Let $\beta,\sigma,\delta \in (0,1)$ to be chosen later, let us define
 \begin{align*}
-    \Phi^{\sigma}(x,y) =  u^\varepsilon(x) - u_\delta(y) - \frac{L_0|x-y|^2}{\sigma}- \frac{C_\varepsilon}{d(x)^{\alpha+\beta}}, \qquad (x,y)\in \overline{\Omega}\times\overline{\Omega}_\delta
+    \Phi^{\sigma}(x,y) =  u^\varepsilon(x) - u_\delta(y) - \mathfrak{C}\frac{|x-y|^2}{\sigma}- \frac{C_\varepsilon}{d(x)^{\alpha+\beta}}, \qquad (x,y)\in \overline{\Omega}\times\overline{\Omega}_\delta
 \end{align*}
-where $L_0$ is the Lipschitz constant of $u^0$ and $u_\delta\in \mathrm{C}(\overline{\Omega}_\delta)$ is the state-constraint solution to
+where $\mathfrak{C}$ is the Lipschitz constant of $u^0$, $u_\delta\in \mathrm{C}(\overline{\Omega}_\delta)$ is the state-constraint solution to
 \begin{equation*}
-    \begin{cases}  
+    \begin{cases}
     \lambda u_\delta(x) + H(x,Du_\delta(x)) \leq 0 \qquad\text{in}\; \Omega_\delta\\
     \lambda u_\delta(x) + H(x,Du_\delta(x)) \geq 0 \qquad\text{on}\; \overline{\Omega}_\delta.
     \end{cases}
@@ -670,25 +709,7 @@ It appears that the boundary layer is the strip
 \begin{equation*}
     \Gamma_\varepsilon = \{x\in \Omega: 0<\mathrm\dist(x,\partial\Omega)< 2\sqrt{\varepsilon}\}.
 \end{equation*}
-\color{blue}
-\textcolor{blue}{\textbf{The next questions and tasks:}}
-\begin{enumerate}
-    \item Check all the constants, make sure things are correct!
-    \item It seems that $\sqrt{\varepsilon}$ is the best using this method. Now we can improve this by either:
-    \begin{itemize}
-        \item[(a)] Make the boundary layer to $\sqrt{\varepsilon}$ only, instead of $2\sqrt{\varepsilon}$.
-        \item[(b)] \textcolor{red}{\textbf{Important.}} Generalize this to more general domain, possibly star-shaped domains where we can do scaling is fine (just my guess).
-    \end{itemize}
-    \item Other formulations of the doubling variable method here, for example, in the first step, it seems that making $\Phi^\sigma(x,y)\to  -\infty$ as $x\to \partial\Omega$ is "\emph{too wasteful}". One may need only to do something like
-    \begin{equation*}
-        \Phi^\sigma(x,y) < \Phi^\sigma(0,0) \qquad\text{if}\qquad d(x) < \;\text{something close to the boundary}.
-    \end{equation*}
-    Can we improve that to get a better rate? My guess is not even if we can improve this, since the dominating term coming from $\varepsilon^\gamma$ and $\varepsilon^{1-\gamma}$ later. Nevertheless, it maybe still interesting to see why and how the \emph{wasteful} formulation here can be improved.
-    \item \textcolor{red}{\textbf{Important.}} Using nonlinear adjoint method.
-    \item Now once we have some rate, can we do bootstrap to improve it as we discussed earlier (the simple ideas, ...)?
-    \item \textcolor{red}{\textbf{Important.}} Can we find an example where $|u^\varepsilon - u^0| = \mathcal{O}(1)$ in the strip where $0<\mathrm{dist}(x,\partial\Omega)<2\sqrt{\varepsilon}$? Or can we even make more layers inside with more scales, as $|u^\varepsilon - u^0| = \mathcal{O}(1)$ is not possible near the boundary $\partial\Omega$.
-\end{enumerate}
-\color{black}
+The next questions and tasks:
 
 
 \newpage
