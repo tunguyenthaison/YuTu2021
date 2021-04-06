@@ -1,0 +1,391 @@
+\documentclass[11pt,reqno]{amsart}
+%============%============%============%============%
+
+%============%============%============%============%
+%\setlength{\columnseprule}{0.4pt}
+%\setlength{\topmargin}{0cm}
+%\setlength{\oddsidemargin}{.25cm}
+%\setlength{\evensidemargin}{.25cm}
+%\setlength{\textheight}{22.5cm}
+%\setlength{\textwidth}{15.5cm}
+\renewcommand{\baselinestretch}{1.05}
+%============%============%============%============%
+\usepackage[toc,page]{appendix}
+%============%============%============%============%
+%\usepackage{romannum}
+\usepackage{xcolor}
+\usepackage{placeins}
+\usepackage{amsfonts,amsmath,amsthm}
+\usepackage{amssymb,epsfig}
+\usepackage{enumerate} 
+\usepackage[notcite,notref]{showkeys}
+\usepackage{fullpage}
+%============%============%============%============%
+\usepackage[utf8]{inputenc}
+%\usepackage{mathpazo}
+
+%\usepackage[libertine,cmintegrals,cmbraceFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfs,vvarbb]{newtxmath}
+\usepackage{eucal}
+\usepackage[euler-digits]{eulervm}
+\usepackage[unicode=true]{hyperref}
+\hypersetup{colorlinks = true}
+%\hypersetup{hidelinks=true}
+\hypersetup{
+     colorlinks,
+     linkcolor={black!10!red},
+     linkbordercolor = {black!100!red},
+%    <your other options...>,
+     citecolor={blue}
+}
+
+
+
+
+
+%graphic
+%\usepackage[text={425pt,650pt},centering]{geometry}
+
+\usepackage{pdfsync}
+
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm,headheight=3.5cm}
+
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{color} %color
+\definecolor{vert}{rgb}{0,0.6,0}
+
+\usepackage{comment}
+\numberwithin{figure}{section}
+%\pagestyle{plain}
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ass}{Assumption}
+\renewcommand{\theass}{}
+\newtheorem{defn}{Definition}
+\newtheorem{quest}{Question}
+\newtheorem{com}{Comment}
+\newtheorem{ex}{Example}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{remark}
+\newtheorem{rem}{\bf{Remark}}
+\numberwithin{equation}{section}
+
+
+
+%\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+
+
+%Characters -- Shortcuts
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\M}{\mathbb{M}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\bfS}{\mathbf{S}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\I}{\mathrm{I}}
+
+
+%Functional spaces
+\newcommand{\AC}{{\rm AC\,}}
+\newcommand{\ACl}{{\rm AC}_{{\rm loc}}}
+\newcommand{\BUC}{{\rm BUC\,}}
+\newcommand{\USC}{{\rm USC\,}}
+\newcommand{\LSC}{{\rm LSC\,}}
+\newcommand{\Li}{L^{\infty}}
+\newcommand{\Lip}{{\rm Lip\,}}
+\newcommand{\W}{W^{1,\infty}}
+\newcommand{\Wx}{W_x^{1,\infty}}
+
+
+%Domains
+\newcommand{\bO}{\partial\Omega}
+\newcommand{\cO}{\overline\Omega}
+\newcommand{\Q}{\mathbb{T}^{n}\times(0,\infty)}
+\newcommand{\iQ}{\mathbb{T}^{n}\times\{0\}}
+\newcommand{\cQ}{\mathbb{T}^{n}\times[0,\infty)}
+
+
+%Greek alphabets -- Shortcuts
+\newcommand{\al}{\alpha}
+\newcommand{\gam}{\gamma}
+\newcommand{\del}{\delta}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\kap}{\kappa}
+\newcommand{\lam}{\lambda}
+\newcommand{\sig}{\sigma}
+\newcommand{\om}{\omega}
+\newcommand{\Del}{\Delta}
+\newcommand{\Gam}{\Gamma}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\Om}{\Omega}
+\newcommand{\Sig}{\Sigma}
+
+
+
+%Overlines, Underlines -- Shortcuts
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\pl}{\partial}
+\newcommand{\supp}{{\rm supp}\,}
+\newcommand{\inter}{{\rm int}\,}
+\newcommand{\loc}{{\rm loc}\,}
+\newcommand{\co}{{\rm co}\,}
+\newcommand{\diam}{{\rm diam}\,}
+\newcommand{\diag}{{\rm diag}\,}
+\newcommand{\dist}{{\rm dist}\,}
+\newcommand{\Div}{{\rm div}\,}
+\newcommand{\sgn}{{\rm sgn}\,}
+\newcommand{\tr}{{\rm tr}\,}
+\newcommand{\Per}{{\rm Per}\,}
+
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rup}{\rightharpoonup}
+
+
+\renewcommand{\subjclassname}{%
+\textup{2010} Mathematics Subject Classification} 
+
+%Hyperlink in PDF file
+%\usepackage[dvipdfm,
+%  colorlinks=false,
+%  bookmarks=true,
+%  bookmarksnumbered=false,
+%  bookmarkstype=toc]{hyperref}
+%\makeatletter
+%\def\@pdfm@dest#1{%
+%  \Hy@SaveLastskip
+%  \@pdfm@mark{dest (#1) [@thispage /\@pdfview\space @xpos @ypos null]}%
+%  \Hy@RestoreLastskip
+%}
+
+
+%BibLatex
+%\usepackage[
+%backend=biber,
+%style=alphabetic,
+%sorting=ynt
+%]{biblatex}
+%\addbibresource{rate.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figs/}{#1.pdf_tex}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\title[Rate of convergence]
+{\textsc{Notes on the project}}
+\thanks{The authors are supported in part by NSF grant DMS-1664424.}
+%\begin{abstract}
+%We investigate qualitatively the convergence of large, or state-constraint solution to nonlinear elliptic equation as the viscosity vanish.
+%\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Yuxi Han}
+\address[Y. Han]
+{
+Department of Mathematics, 
+University of Wisconsin Madison, 480 Lincoln  Drive, Madison, WI 53706, USA}
+\email{yuxi.han@wisc.edu}
+\author{Son N. T. Tu}
+\address[S. N.T. Tu]
+{
+Department of Mathematics, 
+University of Wisconsin Madison, 480 Lincoln  Drive, Madison, WI 53706, USA}
+\email{thaison@math.wisc.edu}
+\date{\today}
+\keywords{first-order Hamilton--Jacobi equations; state-constraint problems; optimal control theory; rate of convergence; viscosity solutions.}
+\subjclass[2010]{
+35B40, %Asymptotic behavior of solutions, 
+35D40, %Viscosity solutions
+49J20, %Optimal control problems involving partial differential equations
+49L25, %Viscosity solutions
+70H20 %Hamilton-Jacobi equations
+}
+\maketitle
+\setcounter{tocdepth}{1}
+%\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{Doubling variable - Attempt No. 30}
+\noindent (February 15, 2021) \\
+Let $\alpha = \frac{1}{2}$, which corresponds to $p = \frac{5}{3}$. In this case
+\begin{equation*}
+    C_\varepsilon = \frac{(\alpha+1)^{\alpha+1}}{\alpha}\varepsilon^{\alpha+1} = \left(\frac{3\sqrt{6}}{2}\right)\varepsilon^{3/2} = A\varepsilon^{3/2}.
+\end{equation*}
+Recall from \cite{alessio_asymptotic_2006}) we have
+\begin{equation*}
+|\nabla u^\varepsilon(x)|  \leq C\frac{\varepsilon^{3/2}}{d(x)^{3/2}} \qquad\text{for}\;x\in \Omega.
+\end{equation*}
+Let us define
+\begin{equation*}
+    \Phi(x,y) = u^\varepsilon(x) - u_\delta(x) -\frac{C_0|x-y|^2}{\sigma} - \frac{C_\varepsilon}{d(x)^{1/2}}, \qquad (x,y)\in \overline{\Omega}\times \overline{\Omega}_\delta.
+\end{equation*}
+Assume it has maximum at $(x_\sigma,y_\sigma)\in \overline{\Omega}\times \overline{\Omega}_\delta$. We want
+\begin{equation*}
+    \frac{\varepsilon^{3/2}}{d(x)^{3/2}} \rightarrow 0.
+\end{equation*}
+Therefore the goal is
+\begin{equation*}
+    d(x)\geq C\varepsilon^\theta \qquad\text{for} \qquad 0<\theta < 1.
+\end{equation*}
+Let $z\in \overline{\Omega}_\delta$ so that $u^\varepsilon(x) - u_\delta(x)$ has a maximum over $\overline{\Omega}_\delta$ at $z$, then $d(z)\geq \delta$. \\
+\paragraph{Step 1.} From $\Phi(x_\sigma,y_\sigma)\geq \Phi(z,z)$ we have
+\begin{align*}
+    u^\varepsilon(x_\sigma) - u_\delta(y_\sigma) - \frac{C_0|x_\sigma - y_\sigma|^2}{\sigma} - \frac{A\varepsilon^{3/2}}{d(x_\sigma)^{1/2}} &\geq u^\varepsilon(z) - u_\delta(z) - \frac{A\varepsilon^{3/2}}{d(z)^{1/2}}\\
+    &\geq u^\varepsilon(x_\sigma) - u_\delta(x_\sigma) - \frac{A\varepsilon^{3/2}}{d(z)^{1/2}}.
+\end{align*}
+Therefore
+\begin{equation*}
+    \frac{C_0|x_\sigma - y_\sigma|^2}{\sigma} + \frac{A\varepsilon^{3/2}}{d(x_\sigma)^{1/2}} \leq C_0|x_\sigma - y_\sigma|+\frac{A\varepsilon^{3/2}}{d(z)^{1/2}} \leq C_0|x_\sigma - y_\sigma|+\frac{A\varepsilon^{3/2}}{\delta^{1/2}} .
+\end{equation*}
+Using
+\begin{equation*}
+    C_0|x_\sigma-y_\sigma| \leq C_0\left(\frac{|x_\sigma - y_\sigma|^2}{\sigma}+\frac{\sigma}{4}\right) 
+\end{equation*}
+we deduce that
+\begin{equation}\label{sleep}
+    \frac{A\varepsilon^{3/2}}{d(x_\sigma)^{1/2}} \leq \frac{C_0\sigma}{4} + \frac{A\varepsilon^{3/2}}{\delta^{1/2}}.
+\end{equation}
+Choose $\sigma = \frac{4A}{C_0}\varepsilon^{5/4}$ and $\delta = \varepsilon^{1/2}$, then
+\begin{equation*}
+     \frac{A\varepsilon^{3/2}}{d(x_\sigma)^{1/2}} \leq A\varepsilon^{5/4} + \frac{A\varepsilon^{3/2}}{\varepsilon^{1/4}} = A(\varepsilon^{5/4} +\varepsilon^{5/4}) = 2A\varepsilon^{5/4}.
+\end{equation*}
+Therefore
+\begin{equation*}
+    d(x_\sigma)^{1/2} \geq \frac{1}{2}\varepsilon^{1/4} \qquad\Longrightarrow\qquad d(x_\sigma) \geq \frac{1}{4}\varepsilon^{1/2}.
+\end{equation*}
+
+\paragraph{Step 2.} From $\Phi(x_\sigma,y_\sigma)\geq \Phi(x_\sigma,(1-\theta)x_\sigma)$ where
+\begin{equation*}
+    \theta = 1-\frac{1-\varepsilon^{1/2}}{1-1/4\varepsilon^{1/2}} = \frac{3/4\varepsilon^{1/2}}{1-1/4\varepsilon^{1/2}} \qquad\text{so that}\qquad (1-\theta) x_\sigma \in \overline{\Omega}_\delta,
+\end{equation*}
+we have
+\begin{align*}
+     u^\varepsilon(x_\sigma) - u_\delta(y_\sigma) - \frac{C_0|x_\sigma - y_\sigma|^2}{\sigma}  &\geq u^\varepsilon(x_\sigma) - u_\delta((1-\theta)x_\sigma)  - \frac{C_0\theta^2|x_\sigma|^2}{\sigma}
+\end{align*}
+and therefore
+\begin{equation*}
+    \frac{C_0|x_\sigma - y_\sigma|^2}{\sigma} \leq C_0|(1-\theta)x_\sigma - y_\sigma| + \frac{C_0\theta^2 |x_\sigma|^2}{\sigma}
+\end{equation*}
+This line of argument will give us eventually that
+\begin{equation*}
+    |x_\sigma - y_\sigma| = \mathcal{O}\left(\varepsilon^{1/2}\right).
+\end{equation*}
+This is apparently \emph{bad}, since $\frac{(x_\sigma - y_\sigma)}{\sigma}$ now is unbounded.
+
+\paragraph{Step 3.} Using $x\mapsto \Phi(x,y_\sigma)$ has a maximum over $\Omega$ at $x=x_\sigma$, we have
+\begin{equation*}
+    u^\varepsilon(x) - \left(\frac{C_0|x-y_\sigma|^2}{\sigma}  + \frac{A\varepsilon^{3/2}}{d(x)^{1/2}}\right) \qquad\text{has a max at}\;x_\sigma \in \Omega_{\frac{1}{8}\varepsilon^{1/2}}.
+\end{equation*}
+Since $u^\varepsilon$ is Lipschitz in $\Omega_{\frac{1}{8}\varepsilon^{1/2}}$ with constant given by 
+\begin{equation*}
+|\nabla u^\varepsilon(x)|  \leq C\frac{\varepsilon^{3/2}}{d(x)^{3/2}} \leq C\varepsilon^{3/4} \qquad\text{for}\;x\in \Omega.
+\end{equation*}
+we deduce that 
+\begin{equation*}
+    |\xi|\leq C\varepsilon^{3/4} \qquad\text{for all}\qquad \xi\in D^+u^\varepsilon(x)\;\text{and for all}\; x\in \Omega_{\frac{1}{8}\varepsilon^{1/2}}.
+\end{equation*}
+Therefore we conclude that
+\begin{equation*}
+    \frac{2C_0(x_\sigma-y_\sigma)}{\sigma} -\frac{1}{2}\frac{A\varepsilon^{3/2}}{d(x_\sigma)^{3/2}\nabla d(x_\sigma)} \in D^+u^\varepsilon(x_\sigma).
+\end{equation*}
+and thus
+\begin{equation*}
+    \left|\frac{2C_0(x_\sigma-y_\sigma)}{\sigma} -\frac{1}{2}\frac{A\varepsilon^{3/2}\nabla d(x_\sigma)}{d(x_\sigma)^{3/2}}\right| \leq C\varepsilon^{3/4}
+\end{equation*}
+and thus (we stop keeping track of the constant at this point)
+\begin{equation*}
+    |\xi_\sigma| = \left|\frac{2C_0(x_\sigma - y_\sigma)}{\sigma}\right| \leq C\varepsilon^{3/4}  + \frac{A\varepsilon^{3/2}}{d(x_\sigma)^{3/2}} \leq C\varepsilon^{3/4}.
+\end{equation*}
+This is way better than Step 2. We define
+\begin{equation*}
+    \xi_\sigma = \frac{2C_0(x_\sigma - y_\sigma)}{\sigma} \qquad\text{and}\qquad \zeta_\sigma =-\frac{A\varepsilon^{3/2}\nabla d(x_\sigma)}{2d(x_\sigma)^{3/2}}.
+\end{equation*}
+\paragraph{Step 4.} The subsolution test also gives us
+\begin{align}\label{e:subb1}
+    \lambda u^\varepsilon(x_\sigma) + |\xi_\sigma+\zeta_\sigma|^p - f(x_\sigma) -  \varepsilon \left(\frac{2nC_0}{\sigma} + \frac{3A}{4}\frac{\varepsilon^{3/2}}{d(x_\sigma)^{5/2}} + \frac{A\varepsilon^{3/2}\Delta d(x_\sigma)}{2d(x_\sigma)^{3/2}}\right) \leq 0.
+\end{align}
+
+\paragraph{Step 5.} We have $y\mapsto \Phi^\sigma(x_\sigma,y)$ has a maximum at $y_\sigma\in \overline{\Omega}_\delta$, thus by supersolution test we have 
+\begin{equation}\label{e:super1}
+    \lambda u_\delta(y_\sigma) + \left|\xi_\sigma\right|^p - f(y_\sigma) \geq 0.
+\end{equation}
+
+\paragraph{Step 6.} Combining \eqref{e:subb1} and \eqref{e:super1} we have
+\begin{align}
+    &\lambda u^\varepsilon(x_\sigma) - \lambda u_\delta(y_\sigma) \leq |\xi_\sigma|^p - |\xi_\sigma+\zeta_\sigma|^p + f(y_\sigma) - f(x_\sigma) \nonumber \\
+    & \qquad\qquad\qquad\qquad\qquad\qquad + \varepsilon \left(\frac{2nC_0}{\sigma} + \frac{3A}{4}\frac{\varepsilon^{3/2}}{d(x_\sigma)^{5/2}} + \frac{AK_2\varepsilon^{3/2}}{2d(x_\sigma)^{3/2}}\right) 
+\end{align}
+where $K_2 = \max_{x\in \overline{\Omega}}\Delta d(x)$. Using the estimate
+\begin{align*}
+    \left||x+y|^p - |x|^p \right| \leq  p\big(|x|+|y|\big)^{p-1}|y|
+\end{align*}
+with $x = \xi_\sigma$, $y = \zeta_\sigma$ and the fact that $|\zeta_\sigma|\leq \mathfrak{C}_\alpha$ we obtain
+\begin{align}
+    \Big||\xi_\sigma+\zeta_\sigma|^p - |\xi|^p\Big| &\leq p\Big(|\xi_\sigma|+|\zeta_\sigma|\Big)^{p-1}|\zeta_\sigma| \leq K_3\varepsilon ^{5/4}.\label{e:est2}
+\end{align}
+The whole effort gets wrong here, as we pick 
+\begin{equation*}
+    \sigma = \varepsilon^{5/4}
+\end{equation*}
+is \emph{bad}. Some options
+\begin{enumerate}
+    \item Use 
+    \begin{equation*}
+        \frac{C_0C_\varepsilon|x-y|^2}{\sigma}.
+    \end{equation*}
+    \item Use 
+    \begin{equation*}
+        \frac{C_0|x-y|^3}{\sigma}.
+    \end{equation*}
+    \item Trying to optimize \eqref{sleep}.\\ \emph{I already tried! Doesn't work!}
+\end{enumerate}
+
+\bibliography{zzzzlibrary}{}
+%\bibliographystyle{ieeetr}
+\bibliographystyle{acm}
+
+
+
+
+
+
+
+
+
+
+\end{document}

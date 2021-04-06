@@ -1,0 +1,193 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+
+\usepackage{xcolor}
+\usepackage{fullpage}
+\usepackage{mathrsfs}
+\usepackage{amsmath, amsthm}
+%\usepackage[utf8]{vietnam} 
+%\usepackage[utf8]{inputenc}
+%\usepackage[english,vietnam]{babel}
+
+%\usepackage{fontspec}
+%\setmainfont[Ligatures=TeX]{Linux Libertine O}
+%\usepackage{polyglossia}
+%\setmainlanguage{vietnamese}
+
+%\usepackage[bitstream-charter]{mathdesign}
+%\usepackage{eucal}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=2.2cm,headheight=2.5cm}
+
+%\usepackage[tracking]{microtype}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real %smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+
+
+\usepackage{frcursive}
+\usepackage{calligra}
+\newcommand{\setfont}[2]{{\fontfamily{#1}\selectfont #2}}
+
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{ass}{Assumption}
+\renewcommand{\theass}{}
+\newtheorem{defn}{Definition}
+\newtheorem{quest}{Question}
+\newtheorem{com}{Comment}
+\newtheorem{ex}{Example}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{remark}
+\newtheorem{rem}{\bf{Remark}}
+%\numberwithin{equation}{section}
+
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+%\newcounter{theo}[section]\setcounter{theo}{0}
+
+%\newcounter{theo}[]\setcounter{theo}{0}
+%\renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
+%\renewcommand{\thetheo}{\arabic{theo}}
+\newenvironment{theo}[2][]{%
+\refstepcounter{theo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+%{\strut Theorem~\thetheo};}}
+{\strut Question~\thetheo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut Theorem~\thetheo:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=blue!20,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+
+
+
+\begin{document}
+
+
+
+\begin{center}
+{\LARGE \textsc{Quasilinear equations}}\\
+%{Từ Nguyễn Thái Sơn}\\
+%{\setfont{calligra}{Son Nguyen Thai Tu}}\\
+%{\setfont{frc}{March 13, 2021}}\\
+{\textit{March 24, 2021}}
+\end{center}
+
+
+
+\begin{center}
+--------------------------------------------------------------------------------------------------------------------
+\end{center}
+
+\begin{enumerate}
+    \item Try the special case $\Omega = B(0,1)$, note that we have $\Delta d(x) = 0$ in one dimension. Question: what is the difference between the rotational case (radial) vs one dimensional? 
+    \item Try out the special case $f(x) = f(|x|)$ in $B(0,1)$, in which we can reduce it to one-dimensional setting.
+    \item Try out the specific case $f(x) = 1-|x|$ on $(-1,1)$ and $f(x) = 0$ in $1\leq |x|\leq 2$ on the domain $\Omega = (-2,2)$. This is a simple case of the compactly supported data.
+    \item Idea for general data: Assume $u^\varepsilon\to u$ as $\varepsilon\to 0$. We compare $u^\varepsilon$ and $v^\varepsilon$ where $1<p\leq 2$ and
+\begin{equation}\label{eq:PDEeps}
+    \begin{cases}
+   \mathcal{L}[u^\varepsilon] =  u^\varepsilon(x) + |Du^\varepsilon(x)|^p - f(x) - \varepsilon \Delta u^\varepsilon(x) = 0 &\qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+   u^\varepsilon(x) = +\infty &\qquad
+    \text{on}\;\partial\Omega
+    \end{cases} \tag{PDE$_\varepsilon$}
+\end{equation}
+and
+\begin{equation}\label{eq:vPDEeps}
+    \begin{cases}
+   \mathcal{L}[v^\varepsilon] =  v^\varepsilon(x) + |Dv^\varepsilon(x)|^p - f(x) - \varepsilon \Delta v^\varepsilon(x) = 0 &\qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+   v^\varepsilon(x) = u(x) &\qquad
+    \text{on}\;\partial\Omega.
+    \end{cases} 
+\end{equation}
+We know that $|v^\varepsilon - u|\leq C\sqrt{\varepsilon}$, thus the goal is to compare $u^\varepsilon$ and $v^\varepsilon$. Let $w^\varepsilon(x) = u^\varepsilon(x) - v^\varepsilon(x)$, we have
+\begin{equation}\label{eq:wPDEeps}
+    \begin{cases}
+w^\varepsilon(x) + |Du^\varepsilon(x)|^p  - |Dv^\varepsilon|^p - \varepsilon \Delta w^\varepsilon(x) = 0 &\qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+   w^\varepsilon(x) = +\infty &\qquad
+    \text{on}\;\partial\Omega.
+    \end{cases} 
+\end{equation}
+The good thing about \eqref{eq:wPDEeps} is, the data $f$ disappears and furthermorethe new data, for example with $p=2$ can be written as
+\begin{equation}\label{eq:wwPDEeps}
+    \begin{cases}
+w^\varepsilon(x) + |Dw^\varepsilon(x)|^2 +\underbrace{2Dw^\varepsilon(x)\cdot Dv^\varepsilon(x)}_{g
+(x)} - \varepsilon \Delta w^\varepsilon(x) = 0 &\qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+   w^\varepsilon(x) = +\infty &\qquad
+    \text{on}\;\partial\Omega.
+    \end{cases} 
+\end{equation}
+and $g(x) \approx \frac{\varepsilon \nabla d(x)\cdot \nabla v^\varepsilon(x)}{d(x)} + |Dv^\varepsilon(x)|^2$, which is small in some sense depends on $\varepsilon$. Question: can we get a rate of convergence $w^\varepsilon(x)\to 0$? What is the behavior of $Dv^\varepsilon(x)$ as $\varepsilon\to 0$? Can we know more besides $|v^\varepsilon - u|\leq C\sqrt{\varepsilon}$?
+\item Building a better supersolution for compactly supported data. Using the above $v^\varepsilon$ in \eqref{eq:vPDEeps}, can we somehow show
+\begin{equation*}
+    u^\varepsilon(x) \leq v^\varepsilon(x) + \frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} 
+\end{equation*}
+in $\Omega$ when we assume $\mathrm{supp}\;f \subset \Omega_{\delta_0}$? 
+\item Showing $u^\varepsilon$ is very small in the region where $f = 0$, for example $\mathrm{supp}\;f \subset \Omega_{\delta_0}$, using stochastic control. The idea behind this is, $u(x) = 0$ whenever $f(x) = 0$ (we assume $f\geq 0$) and $u^\varepsilon\to u$, thus $u^\varepsilon$ has to be very small where $f = 0$, thus there is a hope to build a better supersolution, to show that 
+\begin{equation*}
+       u^\varepsilon(x) \leq \frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} 
+\end{equation*}
+where $x$ in the region where $f(x) = 0$. Specifically, solution $u^\varepsilon$ to \eqref{eq:PDEeps} can be written as
+\begin{equation*}
+    u^\varepsilon(x) = \inf_{a(\cdot)\in \mathcal{A}}  \mathbb{E}\left[\int_0^\infty e^{-t}\left(\frac{(\alpha+1)^{\alpha+1}}{(\alpha+2)^{\alpha+2}}|a(X_t)|^{\alpha+2} + f(X_t)\right)dt \right]
+\end{equation*}
+where $q = \alpha+2$ satisfies $\frac{1}{q} + \frac{1}{p} = 1$, where
+\begin{equation*}
+    \begin{cases}
+    dX_t = a(X_t)dt + \varepsilon\sqrt{2} d\mathbb{B}_t\\
+    \;\;X_0 = x
+    \end{cases}
+\end{equation*}
+and $\mathcal{A}$ is the set of continuous function $a(\cdot):\Omega \to \mathbb{R}$ such that the state $X_t\in \overline{\Omega}$ with probability 1 for all time $t\geq 0$ and for all initial points $x\in \Omega$. Here $\mathbb{B}_t$ is the standard Brownian motion. The hope is that, the optimal Markovian control is given by
+\begin{equation*}
+    a_0(x) = p|\nabla u^\varepsilon(x)|^{p-2}\nabla u^\varepsilon(x).
+\end{equation*}
+Hence, note that
+\begin{equation*}
+    \frac{1}{qp^{\alpha+1}} = \frac{(\alpha+1)^{\alpha+1}}{(\alpha+2)^{\alpha+2}}
+\end{equation*}
+we have
+\begin{equation*}
+   \frac{1}{qp^{\alpha+1}} |a_0(X_t)|^q =  \frac{1}{qp^{\alpha+1}}p^q |\nabla u^\varepsilon(x)|^p = \frac{1}{pq}|\nabla u^\varepsilon(x)|^p \approx \frac{1}{pq}\frac{(C_\alpha \alpha)^p\varepsilon^{\alpha+2}}{d(x)^{\alpha+2}}.
+\end{equation*}
+In fact, this estimate can be make rigorously from \cite{alessio_asymptotic_2006}, that is there is a constant $C>0$ such that
+\begin{equation*}
+    |\nabla u ^\varepsilon(x)|\leq \frac{C\varepsilon^{\alpha+1}}{d(x)^{\alpha+1}}
+\end{equation*}
+for $x\in \Omega$.
+\end{enumerate}
+
+
+
+
+%\bibliography{zzzzlibrary}{}
+%\bibliographystyle{ieeetr}
+%\bibliographystyle{acm}
+\end{document}
+
+    
+    
+    
+    

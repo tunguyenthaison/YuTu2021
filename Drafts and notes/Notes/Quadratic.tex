@@ -1,0 +1,257 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+
+\usepackage{xcolor}
+\usepackage{fullpage}
+\usepackage{mathrsfs}
+\usepackage{amsmath, amsthm}
+%\usepackage[utf8]{vietnam} 
+%\usepackage[utf8]{inputenc}
+%\usepackage[english,vietnam]{babel}
+
+%\usepackage{fontspec}
+%\setmainfont[Ligatures=TeX]{Linux Libertine O}
+%\usepackage{polyglossia}
+%\setmainlanguage{vietnamese}
+
+%\usepackage[bitstream-charter]{mathdesign}
+%\usepackage{eucal}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=2.2cm,headheight=2.5cm}
+
+%\usepackage[tracking]{microtype}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real %smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+
+
+\usepackage{frcursive}
+\usepackage{calligra}
+\newcommand{\setfont}[2]{{\fontfamily{#1}\selectfont #2}}
+
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{ass}{Assumption}
+\renewcommand{\theass}{}
+\newtheorem{defn}{Definition}
+\newtheorem{quest}{Question}
+\newtheorem{com}{Comment}
+\newtheorem{ex}{Example}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{remark}
+\newtheorem{rem}{\bf{Remark}}
+%\numberwithin{equation}{section}
+
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+%\newcounter{theo}[section]\setcounter{theo}{0}
+
+%\newcounter{theo}[]\setcounter{theo}{0}
+%\renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
+%\renewcommand{\thetheo}{\arabic{theo}}
+\newenvironment{theo}[2][]{%
+\refstepcounter{theo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+%{\strut Theorem~\thetheo};}}
+{\strut Question~\thetheo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut Theorem~\thetheo:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=blue!20,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+
+
+
+\begin{document}
+
+
+
+\begin{center}
+{\LARGE \textsc{Large solution to quadratic quasilinear equations}}\\
+%{Từ Nguyễn Thái Sơn}\\
+%{\setfont{calligra}{Son Nguyen Thai Tu}}\\
+%{\setfont{frc}{March 13, 2021}}\\
+{\textit{March 21, 2021}}
+\end{center}
+
+
+
+\begin{center}
+--------------------------------------------------------------------------------------------------------------------
+\end{center}
+
+
+\section{General case}
+Let us consider $p = 2$ and $\delta_0>0$ such that $d(x) = \mathrm{dist}(x,\partial\Omega)$ for $x$ near the boundary such that $0<d(x)<\delta_0$. We extend $d(\cdot)\in \mathrm{C}^2(\mathbb{R}^n)$. We consider the equation:
+\begin{equation}\label{eq:PDEeps}
+    \begin{cases}
+   \mathcal{L}[u^\varepsilon] =  u^\varepsilon(x) + |Du^\varepsilon(x)|^2 - f(x) - \varepsilon \Delta u^\varepsilon(x) = 0 \qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+    \displaystyle  \lim_{\mathrm{dist}(x,\partial \Omega)\to 0} u^\varepsilon(x) = +\infty.
+    \end{cases} \tag{PDE$_\varepsilon$}
+\end{equation}
+Let $K_0 = \Vert d\Vert_{L^\infty}, K_1 = \Vert\nabla d\Vert_{L^\infty}$ and $K_2 = \Vert \Delta d\Vert_{L^\infty}$. We summarize some results from \cite{Lasry1989} in a clearer manner here for convenience. Let us without loss of generality assume $f\geq 0$ a.e. in $\Omega$ (\textit{positivity}). We look for the ansatz
+\begin{equation*}
+    u(x) = -\varepsilon\,\mathrm{log}(d(x)), \qquad x\in \Omega.
+\end{equation*}
+\subsection{Building supersolutions for bounded data}
+Look for 
+\begin{equation*}
+\begin{split}
+    w^+_\eta(x) &= -(1+\eta)\varepsilon\, \mathrm{log}(d(x))+C_\eta, \qquad x\in \Omega.
+\end{split}
+\end{equation*}
+We have
+\begin{equation*}
+    \nabla w^+_\eta(x) = -(1+\eta)\varepsilon\frac{\nabla d(x)}{d(x)}, \qquad \text{and}\qquad \Delta w^+_\eta(x) =(1+\eta)\varepsilon \frac{|\nabla d(x)|^2}{d(x)^2} - (1+\eta)\varepsilon \frac{\Delta d(x)}{d(x)}.
+\end{equation*}
+\begin{equation*}
+    \mathcal{L}\left[w^+_\eta\right] = -(1+\eta)\varepsilon\log(d(x))+C_\eta - f(x) + (1+\eta)\varepsilon^2\frac{|\nabla d(x)|^2}{d(x)^2} \underbrace{\Big((1+\eta) - 1+  \Delta d(x) d(x) \Big)}_{\eta + \Delta d(x)d(x)}.
+\end{equation*}
+\begin{itemize}
+    \item If $d(x) \leq \frac{\eta}{K_2}$ then $\eta + \Delta d(x)d(x) \geq \eta - K_2 d(x) \geq 0$.
+    \item If $d(x)\geq \frac{\eta}{K_2}$ then
+\begin{equation*}
+    \left|(1+\eta)\varepsilon^2\frac{|\nabla d(x)|^2}{d(x)^2} \Big((1+\eta) - 1+  \Delta d(x) d(x) \Big)\right| \leq \underbrace{\left((1+\eta) \frac{K_1^2K_2^2}{\eta^2}(\eta+K_0K_2)\right)}_{C_{1,\eta}}\varepsilon^2.
+\end{equation*}
+\end{itemize}
+Therefore if we choose $C_\eta = \max f^+ + C_{1,\eta} \varepsilon^2$ then $w^+_{\eta}$ is a supersolution.
+
+\begin{rem} \quad
+\begin{itemize}
+    \item If we choose $\eta = \sqrt{\varepsilon}$ then 
+\begin{equation*}
+    C_{1,\varepsilon} = \max f^+ + \underbrace{(1+\sqrt{\varepsilon})K_1^2K_2^2(\sqrt{\varepsilon}+K_0K_2)}_{C_1}\varepsilon.
+\end{equation*}
+I.e., the constant $C$ here is independent of $\eta = \sqrt{\varepsilon}$.
+    \item If we choose $\eta = \varepsilon^\gamma$ for some $\gamma \ll 1$ then
+    \begin{equation*}
+    C_{1,\varepsilon} = \max f^+ + \underbrace{(1+\varepsilon^\gamma)K_1^2K_2^2(\varepsilon^\gamma+K_0K_2)}_{C_1}\varepsilon^{2(1-\gamma)} \leq \max f^+ + \underbrace{2(K_1K_2)^2(1+K_0K_2)}_{C_1}\varepsilon^{2(1-\gamma)}.
+\end{equation*}
+\end{itemize}
+\end{rem}
+
+\begin{cor} If $f\geq 0$ is bounded then $w^+(x) = -(1+\varepsilon^\gamma)\varepsilon \log(d(x)) +\max f^+ + C_1\varepsilon^{2(1-\gamma)}$ is a supersolution. In other words, we have
+\begin{equation*}
+    u^\varepsilon(x) - \varepsilon(1+\varepsilon^\gamma) \log\left(\frac{1}{d(x)}\right) \leq  \max f^+ +C_1\varepsilon^{2(1-\gamma)}.
+\end{equation*}
+\end{cor}
+
+
+
+%\subsection{Building subsolutions}
+
+
+\subsection{Doubling variable and vanishing viscosity when $|f(x)|\leq C\varepsilon$}
+Let $\gamma,\alpha\in (0,1)$ arbitrary, we recall that $\varepsilon(1+\varepsilon)\leq \varepsilon(1+\varepsilon^\alpha)$ for all $\alpha > 0$ since $\varepsilon\in (0,1)$ and also
+\begin{equation*}
+    \lim_{d(x)\to 0^+} d(x)^\alpha \log\left(\frac{1}{d(x)}\right) = 0 \qquad \text{for all}\;\alpha >0.
+\end{equation*}
+Therefore we can always find $r_\alpha>0$ such that $d(x)<r_\alpha$ implies
+ \begin{equation*}
+     \log\left(\frac{1}{d(x)}\right) \leq \frac{1}{d(x)^\alpha}.
+ \end{equation*}
+Consider
+\begin{equation*}
+    \Phi(x,y) = u^\varepsilon(x)- u(y) - \frac{C_0|x-y|^2}{\sigma} - \frac{(1+\varepsilon^\gamma+\delta^\alpha)\varepsilon}{d(x)^\alpha} , \qquad (x,y)\in \overline{\Omega}\times\overline{\Omega}.
+\end{equation*}
+We see that if $d(x)<r_\alpha$ then
+\begin{equation*}
+    u^\varepsilon(x) - \frac{(1+\varepsilon^\gamma+\delta^\alpha)\varepsilon}{d(x)^\alpha}  \leq \left[u^\varepsilon(x) - (1+\varepsilon^\gamma)\varepsilon \log\left(\frac{1}{d(x)}\right)\right] - \frac{\delta^\alpha \varepsilon}{d(x)^\alpha} \leq  C\varepsilon + C_1\varepsilon^{2(1-\gamma)} - \frac{\delta^\alpha\varepsilon}{d(x)^\alpha}.
+\end{equation*}
+Therefore $\Phi(x,y)\to -\infty$ as $x\to \partial \Omega$. Assume it has maximum at $(x_\sigma,y_\sigma)\in \Omega\times \overline{\Omega}$. From the estimate $\Phi(x_\sigma,y_\sigma) \geq \Phi(x_0,x_0)$ where $d(x_0) = K_0 = \max d(\cdot)$ we obtain
+\begin{equation*}
+    \left(u^\varepsilon(x_\sigma) - \frac{(1+\varepsilon^\gamma+\delta^\alpha)\varepsilon}{d(x_\sigma)^\alpha}\right)  - u(y_\sigma) \geq u^\varepsilon(x_0) - u(x_0) - \frac{(1+\varepsilon^\gamma+\delta^\alpha)\varepsilon}{K_0} \geq -C\varepsilon
+\end{equation*}
+Here using the fact that $u^\varepsilon(x_0)\geq 0$ and $|u(x_0)|\leq C\varepsilon$ and $u(y_\sigma) \geq 0$ we have
+\begin{equation*}
+    \frac{\delta^\alpha \varepsilon}{d(x_\sigma)^\alpha} \leq C\left(\varepsilon+\varepsilon^{2(1-\gamma)}\right) \qquad\Longrightarrow\qquad\frac{\delta^\alpha}{d(x_\sigma)^\alpha} \leq  C\left(1+\varepsilon^{1-2\gamma}\right) \leq C
+\end{equation*}
+fir $\gamma \leq \frac{1}{2}$. We deduce that
+ \begin{equation*}
+     d(x_\sigma)^\alpha \geq C\delta^\alpha \qquad\Longrightarrow\qquad d(x_\sigma) \geq C^{1/\alpha}\delta.
+ \end{equation*}
+This constant $C^{1/\alpha}$ may blow up as $\alpha\to 0$. Using $\Phi(x_\sigma,y_\sigma)\geq \Phi(x_\sigma,y_\sigma)$ we have
+\begin{equation*}
+    |x_\sigma - y_\sigma|\leq \sigma.
+\end{equation*}
+Now $x\mapsto \Phi(x,y_\sigma)$ has a max at $x_\sigma\in \Omega$ gives us
+\begin{equation}\label{e:sub1}
+\begin{split}
+    u^\varepsilon(x_\sigma) &+ \left|\frac{2C_0(x_\sigma-y_\sigma)}{\sigma} - \frac{\alpha(1+\varepsilon^\gamma+\delta^\alpha)\varepsilon \nabla d(x_\sigma)}{d(x_\sigma)^{\alpha+1}}\right|^2 - f(x_\sigma) \\
+    &-\varepsilon \left(\frac{2nC_0}{\sigma} + \frac{\alpha(\alpha+1)(1+\varepsilon^\gamma+\delta^\alpha)\varepsilon |\nabla d(x_\sigma)|^2}{d(x_\sigma)^{\alpha+2}} - \frac{\alpha(1+\varepsilon^\gamma + \delta^\alpha)\varepsilon\Delta d(x_\sigma)}{d(x_\sigma)^{\alpha+1}}\right) \leq 0.
+\end{split}
+\end{equation}
+Now $x\mapsto \Phi(x,y_\sigma)$ has a max at $x_\sigma\in \Omega$ gives us
+\begin{equation}\label{e:super1}
+    u(y_\sigma) + \left|\frac{2C_0(x_\sigma-y_\sigma)}{\sigma}\right|^2  - f(y_\sigma)\geq 0.
+\end{equation}
+From \eqref{e:sub1} and \eqref{e:super1} we have
+\begin{align*}
+    u^\varepsilon(x_\sigma) - u(y_\sigma)& \leq \frac{K_1\alpha(1+\varepsilon^\gamma+\delta^\alpha)\varepsilon}{d(x_\sigma)^{\alpha+1}}\left(2C_0+ \frac{K_1\alpha(1+\varepsilon^\gamma+\delta^\alpha)\varepsilon}{d(x_\sigma)^{\alpha+1}}\right) + f(x_\sigma) - f(y_\sigma)\\
+    & \qquad\qquad +\frac{2nC_0\varepsilon}{\sigma} + \frac{\alpha(\alpha+1)(1+\varepsilon^\gamma+\delta^\alpha)K_1^2\varepsilon^2}{d(x_\sigma)^{\alpha+2}} + \frac{\alpha (1+\varepsilon^\alpha+\delta^\alpha)K_2 \varepsilon^2}{d(x_\sigma)^{\alpha+1}}\\
+    &\leq \frac{C\alpha \varepsilon}{\delta^{\alpha+1}}\left(C+\frac{C\alpha \varepsilon}{\delta^{\alpha+1}}\right) + C\varepsilon  + C\varepsilon + \frac{C\alpha \varepsilon^2}{\delta^{\alpha+2}} + \frac{C\alpha \varepsilon^2}{\delta^{\alpha+1}}
+\end{align*}
+by choosing $\sigma = 1$ and $C$ depends only on $\alpha$. Let $\delta = \varepsilon^\kappa$ then
+\begin{equation*}
+    u^\varepsilon(x_\sigma) - u(y_\sigma) \leq C\alpha \varepsilon^{1-\kappa(\alpha+1)} + C\alpha^2 \varepsilon^{2(1-\kappa(\alpha+1))} + C\varepsilon + C\alpha \varepsilon^{2-\kappa(\alpha+2)} + C\alpha \varepsilon^{2-\kappa(\alpha+1)}.
+\end{equation*}
+Now $\Phi(x,x)\leq \Phi(x_\sigma,y_\sigma)$ gives us
+\begin{equation*}
+    u^\varepsilon(x) - u(x)\leq C \Big(\alpha \varepsilon^{1-\kappa(\alpha+1)} + \alpha^2 \varepsilon^{2(1-\kappa(\alpha+1))} + \varepsilon + \alpha \varepsilon^{2-\kappa(\alpha+2)} + \alpha \varepsilon^{2-\kappa(\alpha+1)} \Big) + \frac{3\varepsilon}{d(x)^\alpha}.
+\end{equation*}
+We deduce that
+\begin{equation*}
+    0\leq u^\varepsilon(x) - u(x)\leq C\varepsilon^{1-\kappa(\alpha+1)} + \frac{3\varepsilon}{d(x)^\alpha}.
+\end{equation*}
+Send $\kappa\to 0$ we deduce that
+\begin{equation*}
+    0\leq u^\varepsilon(x) - u(x)\leq \left(C(\alpha) +\frac{3}{d(x)^\alpha}\right)\varepsilon.
+\end{equation*}
+
+\section{The Hopf-Cole transformation}
+By assuming $f\geq 0$, we have $u^\varepsilon\geq 0$. Let us define
+\begin{equation*}
+    v^\varepsilon(x) = e^{-\frac{u^\varepsilon(x)}{\varepsilon}}, \qquad x\in \Omega.
+\end{equation*}
+It is clear that $v^\varepsilon\in \mathrm{C}^2(\Omega)$ and since $u^\varepsilon(x) = +\infty$ on $\partial\Omega$, we have $v^\varepsilon(x) = 0$ on $\partial\Omega$, hence
+\begin{equation*}
+    \begin{cases}
+    u^\varepsilon(x)v^\varepsilon(x) - f(x)v^\varepsilon(x) +\varepsilon^2 \Delta v^\varepsilon(x)= 0 &\qquad\text{in}\;\Omega\\
+    v^\varepsilon(x) = 0 &\qquad\text{on}\;\partial\Omega.
+    \end{cases}
+\end{equation*}
+
+\section{Special case}
+If $\Omega = B(0,1)$ then $d(x) = 1-|x|$, hence 
+\begin{equation*}
+    \nabla d(x) = \frac{x}{|x|} \qquad\text{and}\qquad \Delta d(x) = \frac{1-n}{|x|} \qquad \text{for}\;x\in \Omega\backslash \{0\}.
+\end{equation*}
+We have $d(0)=1$.
+\bibliography{zzzzlibrary}{}
+%\bibliographystyle{ieeetr}
+\bibliographystyle{acm}
+\end{document}
+
+    
+    
+    
+    

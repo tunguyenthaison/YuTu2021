@@ -1,0 +1,279 @@
+\documentclass[11pt,reqno]{amsart}
+%============%============%============%============%
+
+%============%============%============%============%
+%\setlength{\columnseprule}{0.4pt}
+%\setlength{\topmargin}{0cm}
+%\setlength{\oddsidemargin}{.25cm}
+%\setlength{\evensidemargin}{.25cm}
+%\setlength{\textheight}{22.5cm}
+%\setlength{\textwidth}{15.5cm}
+\renewcommand{\baselinestretch}{1.05}
+%============%============%============%============%
+\usepackage[toc,page]{appendix}
+%============%============%============%============%
+%\usepackage{romannum}
+\usepackage{xcolor}
+\usepackage{placeins}
+\usepackage{amsfonts,amsmath,amsthm}
+\usepackage{amssymb,epsfig}
+\usepackage{enumerate} 
+\usepackage[notcite,notref]{showkeys}
+\usepackage{fullpage}
+%============%============%============%============%
+\usepackage[utf8]{inputenc}
+%\usepackage{mathpazo}
+
+%\usepackage[libertine,cmintegrals,cmbraceFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfFunction Analysis - Haim brezis.pdfs,vvarbb]{newtxmath}
+\usepackage{eucal}
+\usepackage[euler-digits]{eulervm}
+\usepackage[unicode=true]{hyperref}
+\hypersetup{colorlinks = true}
+%\hypersetup{hidelinks=true}
+\hypersetup{
+     colorlinks,
+     linkcolor={black!10!red},
+     linkbordercolor = {black!100!red},
+%    <your other options...>,
+     citecolor={blue}
+}
+
+
+
+
+
+%graphic
+%\usepackage[text={425pt,650pt},centering]{geometry}
+
+\usepackage{pdfsync}
+
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm,headheight=3.5cm}
+
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{color} %color
+\definecolor{vert}{rgb}{0,0.6,0}
+
+\usepackage{comment}
+\numberwithin{figure}{section}
+%\pagestyle{plain}
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{ass}{Assumption}
+\renewcommand{\theass}{}
+\newtheorem{defn}{Definition}
+\newtheorem{quest}{Question}
+\newtheorem{com}{Comment}
+\newtheorem{ex}{Example}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{remark}
+\newtheorem{rem}{\bf{Remark}}
+\numberwithin{equation}{section}
+
+
+
+%\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+
+
+
+%Characters -- Shortcuts
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\M}{\mathbb{M}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\bfS}{\mathbf{S}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\I}{\mathrm{I}}
+
+
+%Functional spaces
+\newcommand{\AC}{{\rm AC\,}}
+\newcommand{\ACl}{{\rm AC}_{{\rm loc}}}
+\newcommand{\BUC}{{\rm BUC\,}}
+\newcommand{\USC}{{\rm USC\,}}
+\newcommand{\LSC}{{\rm LSC\,}}
+\newcommand{\Li}{L^{\infty}}
+\newcommand{\Lip}{{\rm Lip\,}}
+\newcommand{\W}{W^{1,\infty}}
+\newcommand{\Wx}{W_x^{1,\infty}}
+
+
+%Domains
+\newcommand{\bO}{\partial\Omega}
+\newcommand{\cO}{\overline\Omega}
+\newcommand{\Q}{\mathbb{T}^{n}\times(0,\infty)}
+\newcommand{\iQ}{\mathbb{T}^{n}\times\{0\}}
+\newcommand{\cQ}{\mathbb{T}^{n}\times[0,\infty)}
+
+
+%Greek alphabets -- Shortcuts
+\newcommand{\al}{\alpha}
+\newcommand{\gam}{\gamma}
+\newcommand{\del}{\delta}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\kap}{\kappa}
+\newcommand{\lam}{\lambda}
+\newcommand{\sig}{\sigma}
+\newcommand{\om}{\omega}
+\newcommand{\Del}{\Delta}
+\newcommand{\Gam}{\Gamma}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\Om}{\Omega}
+\newcommand{\Sig}{\Sigma}
+
+
+
+%Overlines, Underlines -- Shortcuts
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\pl}{\partial}
+\newcommand{\supp}{{\rm supp}\,}
+\newcommand{\inter}{{\rm int}\,}
+\newcommand{\loc}{{\rm loc}\,}
+\newcommand{\co}{{\rm co}\,}
+\newcommand{\diam}{{\rm diam}\,}
+\newcommand{\diag}{{\rm diag}\,}
+\newcommand{\dist}{{\rm dist}\,}
+\newcommand{\Div}{{\rm div}\,}
+\newcommand{\sgn}{{\rm sgn}\,}
+\newcommand{\tr}{{\rm tr}\,}
+\newcommand{\Per}{{\rm Per}\,}
+
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rup}{\rightharpoonup}
+
+
+\renewcommand{\subjclassname}{%
+\textup{2010} Mathematics Subject Classification} 
+
+%Hyperlink in PDF file
+%\usepackage[dvipdfm,
+%  colorlinks=false,
+%  bookmarks=true,
+%  bookmarksnumbered=false,
+%  bookmarkstype=toc]{hyperref}
+%\makeatletter
+%\def\@pdfm@dest#1{%
+%  \Hy@SaveLastskip
+%  \@pdfm@mark{dest (#1) [@thispage /\@pdfview\space @xpos @ypos null]}%
+%  \Hy@RestoreLastskip
+%}
+
+
+%BibLatex
+%\usepackage[
+%backend=biber,
+%style=alphabetic,
+%sorting=ynt
+%]{biblatex}
+%\addbibresource{rate.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figs/}{#1.pdf_tex}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\title[Rate of convergence]
+{\textsc{Notes on the project}}
+\thanks{The authors are supported in part by NSF grant DMS-1664424.}
+%\begin{abstract}
+%We investigate qualitatively the convergence of large, or state-constraint solution to nonlinear elliptic equation as the viscosity vanish.
+%\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Yuxi Han}
+\address[Y. Han]
+{
+Department of Mathematics, 
+University of Wisconsin Madison, 480 Lincoln  Drive, Madison, WI 53706, USA}
+\email{yuxi.han@wisc.edu}
+\author{Son N. T. Tu}
+\address[S. N.T. Tu]
+{
+Department of Mathematics, 
+University of Wisconsin Madison, 480 Lincoln  Drive, Madison, WI 53706, USA}
+\email{thaison@math.wisc.edu}
+\date{\today}
+\keywords{first-order Hamilton--Jacobi equations; state-constraint problems; optimal control theory; rate of convergence; viscosity solutions.}
+\subjclass[2010]{
+35B40, %Asymptotic behavior of solutions, 
+35D40, %Viscosity solutions
+49J20, %Optimal control problems involving partial differential equations
+49L25, %Viscosity solutions
+70H20 %Hamilton-Jacobi equations
+}
+\maketitle
+\setcounter{tocdepth}{1}
+%\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Tasks to try:
+\begin{itemize}
+    \item[1.] Getting another term in
+    \begin{equation*}
+        u^\varepsilon(x) - \frac{C_\alpha\varepsilon^{\alpha+1}}{d(x)^{\alpha}} \approx ?
+    \end{equation*}
+    \item[2.] For $p>2$, review well-posedness for 
+    \begin{equation*}
+        \begin{cases}
+            \lambda u + |Du|^p - f(x) \leq \varepsilon \Delta u \qquad
+             \text{in}\;\Omega,\\
+             \lambda u + |Du|^p - f(x) \geq \varepsilon \Delta u \qquad
+             \text{on}\;\overline{\Omega}.
+        \end{cases}
+    \end{equation*}
+    Review that $u\in \mathrm{C}(\overline{\Omega})$.
+    \item[3.] Understand the going from parabolic (existence of Green function) to elliptic. 
+\end{itemize}
+
+
+%\section*{Acknowledgement}
+
+
+
+
+\bibliography{zzzzlibrary}{}
+%\bibliographystyle{ieeetr}
+\bibliographystyle{acm}
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,131 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+
+\usepackage{xcolor}
+\usepackage{fullpage}
+\usepackage{mathrsfs}
+\usepackage{amsmath, amsthm}
+%\usepackage[utf8]{vietnam} 
+%\usepackage[utf8]{inputenc}
+%\usepackage[english,vietnam]{babel}
+
+%\usepackage{fontspec}
+%\setmainfont[Ligatures=TeX]{Linux Libertine O}
+%\usepackage{polyglossia}
+%\setmainlanguage{vietnamese}
+
+%\usepackage[bitstream-charter]{mathdesign}
+%\usepackage{eucal}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=2.2cm,headheight=2.5cm}
+
+%\usepackage[tracking]{microtype}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real %smallcaps.
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\linespread{1.025}              % Palatino leads a little more leading
+
+
+
+\usepackage{frcursive}
+\usepackage{calligra}
+\newcommand{\setfont}[2]{{\fontfamily{#1}\selectfont #2}}
+
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{ass}{Assumption}
+\renewcommand{\theass}{}
+\newtheorem{defn}{Definition}
+\newtheorem{quest}{Question}
+\newtheorem{com}{Comment}
+\newtheorem{ex}{Example}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{remark}
+\newtheorem{rem}{\bf{Remark}}
+%\numberwithin{equation}{section}
+
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+%\newcounter{theo}[section]\setcounter{theo}{0}
+
+%\newcounter{theo}[]\setcounter{theo}{0}
+%\renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
+%\renewcommand{\thetheo}{\arabic{theo}}
+\newenvironment{theo}[2][]{%
+\refstepcounter{theo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+%{\strut Theorem~\thetheo};}}
+{\strut Question~\thetheo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut Theorem~\thetheo:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=blue!20,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+
+
+
+\begin{document}
+
+
+
+\begin{center}
+{\LARGE \textsc{A stochastic formula}}\\
+%{Từ Nguyễn Thái Sơn}\\
+%{\setfont{calligra}{Son Nguyen Thai Tu}}\\
+%{\setfont{frc}{March 13, 2021}}\\
+{\textit{March 28, 2021}}
+\end{center}
+
+
+
+\begin{center}
+--------------------------------------------------------------------------------------------------------------------
+\end{center}
+
+
+\noindent
+Let us consider $1<p<2$ and $\delta_0>0$ such that $d(x) = \mathrm{dist}(x,\partial\Omega)$ for $x$ near the boundary such that $0<d(x)<\delta_0$. Assume $f\in \mathrm{C}^1(\overline{\Omega})$, we consider
+\begin{equation}\label{eq:PDEeps}
+    \begin{cases}
+   \mathcal{L}[u^\varepsilon] =  u^\varepsilon(x) + |Du^\varepsilon(x)|^p - f(x) - \varepsilon \Delta u^\varepsilon(x) = 0 \qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+    \displaystyle  \lim_{\mathrm{dist}(x,\partial \Omega)\to 0} u^\varepsilon(x) = +\infty.
+    \end{cases} \tag{PDE$_\varepsilon$}
+\end{equation}
+Let $\alpha = \frac{2-p}{p-1}$ and $C_\alpha = \frac{1}{\alpha}(\alpha+1)^{\alpha+1}$. If $f\in \mathrm{C}^1(\overline{\Omega})$ then there exists a unique solution $u^\varepsilon\in \mathrm{C}^2(\Omega)$ such that 
+\begin{equation*}
+    u^\varepsilon(x)d(x)^\alpha \to C_\alpha \varepsilon^{\alpha+1}    \qquad\text{as}\qquad d(x)\to 0.
+\end{equation*}
+Unfortunately, obtaining a uniform convergence without the dependence on $\varepsilon$ seems to be not easy or even possible now.
+
+
+
+
+
+
+%\bibliography{zzzzlibrary}{}
+%\bibliographystyle{ieeetr}
+%\bibliographystyle{acm}
+\end{document}
+
+    
+    
+    
+    

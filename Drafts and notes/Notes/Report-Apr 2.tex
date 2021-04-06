@@ -1,0 +1,141 @@
+\documentclass[english,reqno]{amsart}
+%\renewcommand{\baselinestretch}{1.2}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\raggedbottom
+\usepackage{subfig}
+\usepackage{amssymb,amsbsy,amsmath,amsfonts,amssymb,amscd}
+\usepackage{comment}
+\usepackage{verbatim}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[numbers]{natbib} % for alphabetically numbered lists
+\usepackage{algorithm,algpseudocode}
+\usepackage{setspace}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{assum}{Assumption}[section]
+\newtheorem{cor}{Corollary}[section]
+
+\title{Progress Report - Arp 2}
+
+\begin{document}
+
+
+\maketitle
+Let $u^\epsilon$ solve the equation
+\begin{equation}
+\left\{
+  \begin{aligned}
+    u^\epsilon + |Du^\epsilon|^p -f(x) - \epsilon \Delta u^\epsilon &=0 \quad \, \text{in } \Omega, \\
+            u^\epsilon &= \infty \quad \text{on } \partial \Omega,
+  \end{aligned}
+\right.
+\end{equation}
+
+and $u_0$ solve the equation
+\begin{equation}
+\left\{
+  \begin{aligned}
+    u_0 + |Du_0|^p -f(x) &\leq 0 \quad \, \text{in } \Omega, \\
+             u_0 + |Du_0|^p -f(x) &\geq 0 \quad \text{on } \bar{\Omega}.
+  \end{aligned}
+\right.
+\end{equation}
+
+\begin{itemize}
+    \item[1.] Before, we had the conclusion $ u \leq u^\epsilon$, which is in fact false. What we have is only $u \leq u^\epsilon +C\epsilon^\frac{1}{2}$. Let $w^\epsilon$ be the solution of 
+    \begin{equation}
+\left\{
+  \begin{aligned}
+     w^\epsilon\ + |Dw^\epsilon|^p -f(x) - \epsilon \Delta w^\epsilon  &=0 \quad \, \text{in } \Omega, \\
+   w^\epsilon &= u \quad \text{on } \partial \Omega.
+  \end{aligned}
+\right.
+\end{equation} 
+By the estimate of vanishing viscosity problem with Dirichlet boundary condition, we have \begin{equation}
+    |w^\epsilon - u| \leq C \epsilon ^\frac{1}{2}.
+\end{equation}
+Hence, we have 
+\begin{equation}
+    u \leq C\epsilon^\frac{1}{2}+w^\epsilon\leq C\epsilon^\frac{1}{2} + u^\epsilon
+\end{equation}
+by comparison principle.
+
+\bigbreak
+\bigbreak
+
+
+\item[2.] Consider
+\begin{equation}
+\left\{
+  \begin{aligned}
+    L(\varphi_\alpha) = \varphi_\alpha + |D\varphi_\alpha|^p -f(x) - \alpha \Delta \varphi_\alpha &=0 \quad \, \text{in } \Omega_\epsilon, \\
+   \varphi_\alpha &= C\epsilon \quad \text{on } \partial \Omega_\epsilon.
+  \end{aligned}
+\right.
+\end{equation}
+
+It is not clear to us why $\varphi_\epsilon \geq u_\epsilon$. If we fix $\epsilon$, $\displaystyle u_\epsilon \approx \frac{C_\alpha \epsilon^{\alpha+1}}{d(x)^\alpha} +M $ in the interior and we don't quite have $u_\epsilon \leq C\epsilon$ when $d(x)=\epsilon$ because of the constant $M$.
+
+
+Note that $\varphi_0$ solves
+\begin{equation}
+\label{vis}
+\left\{
+  \begin{aligned}
+    \varphi_0 + |D\varphi_0|^p -f(x) &=0 \quad \, \text{in } \Omega_\epsilon, \\
+             \varphi_0 &= C\epsilon \quad \text{on } \partial \Omega_\epsilon.
+  \end{aligned}
+\right.
+\end{equation}
+We are still trying to see what is the relation between $u_0$ and $\varphi_0$ for now.
+
+\bigbreak
+\bigbreak
+
+\item[3.]Suppose $f$ has compact support and we try to find the minimum of $u^\epsilon$. Suppose $u^\epsilon$ has min at $x_0$, then $\epsilon \Delta u^\epsilon(x_0) \geq 0$ and $$u^\epsilon(x_0) -f(x_0) - \epsilon \Delta u^\epsilon(x_0) =0 ,$$
+which gives us $u^\epsilon(x_0) \geq f(x_0)$. This seems not very useful since we already know $u^\epsilon (x) \geq \min f$. Another attempt is to bound $\epsilon \Delta u^\epsilon(x_0)$ by Bernstein's method. However, this doesn't work out for now. After we get the equation for $\displaystyle w :=\frac{|Du^\epsilon|^2}{2}$, we don't know how to get a bound for $\epsilon \Delta u^\epsilon(x_0)$ from the equation of $\displaystyle w$.
+
+\bigbreak
+\bigbreak
+
+    \item[4.] 
+Let's assume $f$ is radial symmetric and $n=1$, then $u^\epsilon(x) = v(|x|)$ for some function $v$. Then $v$ solves
+\begin{equation}
+\left\{
+  \begin{aligned}
+    v(r) + |v^\prime (r)|^p -f(r) - \epsilon v^{\prime \prime} \left(\frac{n-1}{r}\right) &=0 \quad \, \text{in } (0,1), \\
+            v &= \infty \quad \text{at  } x=1,
+  \end{aligned}
+\right.
+\end{equation}
+
+This ODE looks more complicated than the one of $u^\epsilon$.
+We tried an example with 
+\begin{equation}
+f=
+\left\{
+  \begin{aligned}
+     &1-|x| \quad \text{in } (-1,1), \\
+          & 0 \quad \text{in  } (-2,2) \setminus (-1, 1),
+  \end{aligned}
+\right.
+\end{equation}
+and the boundary condition $u(0)=0$ and $u^\prime(0)=1$ in WolframAlpha. $u^\epsilon$ does blow up at $x=2$ and $x=-2$ according to the pictures. But we didn't manage to find out $u$ by manually computing. 
+
+We also tried Bernstein's method for the radial symmetric case but didn't get anything useful for now. 
+
+\item[5.] We also looked at the stochastic optimal control problem. We are still confused about the effect of $dB_t$ term on the path $X_t$.
+
+\end{itemize}
+
+
+
+
+
+
+\end{document}

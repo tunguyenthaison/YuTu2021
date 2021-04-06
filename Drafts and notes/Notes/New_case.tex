@@ -1,0 +1,413 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+
+\usepackage{xcolor}
+\usepackage{fullpage}
+\usepackage{mathrsfs}
+\usepackage{amsmath, amsthm}
+%\usepackage[utf8]{vietnam} 
+%\usepackage[utf8]{inputenc}
+%\usepackage[english,vietnam]{babel}
+
+%\usepackage{fontspec}
+%\setmainfont[Ligatures=TeX]{Linux Libertine O}
+%\usepackage{polyglossia}
+%\setmainlanguage{vietnamese}
+
+%\usepackage[bitstream-charter]{mathdesign}
+%\usepackage{eucal}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2.5cm,rmargin=2.2cm,headheight=2.5cm}
+
+%\usepackage[tracking]{microtype}
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real %smallcaps.
+\linespread{1.025}              % Palatino leads a little more leading
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+
+
+\usepackage{frcursive}
+\usepackage{calligra}
+\newcommand{\setfont}[2]{{\fontfamily{#1}\selectfont #2}}
+
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{ass}{Assumption}
+\renewcommand{\theass}{}
+\newtheorem{defn}{Definition}
+\newtheorem{quest}{Question}
+\newtheorem{com}{Comment}
+\newtheorem{ex}{Example}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{remark}
+\newtheorem{rem}{\bf{Remark}}
+%\numberwithin{equation}{section}
+
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+%\newcounter{theo}[section]\setcounter{theo}{0}
+
+%\newcounter{theo}[]\setcounter{theo}{0}
+%\renewcommand{\thetheo}{\arabic{section}.\arabic{theo}}
+%\renewcommand{\thetheo}{\arabic{theo}}
+\newenvironment{theo}[2][]{%
+\refstepcounter{theo}%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+%{\strut Theorem~\thetheo};}}
+{\strut Question~\thetheo};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut Theorem~\thetheo:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=blue!20,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#2}}{\end{mdframed}}
+
+
+
+\begin{document}
+
+
+
+\begin{center}
+{\LARGE \textsc{Compactly supported data}}\\
+%{Từ Nguyễn Thái Sơn}\\
+%{\setfont{calligra}{Son Nguyen Thai Tu}}\\
+%{\setfont{frc}{March 13, 2021}}\\
+{\textit{March 13, 2021}}
+\end{center}
+
+
+
+\begin{center}
+--------------------------------------------------------------------------------------------------------------------
+\end{center}
+
+
+\noindent
+Let us consider $1<p<2$ and $\delta_0>0$ such that $d(x) = \mathrm{dist}(x,\partial\Omega)$ for $x$ near the boundary such that $0<d(x)<\delta_0$. We consider $\delta$ small such that $0<\delta < \frac{1}{2}\delta_0$, the goal is to build a \emph{good} super-solution $w(x)$ to 
+\begin{equation}\label{eq:PDEeps}
+    \begin{cases}
+   \mathcal{L}[u^\varepsilon] =  u^\varepsilon(x) + |Du^\varepsilon(x)|^p - f(x) - \varepsilon \Delta u^\varepsilon(x) = 0 \qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+    \displaystyle  \lim_{\mathrm{dist}(x,\partial \Omega)\to 0} u^\varepsilon(x) = +\infty.
+    \end{cases} \tag{PDE$_\varepsilon$}
+\end{equation}
+Let $\alpha = \frac{2-p}{p-1}$ and $C_\alpha = \frac{1}{\alpha}(\alpha+1)^{\alpha+1}$, we knows that if $f\in \mathrm{C}^1(\overline{\Omega})$ then there exists a unique solution $u^\varepsilon\in \mathrm{C}^2(\Omega)$ such that $u^\varepsilon(x)d(x)^\alpha \to C_\alpha \varepsilon^{\alpha+1}$ as $d(x)\to \partial\Omega$. Let \fbox{$K_2 = \Vert \Delta d\Vert_{L^\infty}$,} we first observe that, for $\gamma>1$ then
+\begin{equation*}
+    \Big||x+y|^\gamma - |x|^\gamma\Big|\leq \gamma\Big(|x|+|y|\Big)^{\gamma-1}|y|
+\end{equation*}
+which implies that
+\begin{equation*}
+     0 \leq (1+\Vert \Delta d\Vert_{L^\infty}\delta_0)^{\alpha+1} - 1 \leq\underbrace{(\alpha+1)\left(1+\Vert \Delta d\Vert_{L^\infty}\delta_0\right)^\alpha \Vert \Delta d\Vert_{L^\infty}}_{C_2}\delta_0.
+\end{equation*}
+which implies that
+\begin{equation}\label{e:cru1}
+    (1+\Vert \Delta d\Vert_{L^\infty}\delta_0)^{\alpha+1} \leq 1 + C_2\delta_0 \qquad\Longrightarrow\qquad (1+\Vert \Delta d\Vert_{L^\infty}\delta_0) \leq (1+C_2\delta_0)^{\frac{1}{\alpha+1}} = (1+C_2\delta_0)^{p-1}
+\end{equation}
+since $\alpha+1 = \frac{1}{p-1}$. Let us assume $\mathrm{supp}\;f\subset \Omega_{\delta_0}$. For $0<\delta<\frac{1}{2}\delta_0$ we define %if $\eta \geq (C_2\delta_0)C_\alpha \varepsilon^{\alpha+1}$ and  then
+\begin{equation*}
+    w_\delta(x) = \underbrace{(1+C_2\delta_0)}_{\nu > 1}\frac{C_\alpha\varepsilon^{\alpha+1}}{(d(x)-\delta)^\alpha}, \qquad x\in \Omega_\delta
+\end{equation*}
+\section{A new construction of super-solution near the boundary}
+\begin{thm}\label{thm:super_strip} If $\mathrm{supp}\;f\subset \Omega_{\delta_0}$ then $w_\delta$ is a supersolution to \eqref{eq:PDEeps} in the region near the boundary $\Omega_\delta\backslash \Omega_{\delta_0}$, i.e., $\delta < d(x)< \delta_0$.
+\end{thm}
+ %Let us define 
+%\begin{equation*}
+%    \nu = \frac{C_\alpha \varepsilon^{\alpha+1}+\eta}{C_\alpha\varepsilon^{\alpha+1}} = 1+C_2\delta_0 > 1.
+%\end{equation*}
+
+\begin{proof}[Proof of Theorem \ref{thm:super_strip}] We have $|\nabla d(x)| = 1$ for all $x\in \Omega_\delta\backslash \Omega_{\delta_0}$. We compute 
+\begin{equation*}
+\begin{split}
+    %\nabla w(x) &= -(1+C_2\delta_0)\frac{C_\alpha\alpha\varepsilon^{\alpha+1}\nabla d(x)}{(d(x)-\delta)^{\alpha+1}}\\
+    |\nabla w(x)|^p &= \nu^p\frac{(C_\alpha\alpha)^p\varepsilon^{p(\alpha+1)}}{(d(x)-\delta)^{p(\alpha+1)}} = \nu^p\frac{C_\alpha \alpha(\alpha+1)\varepsilon^{\alpha+2}}{(d(x)-\delta)^{\alpha+2}}
+\end{split}
+\end{equation*}
+since $C_\alpha^p \alpha^p = C_\alpha \alpha (\alpha+1)$ and $p(\alpha+1) = \alpha+2$. We also have
+\begin{equation*}
+\begin{split}
+   % \Delta w(x) &= (1+C_2\delta_0)\frac{C_\alpha\alpha(\alpha+1)\varepsilon^{\alpha+1}}{(d(x)-\delta)^{\alpha+2}}|\nabla d(x)|^2 - (1+C_2\delta_0)\frac{C_\alpha\alpha\varepsilon^{\alpha+1}\Delta d(x)}{(d(x)-\delta)^{\alpha+1}}\\
+    \varepsilon\Delta w(x) &= \nu\frac{C_\alpha\alpha(\alpha+1)\varepsilon^{\alpha+2}}{(d(x)-\delta)^{\alpha+2}} - \nu\frac{C_\alpha\alpha\varepsilon^{\alpha+2}\Delta d(x)}{(d(x)-\delta)^{\alpha+1}}
+\end{split}
+\end{equation*}
+Since $f(x) = 0$ in $\Omega_\delta\backslash \Omega_{\delta_0}$, we have
+\begin{equation*}
+    \begin{split}
+        \mathcal{L}\left[w_\delta\right] = (1+C_2\delta_0)\frac{C_\alpha\varepsilon^{\alpha+1}}{(d(x)-\delta)^\alpha} + \frac{C_\alpha \alpha (\alpha+1)\varepsilon^{\alpha+2}}{(d(x)-\delta)^{\alpha+2}}\left[\nu^p-\nu +\nu\frac{(d(x)-\delta)\Delta d(x)}{\alpha+1}\right].
+    \end{split}
+\end{equation*}
+We observe that
+\begin{equation*}
+    \left|\frac{(d(x)-\delta)\Delta d(x)}{\alpha+1}\right| \leq \frac{\delta_0\Vert \Delta d\Vert_{L^\infty}}{\alpha+1} \leq \frac{K_2\delta_0}{\alpha+1}\leq K_2\delta_0.
+\end{equation*}
+Therefore
+\begin{equation*}
+    \begin{split}
+        \nu^p-\nu +\nu\frac{(d(x)-\delta)\Delta d(x)}{(\alpha+1)} \geq \nu^p - \nu - K_2\delta_0 \nu  = \nu^p - \nu (1+C_1\delta_0) = \nu\Big(\nu^{p-1} - (1+K_2\delta_0)\Big) \geq 0
+    \end{split}
+\end{equation*}
+thanks to \eqref{e:cru1}. We have 
+\begin{equation*}
+    w_{\delta}(x) = \frac{\nu C_\alpha \varepsilon^{\alpha+1}}{(d(x)-\delta)^\alpha}, \qquad x\in \Omega_\delta
+\end{equation*}
+is a supersolution to \eqref{eq:PDEeps} in $\Omega_\delta\backslash\Omega_{\delta_0}$.
+\end{proof}
+\noindent
+\paragraph{Remark 1.} Unfortunately, it may fail that
+\begin{equation*}
+    u^\varepsilon(x) \leq  \frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} \qquad\text{for}\;x\in \partial\Omega_{\delta_0}
+\end{equation*}
+which renders the whole attempt above useless. Actually it is unreasonable to expect that
+\begin{equation*}
+    u^\varepsilon(x)\leq \frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} \qquad\text{for}\;x\;\text{near}\;\partial \Omega
+\end{equation*}
+since as $\varepsilon\to 0$, it says $u(x) = 0$ near $\partial\Omega$ where $u^\varepsilon\to u$, which is not right as the state-constraint solution for the first-order equation $u$ maybe not be zero near the boundary $\partial\Omega$, and it is unreasonable to expect such a behavior. \emph{Updated. Since we assume $f = 0$ near $\partial\Omega$, if $u = 0$ as well near the boundary then this estimate does not give any contradiction, there is still some hope!}
+
+\paragraph{Remark 1.1.} Let $f\geq 0$ and $u\in \mathrm{C}(\overline{\Omega})$ be the unique state-constraint solution to
+\begin{equation*}
+    \begin{cases}
+       u(x) + |Du(x)|^p - f(x) \leq 0 \qquad\text{in}\;\Omega\\
+       u(x) + |Du(x)|^p - f(x) \geq 0 \qquad\text{on}\;\overline{\Omega}.
+    \end{cases}
+\end{equation*}
+We claim that 
+\begin{equation*}
+    \mathrm{supp}(u)\subset \mathrm{supp}(f).
+\end{equation*}
+\begin{proof} First of all, $\varphi \equiv 0$ is a subsolution in $\Omega$ (since $f\geq 0$), thus by comparison principle $0\leq u(x)$ for all $x\in \Omega$. Using optimal control formula, we have
+\begin{equation}\label{e:foru}
+    u(x) = \inf \left\lbrace \int_0^\infty e^{-s}\Big(|\dot{\eta}(s)|^{p^*} +f(\eta(s))\Big)ds: \eta\in \mathrm{AC}([0,\infty);\overline{\Omega}), \eta(0) = x\right\rbrace
+\end{equation}
+where $\frac{1}{p} + \frac{1}{p^*} = 1$. If $x\notin \mathrm{supp}(f)$ then $f(x) = 0$, then the constant path $\eta(s) = x$ for all $s\in [0,\infty)$ is an admissible path in \eqref{e:foru}, therefore
+\begin{equation*}
+    u(x) \leq  \int_0^\infty e^{-s}\Big(|\dot{\eta}(s)|^{p^*} +f(\eta(s))\Big)ds = f(x) =  0.
+\end{equation*}
+Hence $x\notin \mathrm{supp}(u)$, so $f(x) = 0$ implies $u(x) = 0$, i.e., the conclustion follows.
+\end{proof}
+
+
+\paragraph{Remark 2.} Maybe it is better if we can have something like
+\begin{equation*}
+    u^\varepsilon(x)\leq u(x)+\frac{C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha}
+\end{equation*}
+but something like that is very hard to show. Or this is the question
+\begin{equation*}
+    \fbox{$\displaystyle u^\varepsilon(x) \leq \frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} \qquad\text{for}\; x\in \partial \Omega_{\delta_0}.$}
+\end{equation*}
+
+
+\begin{thm}\label{thm:super_int} If $\mathrm{supp}\;f\subset \Omega_{\delta_0}$ then $v(x) = \sup_{\Omega}f^+$ is a supersolution to \eqref{eq:PDEeps} in $\Omega_{\delta}$.
+\end{thm}
+\begin{proof} It is obvious that
+\begin{equation*}
+    \mathcal{L}[v] = \sup_{\Omega} f^+  - f(x) \geq 0 
+\end{equation*}
+for every $x\in \Omega_\delta$.
+\end{proof}
+
+\section{Higher-order terms in the asymptotic expansion of solution}
+We know that the leading order term of $u^\varepsilon(x)$ as $d(x)\to 0$ is $C_\alpha \varepsilon^{\alpha+1}d(x)^{-\alpha}$. Let $M_0 = \max_{x    \in\overline{\Omega}} \{f(x),0\}$ and $D>0$ be some constant, we consider
+\begin{equation*}
+    w(x) = \frac{C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} + \frac{D\varepsilon^{\alpha+1}}{d(x)^{\alpha-1}} + M_0 + M_1\varepsilon^{\alpha+2}, \qquad x\in \Omega.
+\end{equation*}
+We compute
+\begin{equation*}
+    \nabla w(x)  = -\frac{C_\alpha\alpha \varepsilon^{\alpha+1}\nabla d(x)}{d(x)^{\alpha+1}}\left(1+\frac{D(\alpha-1)d(x)}{C_\alpha \alpha}\right).
+\end{equation*}
+Therefore
+\begin{equation*}
+    |\nabla w(x)|^p  = \frac{C_\alpha\alpha(\alpha+1) \varepsilon^{\alpha+2}|\nabla d(x)|^p}{d(x)^{\alpha+2}}\left(1+\frac{D(\alpha-1)d(x)}{C_\alpha \alpha}\right)^p.
+\end{equation*}
+We have
+\begin{equation*}
+\begin{split}
+    \Delta w(x) &= \left(\frac{C_\alpha\alpha(\alpha+1)\varepsilon^{\alpha+1}|\nabla d(x)|^2}{d(x)^{\alpha+2}} - \frac{C_\alpha\alpha\varepsilon^{\alpha+1}\Delta d(x)}{d(x)^{\alpha+1}}\right)\left(1+\frac{D(\alpha-1)d(x)}{C_\alpha \alpha}\right)\\
+    & \qquad\qquad\qquad\qquad\qquad\qquad\qquad -\frac{C_\alpha\alpha \varepsilon^{\alpha+1}\nabla d(x)}{d(x)^{\alpha+1}}\left(\frac{D(\alpha-1)\nabla d(x)}{C_\alpha \alpha}\right).
+\end{split}    
+\end{equation*}
+Let
+\begin{equation*}
+    \xi = 1+\frac{D(\alpha-1)d(x)}{C_\alpha\alpha}.
+\end{equation*}
+We compute
+\begin{equation*}
+    \begin{split}
+        \mathcal{L}[w] &= \frac{C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} + \frac{D\varepsilon^{\alpha+1}}{d(x)^{\alpha-1}} + \underbrace{M_0 - f(x)}_{\geq 0} + M_1\varepsilon^{\alpha+2} \\
+        &+ \frac{C_\alpha \alpha(\alpha+1)\varepsilon^{\alpha+2}}{d(x)^{\alpha+2}}\left(\xi^p|\nabla d(x)|^p  - \xi |\nabla d(x)|^2 + \xi\frac{\Delta d(x)d(x)}{\alpha+1}+(\xi-1)\frac{|\nabla d(x)|^2}{\alpha+1} \right)
+    \end{split}
+\end{equation*}
+
+\begin{thm} Let $1<p<\frac{3}{2}$, i.e., $\alpha>1$ then $\xi\geq 1$. Let $\delta_0>0$ be any number where $|\nabla d(x)|=1$ in $0<d(x)<\delta_0$ then $\mathcal{L}[w]\geq 0$ where
+\begin{equation*}
+    D = \underbrace{\frac{C_\alpha\alpha}{\alpha-1}\Vert \Delta d\Vert_{\infty}}_{C^1_{\alpha}} +  \underbrace{\frac{\alpha}{\alpha-1}\left(1+\frac{\Vert \Delta d\Vert_{\infty}\delta_0}{C_\alpha \alpha}\right)^{\alpha-1}\Vert \Delta d\Vert_\infty^2\delta_0}_{\eta_1}, \qquad\qquad \text{if}\qquad \alpha > 1.
+\end{equation*}
+and 
+\begin{equation*}
+    M_1 = C_3\delta_0^{-(\alpha+2)}.
+\end{equation*}
+\end{thm}
+\begin{proof} In the region where $d(x)<\delta_0$ then $|\nabla d(x)| = 1$ we have
+\begin{equation*}
+    \begin{split}
+        \xi^p|\nabla d(x)|^p  - \xi |\nabla d(x)|^2 + \xi\frac{\Delta d(x)d(x)}{\alpha+1} \geq \xi^p - \xi\left(1+\frac{|\Delta d(x)|d(x)}{\alpha+1}\right).
+    \end{split}
+\end{equation*}
+Therefore
+\begin{equation*}
+    \xi^p - \xi\left(1+\frac{|\Delta d(x)|d(x)}{\alpha+1}\right) \geq 0 \qquad\Longleftrightarrow\qquad \fbox{$\displaystyle\xi \geq \left(1+\frac{|\Delta d(x)|d(x)}{\alpha+1}\right)^{\alpha+1}$.}
+\end{equation*}
+Using the estimate
+\begin{equation*}
+    \Big||x+y|^\gamma - |x|^\gamma\Big| \leq \gamma \Big(|x|+|y|\Big)^{\gamma-1}|y|
+\end{equation*}
+with $x=1$, $y = \frac{|\Delta d(x)|d(x)}{\alpha+1}$ and $\gamma = \alpha+1$ we have
+\begin{align*}
+    \left(1+\frac{|\Delta d(x)|d(x)}{\alpha+1}\right)^{\alpha+1} - 1 \leq (\alpha+1)\left(1+\frac{|\Delta d(x)|d(x)}{\alpha}\right)^\alpha\frac{|\Delta d(x)|d(x)}{\alpha+1}.
+\end{align*}
+Thus
+\begin{align*}
+    \left(1+\frac{|\Delta d(x)|d(x)}{\alpha+1}\right)^{\alpha+1}\leq 1+\left(1+\frac{|\Delta d(x)|d(x)}{\alpha}\right)^\alpha|\Delta d(x)|d(x).
+\end{align*}
+Thus if $\alpha>1$ then
+\begin{align*}
+    \left(1+\frac{|\Delta d(x)|d(x)}{\alpha+1}\right)^{\alpha+1} \leq \xi &\qquad\Longleftrightarrow\qquad  \left(1+\frac{|\Delta d(x)|d(x)}{C_\alpha\alpha}\right)^\alpha|\Delta d(x)|d(x)\leq \frac{D(\alpha-1)d(x)}{C_\alpha\alpha}\\
+    &\qquad\Longleftrightarrow\qquad \left(1+\frac{|\Delta d(x)|d(x)}{C_\alpha\alpha}\right)^\alpha|\Delta d(x)|\leq \frac{D(\alpha-1)}{C_\alpha\alpha}\\
+    &\qquad\Longleftrightarrow\qquad D \geq \frac{C_\alpha \alpha}{\alpha-1}|\Delta d(x)|\left(1+\frac{|\Delta d(x)|d(x)}{C_\alpha\alpha}\right)^\alpha.
+\end{align*}
+Recall that we define $K_2 = \max_{\overline{\Omega}}|\Delta d(x)|$, $\alpha\geq 1$ and $d(x)\leq \delta_0$ we estimate%\footnote{The constant $\frac{1}{2}$ in \cite{Lasry1989} probably comes from $\alpha+1\geq 2$.} 
+\begin{equation*}
+\begin{split}
+    \frac{C_\alpha \alpha}{\alpha-1}|\Delta d(x)|\left(1+\frac{|\Delta d(x)|d(x)}{C_\alpha\alpha}\right)^\alpha &\leq \frac{C_\alpha\alpha}{\alpha-1}\Vert \Delta d\Vert_{\infty}\left[1+\alpha\left(1+\frac{\Vert \Delta d\Vert_{\infty}\delta_0}{C_\alpha \alpha}\right)^{\alpha-1}\frac{\Vert \Delta d\Vert_\infty d(x)}{C_\alpha\alpha}\right]\\
+    &\leq \underbrace{\frac{C_\alpha\alpha}{\alpha-1}\Vert \Delta d\Vert_{\infty}}_{C^1_{\alpha}} +  \underbrace{\frac{\alpha}{\alpha-1}\left(1+\frac{\Vert \Delta d\Vert_{\infty}\delta_0}{C_\alpha \alpha}\right)^{\alpha-1}\Vert \Delta d\Vert_\infty^2\delta_0}_{\eta_1}.
+\end{split}
+\end{equation*}
+We conclude that if $\alpha>1$ then $D = C^1_\alpha + \eta_1$ satisfies $\mathcal{L}[w] \geq 0$ in $\Omega\backslash \Omega_{\delta_0}$. In the region where $d(x)\geq \delta_0$, we observe that, with \fbox{$K_1 = \Vert \nabla d\Vert_{L^\infty}$} and \fbox{$K_0 = \Vert d\Vert_{L^\infty}$} then
+\begin{equation*}
+    \begin{split}
+        \left|-\xi |\nabla d(x)|^2 + \xi\frac{\Delta d(x)d(x)}{\alpha+1}\right| \leq \xi\left(K_1^2+\frac{K_2K_0}{\alpha+1}\right).
+    \end{split}
+\end{equation*}
+Therefore, we control the possible negative terms by $M_1\varepsilon^{\alpha+2}$ as follows.
+\begin{equation*}
+\begin{split}
+    \left|\frac{C_\alpha\alpha(\alpha+1)\varepsilon^{\alpha+2}}{d(x)^{\alpha+2}}\left(-\xi|\nabla d(x)|^{2} + \xi \frac{\Delta d(x)d(x)}{\alpha+1}\right)\right| &\leq \frac{C_\alpha\alpha(\alpha+1)\varepsilon^{\alpha+2}}{\delta_0^{\alpha+2}}\xi\left(K_1^2+\frac{K_2K_0}{\alpha+1}\right)\\
+    &\leq \left(\frac{\varepsilon}{\delta_0}\right)^{\alpha+2} \underbrace{C_\alpha\alpha(\alpha+1)\left(K_1^2+\frac{K_2K_0}{\alpha+1}\right)\left(1+\frac{D(\alpha-1)K_0}{C_\alpha\alpha}\right)}_{C_3}.
+\end{split}
+\end{equation*}
+Therefore
+\begin{equation*}
+    \begin{split}
+        &M_1\varepsilon^{\alpha+2} + \frac{C_\alpha\alpha(\alpha+1)\varepsilon^{\alpha+2}}{d(x)^{\alpha+2}}\left(-\xi|\nabla d(x)|^{2} + \xi \frac{\Delta d(x)d(x)}{\alpha+1}\right)\geq \varepsilon^{\alpha+2}\left[M_1 - \frac{C_3}{\delta_0^{\alpha+2}}\right] \geq 0
+    \end{split}
+\end{equation*}
+provided that we choose $M_1 = C_3\delta_0^{-(\alpha+2)}$.
+\end{proof}
+
+\paragraph{Remark 3.} What if we choose $\delta_0 = \varepsilon^{\alpha+2}?$ 
+
+\paragraph{Remark 4.} To obtain a uniform rate of convergence independent of $\varepsilon\to 0$ of
+\begin{equation*}
+    \lim_{d(x)\to 0} \frac{u^\varepsilon(x)d(x)^\alpha}{C_\alpha \varepsilon^{\alpha+1}} = 1.
+\end{equation*}
+Is it possible?
+\section{A rate of convergence when $f(x) = \mathcal{O}\left(\varepsilon^{\alpha+1}\right)$ as $\varepsilon\to 0$}
+We have the estimate
+\begin{equation*}
+    u^\varepsilon(x)\leq \frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} + M\varepsilon^{\alpha+2} + C\varepsilon^{\alpha+1}
+\end{equation*}
+Note that in this case $u^\varepsilon \to u \equiv 0$ as $\varepsilon\to 0$. We consider $f\geq 0$ so that $u^\varepsilon\geq u\geq 0$ and
+\begin{equation*}
+    \Phi(x,y) = u^\varepsilon(x) - u(y) - \frac{C_0|x-y|^2}{\sigma} - (1+\delta^\alpha)\frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha}, \qquad (x,y)\in \overline{\Omega}\times\overline{\Omega}.
+\end{equation*}
+It has a maximum at $(x_\sigma,y_\sigma)\in \Omega\times\overline{\Omega}$. From $\Phi(x_\sigma,y_\sigma)\geq \Phi(x_\sigma,x_\sigma)$ we have
+\begin{equation*}
+    \frac{C_0|x_\sigma-y_\sigma|^2}{\sigma}\leq u(x_\sigma) - u(y_\sigma)\leq C_0|x_\sigma - y_\sigma| \qquad\Longrightarrow\qquad |x_\sigma - y_\sigma|\leq \sigma.
+\end{equation*}
+From $\Phi(x_\sigma,y_\sigma)\geq \Phi(0,0)$ and $u(x)\leq M\varepsilon^{\alpha+2}$ we have
+\begin{equation*}
+    \delta^\alpha\frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} \leq u^\varepsilon(x) - \frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} + C\varepsilon^{\alpha+1} - u(0) \leq C\varepsilon^{\alpha+1}+C\varepsilon^{\alpha+2}
+\end{equation*}
+Thus
+\begin{equation*}
+    d(x_\sigma) \geq C\delta.
+\end{equation*}
+Now subsolution test of $x\mapsto \Phi(x,y_\sigma)$ gives us
+\begin{equation*}
+\begin{split}
+    u^\varepsilon(x) + &\left|\frac{2C_0(x_\sigma-y_\sigma)}{\sigma}-(1+\delta^\alpha)\frac{\nu C_\alpha\alpha\varepsilon^{\alpha+1}\nabla d(x_\sigma)}{d(x_\sigma)^{\alpha+1}}\right|^p - f(x_\sigma) \\
+    &- \varepsilon \left(\frac{2nC_0}{\sigma} - (1+\delta^\alpha)\frac{\nu C_\alpha\alpha(\alpha + 1)\varepsilon^{\alpha+1}|\nabla d(x_\sigma)|^2}{d(x_\sigma)^{\alpha+2}} + (1+\delta^\alpha)\frac{\nu C_\alpha \alpha \varepsilon^{\alpha+1}\Delta d(x_\sigma)}{d(x_\sigma)^{\alpha+1}}\right)\leq 0.
+\end{split}    
+\end{equation*}
+Now subsolution test of $y\mapsto \Phi(x_\sigma,y)$ gives us
+\begin{equation*}
+    u(y_\sigma) + \left|\frac{2C_0(x_\sigma-y_\sigma)}{\sigma}\right|^p -f(y_\sigma) \geq 0.
+\end{equation*}
+Therefore
+\begin{equation*}
+\begin{split}
+    u^\varepsilon(x_\sigma) - u(y_\sigma) \leq & p\left|2C_0+(1+\delta^\alpha)\nu C_\alpha \alpha\left( \frac{\varepsilon}{\delta}\right)^{\alpha+1}\right|^{p-1}(1+\delta^\alpha) \nu C_\alpha \alpha \left(\frac{\varepsilon}{\delta}\right)^{\alpha+1} + C\sigma\\
+    &+2nC_0\frac{\varepsilon}{\sigma} + (1+\delta^\alpha)\nu C_\alpha \alpha(\alpha+1)\left(\frac{\varepsilon}{\delta}\right)^{\alpha+2} + (1+\delta^\alpha)\nu C_\alpha \alpha C \left(\frac{\varepsilon}{\delta}\right)^{\alpha+1}\varepsilon\\
+    &\leq C\left(\sigma + \frac{\varepsilon}{\sigma} + \left(\frac{\varepsilon}{\delta}\right)^{\alpha+1} + \left(\frac{\varepsilon}{\delta}\right)^{\alpha+2}\right).
+\end{split}
+\end{equation*}
+Max happens when $\sigma = \sqrt{\varepsilon}$, and $\delta = \sqrt{\varepsilon}$ for example, which gives us
+\begin{equation*}
+   0\leq  u^\varepsilon(x) - u(x) \leq C\sqrt{\varepsilon} + \left(1+\varepsilon^{\frac{\alpha^2}{\alpha+1}}\right)\frac{\nu C_\alpha  \varepsilon^{\alpha+1}}{d(x)^\alpha} 
+\end{equation*}
+for every $x\in \Omega$.
+
+\noindent
+Nevertheless, if we use $f=\mathcal{O}(\varepsilon^{\alpha+1})$
+\begin{equation*}
+    |f(x_\sigma) - f(y_\sigma)| \leq C\varepsilon^{\alpha+1},
+\end{equation*}
+then we can choose $\sigma = 1$, thus
+\begin{equation*}
+    u^\varepsilon(x_\sigma) - u(y_\sigma) \leq C\left( \frac{\varepsilon}{1} + \left(\frac{\varepsilon}{\delta}\right)^{\alpha+1} + \left(\frac{\varepsilon}{\delta}\right)^{\alpha+2}+ \varepsilon^{\alpha+1}\right).
+\end{equation*}
+Chosing $\delta = \varepsilon^\frac{\alpha}{\alpha+1}$ we obtain 
+\begin{equation*}
+    u^\varepsilon(x_\sigma) - u(y_\sigma) \leq C(\varepsilon + \varepsilon + \varepsilon ^p + \varepsilon^{\alpha+1}) \leq C\varepsilon.
+\end{equation*}
+As a consequence, 
+\begin{equation*}
+   0\leq  u^\varepsilon(x) - u(x) \leq C\varepsilon + \left(1+\varepsilon^{\frac{\alpha^2}{\alpha+1}}\right)\frac{\nu C_\alpha  \varepsilon^{\alpha+1}}{d(x)^\alpha} 
+\end{equation*}
+for every $x\in \Omega$.
+
+\paragraph{Remark 5.} We can relax $f$ to (double check)
+\begin{equation*}
+    f(x) = \frac{g(x)\varepsilon^{\alpha+1}}{d(x)^\beta} \qquad\text{where}\;0\leq g\leq C, 0<\beta \leq \alpha.
+\end{equation*}
+
+
+
+
+
+
+
+%\bibliography{zzzzlibrary}{}
+%\bibliographystyle{ieeetr}
+%\bibliographystyle{acm}
+\end{document}
+
+    
+    
+    
+    
