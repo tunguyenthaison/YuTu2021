@@ -177,14 +177,30 @@ In fact, this estimate can be make rigorously from \cite{alessio_asymptotic_2006
     |\nabla u ^\varepsilon(x)|\leq \frac{C\varepsilon^{\alpha+1}}{d(x)^{\alpha+1}}
 \end{equation*}
 for $x\in \Omega$.
+\item Idea to bound point-wise $u^\varepsilon(x)$ without using stochastic formula. If $x\in \Omega$ such that we can find $r>0$ such that $B(x,r)\subset \{f = 0\}$ then by consider an explosive solution $w^\varepsilon$ in $B(x,r)$, then as $w^\varepsilon\to 0$ in $B(x,r)$ and $u^\varepsilon \leq w^\varepsilon$ in $B(x,r)$, one can get a rate locally for $u^\varepsilon$ if we can control the radius $r$, provided we know the support of $f$. \textcolor{red}{This idea is clear, probably no more explanation needed or further investigation, maybe?}
+\item Difficulty for the general case of bounded data $f$, after cutting off $f_\kappa = f\chi_\kappa$ such that $\mathrm{supp}(f_\kappa)\subset \Omega_\kappa$, the solution of the corresponding problem is $u^\varepsilon_\kappa$ which is not exactly $u^\varepsilon$, eventhough $u^\varepsilon_\kappa\to u^\varepsilon$ as $\kappa \to 0$. However the rate exploded when $\kappa \to 0$ unless we choose a scale $\kappa = \varepsilon^\gamma$ for $\gamma < 1$, but then in the equation $u^\varepsilon_\kappa\to u^\varepsilon$ we loose the term $\varepsilon$ here. 
+\begin{itemize}
+    \item An idea to try: bound in the interior only. Write
+    \begin{equation*}
+        f = \frac{1}{2}\left( \underbrace{\qquad\qquad 2f\chi_\kappa\qquad\qquad}_{f_1 \longrightarrow u^\varepsilon_1} +  \underbrace{\qquad\qquad 2f(1-\chi_\kappa)\qquad\qquad}_{f_2 \longrightarrow u^\varepsilon_2}\right).
+    \end{equation*}
+    We know $u_1^\varepsilon\to 0$ with a rate everywhere, while $u_2^\varepsilon \to 0$ in $\Omega_\kappa$ with a rate, thus by convex combination we maybe able to control a rate for $u^\varepsilon$ in $\Omega_\kappa$. \textcolor{red}{Seems wrong! As we only have subsolution, not supersolution.}
+\end{itemize}
 \end{enumerate}
 
 
 
+\begin{center}
+--------------------------------------------------------------------------------------------------------------------
+\end{center}
+\begin{enumerate}
+    \item \textcolor{blue}{Log April 03, 2021.} Figured out the annulus bound enables a proof for compactly supported data.
+\end{enumerate}
 
-%\bibliography{zzzzlibrary}{}
+
+\bibliography{zzzzlibrary}{}
 %\bibliographystyle{ieeetr}
-%\bibliographystyle{acm}
+\bibliographystyle{acm}
 \end{document}
 
     
