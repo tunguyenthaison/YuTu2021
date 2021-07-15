@@ -1,0 +1,434 @@
+\documentclass[english,reqno]{amsart}
+%\renewcommand{\baselinestretch}{1.2}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\raggedbottom
+\usepackage{subfig}
+\usepackage{amssymb,amsbsy,amsmath,amsfonts,amssymb,amscd}
+\usepackage{comment}
+\usepackage{verbatim}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[numbers]{natbib} % for alphabetically numbered lists
+\usepackage{algorithm,algpseudocode}
+\usepackage{setspace}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{assum}{Assumption}[section]
+\newtheorem{cor}{Corollary}[section]
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+  {\end{proof}}
+\title{Quick Notes}
+
+\begin{document}
+
+\maketitle
+\date{May 5, 2021}
+\section{New things to think about}
+\begin{enumerate}[label=\arabic*)]
+    \item Work out the details of the following example in $n=1$.
+    Let u be the solution to
+    \begin{equation}
+    \label{example}
+        \left\{
+  \begin{aligned}
+   u(x) + \frac{1}{2}|u^\prime(x)|^2 -f(x) &\leq 0 \, \quad \qquad \text{in } (-1, 1), \\
+              u(x) + \frac{1}{2}|u^\prime (x)|^2 -f(x) &\geq 0 \qquad  \quad \text{for } x=-1, 1,
+  \end{aligned}
+\right.
+    \end{equation}
+    with an easier $f$, using deterministic optimal control formula and Euler-Lagrange equation. For instance, $f=0$ in $[-\frac{1}{2}, \frac{1}{2}]$. And then try to look into the solution to the equation with $\epsilon \Delta u^\epsilon$.
+    
+ \begin{solution}
+\textbf{STEP 1. Find the Euler-Lagrange equation.} 
+
+
+According to the optimal control formula for the state-constraint problem,
+\begin{equation}
+\label{ocf}
+    u(x)=\inf \left\{ \left.I[\eta]: =\int_0^\infty e^{-s} \left( \frac{\left( \dot{\eta}(s) \right)^2}{2} + f(\eta (s)) \right)ds \right| \eta \in \mathrm{AC}([0, \infty); [-1,1]), \eta(0)=x \right\}.
+\end{equation}
+
+
+
+    
+Suppose a minimizer of \eqref{ocf} with initial data $x_0$ exits and call it $\gamma$. Fix $b >0$ and define $$\displaystyle I_b[\eta] := \int_0^b e^{-s} \left( \frac{\left( \dot{\eta}(s) \right)^2}{2} + f(\eta (s)) \right)ds.$$
+Since $\gamma$ is a minimizer of \eqref{ocf}, $\gamma$ is also a minimizer of the problem
+\begin{equation}
+    \min \left\{ I_b [\eta] ; \eta \in \mathrm{AC}\left([0, b]; [-1,1]\right) , \eta(0) = x_0, \eta(b) =\gamma(b) \right\}.
+\end{equation}
+Let $\tau \in \mathrm{AC}\left([0, b]; [-1,1]\right)$ with $ \tau(0) = 0, \tau(b) =0$. Assume $\gamma(s) +t \tau(s) \in \bar{\Omega}$, $ \forall s \in [0,b]$, for $t$ small enough. By calculus of variation, 
+\begin{equation*}
+\begin{aligned}
+    \left.  0=\frac{d}{dt}\left( I[\gamma +t \tau]\right) \right|_{t=0} &=\int_0^b e^{-s} \left(\dot{\gamma}(s)  \dot{\tau}(s) + f^\prime(\gamma(s)) \tau(s) \right)ds\\
+    &=\int_0^b -\left( e^{-s} \dot{\gamma}(s) \right)^\prime \tau(s) + e^{-s} f^\prime(\gamma(s)) \tau(s)ds\\
+    &=\int_0^b \left( \dot{\gamma} -\Ddot{\gamma} +f^\prime (\gamma)\right)\tau e^{-s}ds.
+\end{aligned}
+\end{equation*}
+Therefore, if $\gamma$ is a minimizer of \eqref{ocf}, then 
+\begin{equation}
+\label{EL}
+\left\{
+\begin{aligned}
+     \Ddot{\gamma}(s)&=\dot{\gamma}(s) + f^\prime (\gamma(s)), s\in (0,b),\\
+     \gamma(0)&=x_0.
+\end{aligned}
+\right.
+\end{equation}
+\textcolor{red}{(We don't have any info about initial velocity here.)}
+
+We will instead consider \eqref{EL} with the initial position $x_0$ and the initial velocity $y_0$ (to be determined), i.e,
+\begin{equation}
+\label{EL2}
+\left\{
+\begin{aligned}
+     \Ddot{\gamma}(s)&=\dot{\gamma}(s) + f^\prime (\gamma(s)), s\in (0,b),\\
+     \gamma(0)&=x_0,\\
+     \dot{\gamma}(0)&=y_0.
+\end{aligned}
+\right.
+\end{equation}
+Change notations a little bit by letting $x(s)= \gamma(s)$ and $y(s)=\dot{\gamma}(s)$. Then \eqref{EL2} becomes
+\begin{equation}
+\label{ode}
+\left\{
+\begin{aligned}
+\dot{x}(s)&=y(s),\\
+     \dot{y}(s)&=y(s) + f^\prime (x(s)),\\
+     x(0)&=x_0,\\
+     y(0)&=y_0.
+\end{aligned}
+\right.
+\end{equation}
+
+\textbf{STEP 2. Solve the Euler-Lagrange equation to get the formula for $\gamma$ and compute the cost function value for $\gamma$.} 
+
+\begin{itemize}
+    \item \textbf{Example 1}
+    Consider \eqref{ode} with $f$ defined by
+\begin{equation*}
+        f(x) := \left\{
+  \begin{aligned}
+  -x -\frac{1}{2}   \, \quad \qquad &\text{in } [-1, -\frac{1}{2}], \\
+   0 \, \quad \qquad &\text{in } (-\frac{1}{2}, \frac{1}{2}), \\
+              x-\frac{1}{2}  \qquad  \quad &\text{in } [\frac{1}{2}, 1],
+  \end{aligned}
+\right.
+    \end{equation*}
+    
+    \begin{enumerate}
+        \item Suppose $x_0 \in [-\frac{1}{2}, \frac{1}{2}]$. We can choose $\gamma (s) \equiv x_0$. Then $I[\gamma]=0$ and hence $\gamma \equiv x_0$ is a minimizer. Hence, $u(x)=0$ for $x \in [-\frac{1}{2}, \frac{1}{2}]$.
+        \item Suppose $x_0 \in (\frac{1}{2}, 1]$. We need to solve the Euler-Lagrange equation.
+        
+        If $x(s) \in (\frac{1}{2}, 1)$, we have
+        \begin{equation*}
+        \begin{aligned}
+        &\left\{
+        \begin{aligned}
+        \dot{x}(s)&=y(s),\\
+        \dot{y}(s)&=y(s) + 1,\\
+         x(0)&=x_0,\\
+         y(0)&=y_0,
+        \end{aligned}
+        \right.\\
+        \Longrightarrow &
+        \left\{
+        \begin{aligned}
+         	& x(s)=(1+y_0)(e^s-1)-s+x_0,\\
+         	& y(s)=(1+y_0)e^s-1.
+        \end{aligned}
+        \right.\\
+        \end{aligned}
+        \end{equation*}
+        
+        \begin{enumerate}
+    \item Suppose $\displaystyle x\left(t_\frac{1}{2}\right)=\frac{1}{2}$ for a finite time $t_{\frac{1}{2}} >0$. We will make $x(s)=\frac{1}{2}$, $\forall s>t_\frac{1}{2}$ to minimize the cost function. 
+    Set $\displaystyle x \left(t_{\frac{1}{2}} \right)=\frac{1}{2}$ and we can solve for the initial velocity $y_0$ in terms of $t_\frac{1}{2}$:
+    \begin{equation*}
+        \begin{aligned}
+         &(1+y_0)(e^{t_{\frac{1}{2}}}-1)-t_{\frac{1}{2}}+x_0 =\frac{1}{2},\\
+         	\Longrightarrow \quad & y_0= \frac{\frac{1}{2} + t_\frac{1}{2} - x_0}{e^{t_\frac{1}{2}}-1}-1.
+        \end{aligned}
+    \end{equation*}
+    Compute the cost function
+    \begin{equation*}
+    \begin{aligned}
+     I[\gamma]&= \int_0^{t_\frac{1}{2}} e^{-s}\left(\frac{y^2}{2} + x(s)-\frac{1}{2}\right)ds\\
+     &= \int_0^{t_\frac{1}{2}} e^{-s}\left(\frac{(e^s(1+y_0)-1)^2}{2} + (1+y_0)(e^s-1)-s+x_0-\frac{1}{2}\right)ds\\
+     &=\int_0^{t_\frac{1}{2}}\left( e^s \frac{(1+y_0)^2}{2}  -(1+y_0) +\frac{1}{2} e^{-s} -e^{-s}s +(1-e^{-s})(y_0+1) + \left(x_0-\frac{1}{2}\right)e^{-s}\right)ds\\
+     &=\frac{(1+y_0)^2}{2}\left(e^{t_{\frac{1}{2}}}-1\right)+t_{\frac{1}{2}}e^{t_{\frac{1}{2}}}+\left(1-e^{t_{\frac{1}{2}}}\right)(x_0-2-y_0)\\
+     &= \frac{\left(\frac{1}{2}+t_\frac{1}{2}-x_0\right)^2}{2 \left(e^{t_\frac{1}{2}}-1\right)}+t_{\frac{1}{2}}e^{t_\frac{1}{2}}+(1-x_0)e^{t_\frac{1}{2}}+t_\frac{1}{2}-\frac{1}{2}\\
+     \Longrightarrow \frac{\partial I[\gamma]}{\partial t_\frac{1}{2}} &=\frac{4\left( \frac{1}{2} + t_\frac{1}{2} -x_0\right)-2e^{t_\frac{1}{2}}\left(\frac{1}{2}+t_\frac{1}{2}-x_0 \right)^2}{4\left(e^{t_\frac{1}{2}}-1\right)^2}+e^{t_\frac{1}{2}}+t_{\frac{1}{2}}e^{t_\frac{1}{2}}+(1-x_0)e^{t_\frac{1}{2}}+1
+    \end{aligned}
+    \end{equation*}
+    \textcolor{red}{...}
+    
+    \item Suppose $\displaystyle x(s)\neq \frac{1}{2}$, $\forall s \geq 0$.
+    \end{enumerate}
+    \end{enumerate}
+
+
+
+    \item \textbf{Example 2}
+    Consider \eqref{ode} with $f$ defined by
+\begin{equation*}
+        f(x) := \left\{
+  \begin{aligned}
+  &\left(x+\frac{1}{2}\right)^2   \, \quad \qquad \text{in } \left[-1, -\frac{1}{2}\right], \\
+   &0 \, \qquad \qquad \qquad \quad \text{in } \left(-\frac{1}{2}, \frac{1}{2}\right), \\
+              &\left(x-\frac{1}{2}\right)^2  \qquad  \quad \text{in } \left[\frac{1}{2}, 1\right].
+  \end{aligned}
+\right.
+    \end{equation*}
+    
+\begin{enumerate}
+    \item Suppose $x_0 \in [-\frac{1}{2}, \frac{1}{2}]$. We can choose $\gamma (s) \equiv x_0$. Then $I[\gamma]=0$ and hence $\gamma \equiv x_0$ is a minimizer. Thus, $u(x)=0$ for $x \in [-\frac{1}{2}, \frac{1}{2}]$.
+    \item Suppose $x_0 \in (\frac{1}{2}, 1]$. We need to solve the Euler-Lagrange equation.
+    
+    
+If $x(s) \in \left[\frac{1}{2}, 1\right]$, we have
+\begin{equation*}
+\begin{aligned}
+ &\left\{
+\begin{aligned}
+\dot{x}(s)&=y(s),\\
+     \dot{y}(s)&=y(s) + 2\left(x(s)-\frac{1}{2}\right),\\
+     x(0)&=x_0,\\
+     y(0)&=y_0,
+\end{aligned}
+\right.\\
+\Longrightarrow &
+\left\{
+    \begin{aligned}
+         	& x(s)=\frac{1}{2}+\left(\frac{x_0}{3}+\frac{y_0}{3}-\frac{1}{6}\right)e^{2t} + \left( \frac{2}{3}x_0-\frac{1}{3}y_0-\frac{1}{3}\right) e^{-t},\\
+         	& y(s)=2\left(\frac{x_0}{3}+\frac{y_0}{3}-\frac{1}{6}\right)e^{2t} - \left( \frac{2}{3}x_0-\frac{1}{3}y_0-\frac{1}{3}\right) e^{-t}.
+    \end{aligned}
+\right.\\
+\end{aligned}
+\end{equation*}
+To simplify the expression, we let 
+\begin{equation*}
+\begin{aligned}
+     A &:=\frac{x_0}{3}+\frac{y_0}{3}-\frac{1}{6},\\
+    B &:= \frac{2}{3}x_0-\frac{1}{3}y_0-\frac{1}{3},\\
+\end{aligned}
+\end{equation*}
+and then
+\begin{equation}
+    \left\{
+    \begin{aligned}
+         	& x(s)=\frac{1}{2}+Ae^{2t} + B e^{-t},\\
+         	& y(s)=2Ae^{2t} - B e^{-t}.
+    \end{aligned}
+\right.
+\end{equation}
+Set $\displaystyle x(t)=\frac{1}{2}$ and we can try to solve for the time $t_\frac{1}{2}$ when the position is at $x=\frac{1}{2}$:
+\begin{equation*}
+        \begin{aligned}
+         &\frac{1}{2}+Ae^{2t} + B e^{-t} =\frac{1}{2},\\
+         	\Longrightarrow \quad & t_\frac{1}{2}=\frac{1}{3} \log \left(-\frac{B}{A}\right).\\
+    \end{aligned}
+\end{equation*}
+
+
+
+\textcolor{red}{$t_{\frac{1}{2}}$ may or may not exist, depending on whether $\displaystyle -\frac{B}{A}$ is positive or not. We break into four cases according to the initial velocity $y_0$ as follows.} 
+\begin{enumerate}
+    \item Suppose $t_\frac{1}{2}$ exists. $\displaystyle -\frac{B}{A} > 0 , y_0 <0 \Rightarrow A<0 \Rightarrow y_0 < \frac{1-2x_0}{2}$. In this case, after the curve reaches $x=\frac{1}{2}$, we will let the curve stay at $x=\frac{1}{2}$ to minimize the cost.
+    \begin{equation*}
+    \begin{aligned}
+        I[\gamma]&= \int_0^\infty e^{-s}\left( \frac{y(s)^2}{2} +(x(s)-\frac{1}{2})^2\right)ds\\
+        &=\int_0^\infty e^{-s}\left( \frac{(2Ae^{2s}-Be^{-s})^2}{2} +(Ae^{2s}+Be^{-s})^2\right)ds\\
+        &=\int_0^{t_\frac{1}{2}} 3A^2e^{3s}+\frac{3}{2}B^2e^{-3s}ds\\
+        &=\left. A^2e^{3s}-\frac{B^2}{2}e^{-3s} \right|^{\frac{1}{3}\log \left(-\frac{B}{A}\right)}_0 \\
+        &=-\frac{x_0y_0}{2}+\frac{1}{4}y_0\\
+        \Longrightarrow \frac{\partial I[\gamma]}{\partial y_0} &= -\frac{x_0}{2}+\frac{1}{4}<0.\\
+    \end{aligned}
+    \end{equation*}
+    Therefore, $I[\gamma]$ is decreasing with respect to $y_0$ when $\displaystyle y_0 < \frac{1-2x_0}{2}$. 
+    
+    \item Suppose $A=0$, i.e., $\displaystyle y_0=\frac{1-2x_0}{2}$. We have
+    \begin{equation*}
+     \left\{
+        \begin{aligned}
+        x(s)&=\frac{1}{2}+\left(x_0-\frac{1}{2}\right)e^{-s},\\
+        y(s)&=-\left(x_0-\frac{1}{2}\right)e^{-s}.
+        \end{aligned}
+    \right.
+    \end{equation*}
+    As we can see here, the curve never reaches $x=\frac{1}{2}$. Compute the cost function
+    \begin{equation*}
+        \begin{aligned}
+         I[\gamma] &= \int_0^\infty e^{-s}\left( \frac{(x_0-\frac{1}{2})^2e^{-2s}}{2} +(x_0-\frac{1}{2})^2e^{-2s}\right)ds\\
+          &=\frac{1}{2}x_0^2-\frac{1}{2}x_0+\frac{1}{8}.\\
+        \end{aligned}
+    \end{equation*}
+    
+    \item Suppose $A >0, B \geq 0$, i.e., $\displaystyle \frac{1-2x_0}{2} < y_0 \leq 2x_0-1$. We claim that in this case we can always find a curve $\eta$ that $I[\eta] < I[\gamma]$. 
+    
+    If we start at $x_0 \in (\frac{1}{2}, 1)$ and evolve according to the Euler-Lagrange equation, the velocity $\dot{\gamma}(s) = y(s)$ may change sign as time goes, for instance, from negative to positive. We can consider another curve $\eta(s)$ such that $\eta(0)=x_0$ and $\dot{\eta}(s)=-|\dot{\gamma}(s)|$ for $s\in \left\{s \in [0, \infty) :\gamma(s)=x(s)<1\right\}$ and stay at $x=\frac{1}{2}$ once the curve $\eta(s)=\frac{1}{2}$. If $\gamma$ arrives at $1$ before $\eta$ hits $\frac{1}{2}$, there are two possibilities for $\gamma$ afterwards. The first possibility is that $\gamma$ can stay at $1$. Then we can choose $\eta$ so that $\displaystyle \frac{\dot{\eta}(s)^2}{2}+\left(\eta(s)-\frac{1}{2}\right)^2<f(1)$ to make $I[\eta] < I[\gamma]$. The second possibility is that $\gamma$ can move away from $1$. Then the strategy is like before, namely that we choose $\dot{\eta}(s)=-|\dot{\gamma}(s)|$ to get $I[\eta] < I[\gamma]$. 
+    
+    If we start at $x_0=1$, we can choose to stay at $x=1$, i.e., $\eta (s) \equiv 1$. Then $\displaystyle I[\eta]=\frac{1}{4}$. If we choose $\displaystyle y_0=\frac{1-2x_0}{2}$ as in case (b), $\displaystyle I[\gamma]=\frac{1}{8}$.
+    \item Suppose $y_0 > 2x_0-1$. In this case, $A >0, B <0$, and $y(s) = 2Ae^{2s}- Be^{-s} >0$. Hence, the curve $\gamma$ will run towards $x=1$. Again, the strategy is to make $\dot{\eta}(s)=-\dot{\gamma}(s)$ and the argument is similar to that in case (c).
+\end{enumerate}
+In summary, the minimizer is $\displaystyle \gamma (s) = \frac{1}{2}+\left( x_0 -\frac{1}{2}\right) e^{-s}$, which is the solution to the Euler-Lagrange equation with the initial velocity $\displaystyle y_0=\frac{1-2x_0}{2}$. Hence, $\displaystyle u(x)= \frac{1}{2}x^2-\frac{1}{2}x+\frac{1}{8}$ for $x \in (\frac{1}{2}, 1]$.
+    \item Suppose $x_0 \in \left[-1, -\frac{1}{2}\right]$.
+    If $x(s) \in \left[-1, -\frac{1}{2}\right]$, we have
+    
+\begin{equation*}
+\begin{aligned}
+ &\left\{
+\begin{aligned}
+\dot{x}(s)&=y(s),\\
+     \dot{y}(s)&=y(s) + 2\left(x(s)+\frac{1}{2}\right),\\
+     x(0)&=x_0,\\
+     y(0)&=y_0,
+\end{aligned}
+\right.\\
+\Longrightarrow &
+\left\{
+    \begin{aligned}
+         	& x(s)=-\frac{1}{2}+\left(\frac{x_0}{3}+\frac{y_0}{3}+\frac{1}{6}\right)e^{2t} + \left( \frac{2}{3}x_0-\frac{1}{3}y_0+\frac{1}{3}\right) e^{-t},\\
+         	& y(s)=2\left(\frac{x_0}{3}+\frac{y_0}{3}+\frac{1}{6}\right)e^{2t} - \left( \frac{2}{3}x_0-\frac{1}{3}y_0+\frac{1}{3}\right) e^{-t}.
+    \end{aligned}
+\right.\\
+\end{aligned}
+\end{equation*}
+Similarly, we can show the minimizer is $\displaystyle \gamma(s)=-\frac{1}{2}+\left(x_0+\frac{1}{2}\right)e^{-s}$ and $\displaystyle u(x)=\frac{1}{2}x^2+\frac{1}{2}x+\frac{1}{8}$ for $x \in \left[-1, -\frac{1}{2}\right]$.
+\end{enumerate}
+Therefore, 
+\begin{equation*}
+u(x)=\left\{
+    \begin{aligned}
+      &\frac{1}{2}\left(x+\frac{1}{2}\right)^2  \quad \qquad \text{if }x \in \left[-1, -\frac{1}{2}\right],\\
+     &0 \qquad \qquad \qquad \qquad \text{if } x \in \left[-\frac{1}{2}, \frac{1}{2}\right],\\
+   &\frac{1}{2}\left(x-\frac{1}{2}\right)^2 \quad \qquad \text{if } x \in \left[\frac{1}{2}, 1\right].
+    \end{aligned}
+\right.
+\end{equation*}
+
+\vspace{2em}
+
+Next, we look into the second order equation
+ \begin{equation}
+    \label{sec}
+        \left\{
+  \begin{aligned}
+   u^\epsilon(x) + \frac{1}{2}|\dot{u}^\epsilon(x)|^2 -f(x)-\epsilon \Ddot{u}^\epsilon (x) &= 0 \, \quad \qquad \text{in } (-1, 1), \\
+              u^\epsilon &= +\infty \qquad   \text{for } x=-1, 1.
+  \end{aligned}
+\right.
+    \end{equation}
+First, we can verify $\displaystyle w(x):=-2\epsilon \log(1-|x|)+2\epsilon \log \left(\frac{1}{4}-\sqrt{\frac{1}{16}-\epsilon}\right)+\left(\frac{1}{4} + \sqrt{\frac{1}{16}-\epsilon}\right)^2$ is a supersolution of \eqref{sec} at least on $\left(-1, -\frac{1}{2}\right)\cup \left(\frac{1}{2}, 1\right)$. $\displaystyle 2 \epsilon \log \left(\frac{1}{4}-\sqrt{\frac{1}{16}-\epsilon}\right)+\left(\frac{1}{4} + \sqrt{\frac{1}{16}-\epsilon}\right)^2$ is the optimal constant $C$ we can choose in order to make $-2\epsilon \log(1-|x|)+C$ a supersolution. And
+\begin{equation*}
+    \lim_{\epsilon \to 0^+}2 \epsilon \log \left(\frac{1}{4}-\sqrt{\frac{1}{16}-\epsilon}\right)+\left(\frac{1}{4} + \sqrt{\frac{1}{16}-\epsilon}\right)^2 =\frac{1}{4}.
+\end{equation*}
+\end{itemize}
+\end{solution}
+    
+    \vspace{1em}
+    
+    \item Consider the general $H(p)$ with $C_1 |\xi|^p \leq H(\xi) \leq C_2 |\xi|^p$, and $\displaystyle \lim_{\delta \to 0} \delta^\frac{p}{p-1} H(\delta^{-\frac{1}{p-1}}x) = |x|^p$.
+\end{enumerate}
+
+\vspace{3em}
+
+\section{Ideas}
+\begin{enumerate}[label=\arabic*)]
+    \item We already proved the convergence rate for $f$ with $f|_{\partial \Omega} =0$. For general $f$, let $u^\epsilon$ be the solution to
+\begin{equation}
+\left\{
+  \begin{aligned}
+   u^\epsilon + |Du^\epsilon|^p -f(x) - \epsilon \Delta u^\epsilon &=0 \, \quad \qquad \text{in } \Omega, \\
+              u^\epsilon &= +\infty \qquad  \text{on } \partial \Omega,
+  \end{aligned}
+\right.
+\end{equation}
+
+and u be the solution to 
+\begin{equation}
+\left\{
+  \begin{aligned}
+   u + |Du|^p -f(x) & \leq 0 \quad \qquad \text{in } \Omega, \\
+              u + |Du|^p -f(x) & \geq 0 \quad \qquad \text{on } \partial \Omega.
+  \end{aligned}
+\right.
+\end{equation}
+The idea is to extend $f: \Omega \to \mathbb{R}$ to $f_\lambda: (1+\lambda) \Omega \to \mathbb{R}$ with $f_\lambda|_{\partial (1+\lambda)\Omega}=0$. Consider the solution to
+\begin{equation}
+\left\{
+  \begin{aligned}
+   v^\epsilon + |Dv^\epsilon|^p -f_\lambda(x) - \epsilon \Delta v^\epsilon &=0 \, \quad \qquad \text{in } (1+\lambda)\Omega, \\
+              v^\epsilon &= +\infty \qquad  \text{on } \partial [(1+\lambda)\Omega],
+  \end{aligned}
+\right.
+\end{equation}
+and the solution to 
+\begin{equation}
+\left\{
+  \begin{aligned}
+   v + |Dv|^p -f_\lambda(x) & \leq 0 \quad \qquad \text{in } (1+\lambda)\Omega, \\
+              v + |Dv|^p -f_\lambda(x) & \geq 0 \quad \qquad \text{on } \partial [(1+\lambda)\Omega].
+  \end{aligned}
+\right.
+\end{equation}
+We know $\bar{v^\epsilon} \to v$ with the rate $\sqrt{\epsilon}$ except the boundary layer. We can try to scale $v^\epsilon$ to be $\bar{v^\epsilon}: \Omega \to \mathbb{R}$ such that $\bar{v^\epsilon} = v^\epsilon$ in $(1-\delta)\Omega$. (Here, $\delta$ can depend on $\epsilon$.) In $(1-\delta)\Omega$, $\bar{v^\epsilon} \to v=u$ with the rate $\sqrt{\epsilon}$, since $f =f_\lambda$ there. 
+
+Some forms of scaling to try:
+\begin{itemize}
+    \item $\bar{v^\epsilon} := \alpha(x) v^\epsilon \left(\beta(x) x \right)$
+    \item $v^\epsilon:= \left\{
+  \begin{aligned}
+   &v^\epsilon(x) + v^\epsilon \left((1+\lambda)x \right)e^{-\displaystyle \frac{1}{|x|^2-|1-\delta|^2}} \, \quad \qquad \text{in } \Omega \setminus \Omega_\delta, \\
+              &v^\epsilon(x) \qquad \qquad \qquad \qquad \qquad \qquad \quad \qquad \qquad  \text{on } \Omega_\delta.
+  \end{aligned}
+\right.$
+\end{itemize}
+\item The desired convergence rate is true not only for $f$ with $f|_{\partial \Omega} = 0$, but also for $\displaystyle f(x) = g(x) + \frac{\sigma \epsilon^{\alpha + 1}}{d(x)^\alpha}$ where $g=0$ on $\partial \Omega$. We can use this to scale $\bar{v^\epsilon}$ in (1).
+
+\item Compare $u^\varepsilon$ and $v^\varepsilon$ where $1<p\leq 2$ and
+\begin{equation}\label{eq:PDEeps}
+    \begin{cases}
+   \mathcal{L}[u^\varepsilon] =  u^\varepsilon(x) + |Du^\varepsilon(x)|^p - f(x) - \varepsilon \Delta u^\varepsilon(x) = 0 &\qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+   u^\varepsilon(x) = +\infty &\qquad
+    \text{on}\;\partial\Omega
+    \end{cases} \tag{PDE$_\varepsilon$}
+\end{equation}
+and
+\begin{equation}\label{eq:vPDEeps}
+    \begin{cases}
+   \mathcal{L}[v^\varepsilon] =  v^\varepsilon(x) + |Dv^\varepsilon(x)|^p - f(x) - \varepsilon \Delta v^\varepsilon(x) = 0 &\qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+   v^\varepsilon(x) = u(x) &\qquad
+    \text{on}\;\partial\Omega.
+    \end{cases} 
+\end{equation}
+We know that $|v^\varepsilon - u|\leq C\sqrt{\varepsilon}$, thus the goal is to compare $u^\varepsilon$ and $v^\varepsilon$. Let $w^\varepsilon(x) = u^\varepsilon(x) - v^\varepsilon(x)$, we have
+\begin{equation}\label{eq:wPDEeps}
+    \begin{cases}
+w^\varepsilon(x) + |Du^\varepsilon(x)|^p  - |Dv^\varepsilon|^p - \varepsilon \Delta w^\varepsilon(x) = 0 &\qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+   w^\varepsilon(x) = +\infty &\qquad
+    \text{on}\;\partial\Omega.
+    \end{cases} 
+\end{equation}
+The good thing about \eqref{eq:wPDEeps} is, the data $f$ disappears and furthermorethe new data, for example with $p=2$ can be written as
+\begin{equation}\label{eq:wwPDEeps}
+    \begin{cases}
+w^\varepsilon(x) + |Dw^\varepsilon(x)|^2 +\underbrace{2Dw^\varepsilon(x)\cdot Dv^\varepsilon(x)}_{g
+(x)} - \varepsilon \Delta w^\varepsilon(x) = 0 &\qquad
+    \text{in}\;\Omega, \vspace{0cm}\\
+   w^\varepsilon(x) = +\infty &\qquad
+    \text{on}\;\partial\Omega.
+    \end{cases} 
+\end{equation}
+and $g(x) \approx \frac{\varepsilon \nabla d(x)\cdot \nabla v^\varepsilon(x)}{d(x)} + |Dv^\varepsilon(x)|^2$, which is small in some sense depends on $\varepsilon$. Question: can we get a rate of convergence $w^\varepsilon(x)\to 0$? What is the behavior of $Dv^\varepsilon(x)$ as $\varepsilon\to 0$? Can we know more besides $|v^\varepsilon - u|\leq C\sqrt{\varepsilon}$?
+\end{enumerate}
+
+
+\end{document}

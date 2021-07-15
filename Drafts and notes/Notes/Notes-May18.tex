@@ -1,0 +1,160 @@
+\documentclass[english,reqno]{amsart}
+%\renewcommand{\baselinestretch}{1.2}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\raggedbottom
+\usepackage{subfig}
+\usepackage{amssymb,amsbsy,amsmath,amsfonts,amssymb,amscd}
+\usepackage{comment}
+\usepackage{verbatim}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[numbers]{natbib} % for alphabetically numbered lists
+\usepackage{algorithm,algpseudocode}
+\usepackage{setspace}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{assum}{Assumption}[section]
+\newtheorem{cor}{Corollary}[section]
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Solution]}
+  {\end{proof}}
+\title{Classical mechanics Hamiltonian}
+
+\begin{document}
+
+\maketitle
+\date{May 18, 2021}
+\section{The first-order equation}\noindent
+Work out the details of the following example in $n=1$. Let u be the solution to
+    \begin{equation}
+    \label{example}
+        \left\{
+  \begin{aligned}
+   u(x) + \frac{1}{2}|u^\prime(x)|^2 -f(x) &\leq 0 \, \quad \qquad \text{in } (-1, 1), \\
+              u(x) + \frac{1}{2}|u^\prime (x)|^2 -f(x) &\geq 0 \qquad  \quad \text{on } [-1,1],
+  \end{aligned}
+\right.
+    \end{equation}
+with an easier $f$, using deterministic optimal control formula and Euler-Lagrange equation. For instance, $f=0$ in $[-\frac{1}{2}, \frac{1}{2}]$ and $f(x) = x-\frac{1}{2}$ on $[\frac{1}{2},1]$ and $f(x) = -\frac{1}{2} - x$ on $[-1,-\frac{1}{2}]$.
+And then try to look into the solution to the equation with $\epsilon \Delta u^\epsilon$.
+
+\paragraph{\textbf{Optimal control formula}}
+\noindent Solution is given by
+\begin{equation*}
+    u(x_0) = \inf_{\gamma(0)=x_0} \int_0^\infty e^{-s}\left(\frac{|\dot{\gamma}(s)|^2}{2} + f(\gamma(s))\right)ds
+\end{equation*}
+where the admissible set are absolutely continuous curves $\gamma$ such that $\gamma(s)\in \overline{\Omega}$ for all $s\geq 0$ and $\gamma(0)=x_0$.
+    
+\paragraph{\textbf{Euler-Lagrange equation}}    
+\begin{equation}
+\label{EL}
+\left\{
+\begin{aligned}
+     \Ddot{\gamma}(s)&=\dot{\gamma}(s) + f^\prime (\gamma(s)), \qquad s\in (0,\infty)\\
+     \gamma(0)&=x_0.
+\end{aligned}
+\right.
+\end{equation}
+\paragraph{\textbf{Gradient bound}} Since $u\equiv 1$ is a supersolution and $u\equiv 0$ is a subsolution, we have $0\leq u\leq 1$, thus
+\begin{equation*}
+    \frac{1}{2}|u'(x)|^2 \leq f(x) - u(x) \leq 1
+\end{equation*}
+and thus (in viscosity sense)
+\begin{equation*}
+    |u'(x)| \leq 2.
+\end{equation*}
+\paragraph{\textbf{An identity (analog of conservation of energy)}} 
+\begin{equation*}
+    \frac{d}{ds}\left(\frac{|\dot{\gamma}(s)|^2}{2} - f(\gamma(s))\right) = |\dot{\gamma}(s)|^2.
+\end{equation*}
+
+
+\paragraph{\textbf{Observations}}
+\begin{itemize}
+    \item If $x_0\in [-\frac{1}{2},\frac{1}{2}$ then obviously the minimizer is $\gamma(s) \equiv x_0$ for all $s\geq 0$, which resulted in $u(x_0) = 0$.
+    \item We are interested in solving for $u(x_0)$ if $x_0\notin [-\frac{1}{2},\frac{1}{2}]$. For example let us consider $x_0 \in [\frac{1}{2},1]$, then heuristically a minimizing path has to traverses to the left to reach $\frac{1}{2}$ so that the potential term
+    \begin{equation*}
+        f(\gamma(s))    
+    \end{equation*}
+    in the cost function decreases, while also try to move not too fast so that the kinetic term
+    \begin{equation*}
+        \frac{1}{2}|\dot{\gamma}(s)|^2
+    \end{equation*} 
+    does not contribute too much. So we have a game of balancing between the kinetic energy and potential energy.
+    \item Now we see that, it could be the case that it takes an infinite amount of time to reach $\frac{1}{2}$. Let us denote $t_0$ the fist time $\gamma$ reaches $\frac{1}{2}$.
+\end{itemize}
+\subsection{The case $t_0$ is finite} From the dynamic programming principle we have
+\begin{equation*}
+    u(x_0) = \int_0^{t_0}e^{-s}\left(\frac{|\dot{\gamma}(s)|^2}{2} + f(\gamma(s))\right)ds + \underbrace{u(\gamma\left(t_0\right))}_{u(1/2) = 0}
+\end{equation*}
+On $[0,t_0]$, the Euler-Lagrange equation reads 
+\begin{equation*}
+    \ddot{\gamma}(s) = \dot{\gamma}(s)+1, \qquad s\in (0,t_0)
+\end{equation*}
+thus we can solve for $\dot{\gamma}$, assuming the initial velocity $\dot{\gamma}(0) = \xi_0$. We have
+\begin{equation*}
+    \dot{\gamma}(s) = (\xi_0+1)e^{s} - 1, \qquad s\in (0,t_0).
+\end{equation*}
+Thus
+\begin{equation*}
+    \gamma(s) = (\xi_0+1)(e^s-1) - s + x_0, \qquad s\in (0,t_0).
+\end{equation*}
+Set $\gamma(t_0) = \frac{1}{2}$ we have
+\begin{equation*}
+    (\xi_0+1)(e^{t_0}-1) - t_0 + x_0 = \frac{1}{2}.
+\end{equation*}
+We compute (should be with a minimizer)
+\begin{equation*}
+\begin{split}
+    u(x_0) &= \int_0^{t_0}e^{-s}\left(\frac{1}{2}\Big((\xi_0+1)e^{s}-1\Big)^2 +\left[ (\xi_0+1)(e^{s}-1)-s+x_0 - \frac{1}{2}\right]\right)ds\\
+    &=\int_0^{t_0}\left[\frac{1}{2}(\xi_0+1)^2e^{s}+\frac{e^{-s}}{2} - (\xi_0+1) \right]ds + \int_0^{t_0}\left((\xi_0+1)(1-e^{-s})-se^{-s} + e^{-s}\left(x_0-\frac{1}{2}\right)\right)ds.
+\end{split}
+\end{equation*}
+We have
+\begin{align*}
+    &\int_0^{t_0}\left[\frac{1}{2}(\xi_0+1)^2e^{s}+\frac{e^{-s}}{2} - (\xi_0+1) \right]ds = \frac{(\xi_0+1)^2(e^{t_0}-1)}{2} + \frac{1-e^{-t_0}}{2} - (\xi_0+1)t_0 \\
+    &\int_0^{t_0} (\xi_0+1)(1-e^{-s}) ds = (\xi_0+1)t_0 - (\xi_0+1)(1-e^{-t_0})\\
+    &\int_0^{t_0} -se^{-s}ds = t_0e^{-t_0} + (1-e^{-t_0})\\
+    &\int_0^{t_0} e^{-s}\left(x_0-\frac{1}{2}\right)ds = \left(x_0-\frac{1}{2}\right)(1-e^{-t_0}).
+\end{align*}
+Therefore
+\begin{equation*}
+\begin{split}
+    u(x_0) &= \frac{(\xi_0+1)^2(e^{t_0}-1)}{2} +t_0e^{-t_0} + (1-e^{-t_0})\Bigg(\frac{1}{2}-\xi_0-1 +1+x_0-\frac{1}{2} \Bigg)\\
+    &= \frac{(\xi_0+1)^2(e^{t_0}-1)}{2} + t_0e^{-t_0} + (1-e^{-t_0})(x_0-\xi_0)
+\end{split}
+\end{equation*}
+Now given a time $t_0\in (0,\infty)$ from the equation
+\begin{equation*}
+    (\xi_0+1)(e^{t_0}-1) - t_0 + x_0 = \frac{1}{2}
+\end{equation*}
+we can uniquely solve for $\xi_0 = \xi_0(t_0)$ as a function (smooth, obviously). Thus we can try to optimize the function
+\begin{equation*}
+    \mathcal{G}(t_0) =\frac{(\xi_0+1)^2(e^{t_0}-1)}{2} + t_0e^{-t_0} + (1-e^{-t_0})(x_0-\xi_0).
+\end{equation*}
+Taking derivative
+
+
+\subsection{A different potential}
+Now using 
+\begin{equation*}
+    f(x) = \begin{cases}
+    0 & |x|\leq \frac{1}{2}\\
+    \left(|x|-\frac{1}{2}\right)^2 & |x|\in \left[\frac{1}{2},1\right].
+    \end{cases}
+\end{equation*}
+We can use the fact that for a minimizer $\gamma$ starting at $x_0\in \left[\frac{1}{2},1\right]$ then $\gamma(t_0) = \frac{1}{2}$ implies $\dot{\gamma}(t_0) = 0$. We have
+\begin{equation*}
+    \displaystyle \gamma (s) = \frac{1}{2}+\left( x_0 -\frac{1}{2}\right) e^{-s},\qquad s\geq 0.
+\end{equation*}
+We deduce that for $|x|\geq \frac{1}{2}$ then
+\begin{equation*}
+    u(x) = \frac{3}{2}\int_0^\infty  \left(x-\frac{1}{2}\right)^2e^{
+    -3s}ds = \frac{1}{2}\left(x-\frac{1}{2}\right)^2.
+\end{equation*}
+
+\end{document}

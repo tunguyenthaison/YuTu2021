@@ -307,17 +307,13 @@ vast amount of work in the literature on viscosity solutions with state constrai
 
 In terms of rate of convergence, that is, the convergence rate of $u^\varepsilon\to u$ as $\varepsilon\to 0^+$, to the best of our knowledge, such a question has not been studied in the literature. For the case where \eqref{eq:PDEeps} is equipped with the Dirichlet boundary condition, a rate $\mathcal{O}(\sqrt{\varepsilon})$ is well known with multiple proofs (see \cite{Bardi1997,crandall1984, tran_hamilton-jacobi_2021}). We believe part of the reason why the problem is intriguing is that the blow-up behavior of the solutions near the boundary of $\Omega$ is complicated and deserves further investigation.
 
-\subsection{Main results} Define 
-\begin{equation*}
-    \alpha = \frac{2-p}{p-1} \in [0,\infty).
-\end{equation*}
-The main results of the paper are the following theorems.
+\subsection{Main results} The main results of the paper are the following theorems.
 
 
 \begin{thm}\label{main_thm1} Let $\Omega$ be an open, bounded and connected subset of $\R^n$ with $\mathrm{C}^2$ boundary. Assume that $1 < p\leq 2$ and $f$ is Lipschitz with $f = 0$ on $\partial\Omega$. Let $u^\varepsilon$ be the unique solution to \eqref{eq:PDEeps} and $u$ be the unique solution to \eqref{eq:PDE0}. Then there exists a constant $C$ independent of $\varepsilon\in (0,1)$ such that for $x\in \Omega$,
 \begin{align*}
-    &-C\sqrt{\varepsilon}\leq  u^\varepsilon(x) - u(x)\leq C\left(\sqrt{\varepsilon} + \frac{\varepsilon^{\alpha+1}}{d(x)^\alpha}\right), &\qquad p < 2,\\
-    &-C\sqrt{\varepsilon}\leq  u^\varepsilon(x) - u(x)\leq C\left(\sqrt{\varepsilon} + \varepsilon|\log(d(x))|\right), &\qquad\; p = 2.
+    &-C\sqrt{\varepsilon}\leq  u^\varepsilon(x) - u(x)\leq C\sqrt{\varepsilon} + C\varepsilon \left(\frac{\varepsilon}{d(x)}\right)^{\frac{2-p}{p-1}} &\qquad\text{if}\; p < 2,\\
+    &-C\sqrt{\varepsilon}\leq  u^\varepsilon(x) - u(x)\leq C\sqrt{\varepsilon} + \varepsilon|\log(d(x))| &\qquad\text{if}\; p = 2.
 \end{align*}
 \end{thm}
 
@@ -325,7 +321,7 @@ The main results of the paper are the following theorems.
 \begin{equation}\label{heur1}
     \psi^\varepsilon(x) =  u^\varepsilon(x) - \frac{C_\alpha\varepsilon^{\alpha+1}}{d(x)^{\alpha}}
 \end{equation}
-and $u(x)$, where $d(x)$ is a $\mathrm{C}^2$ extension of the distance function to the boundary $\mathrm{dist}(x,\partial\Omega)$ and $C_\alpha\varepsilon^{\alpha+1}d(x)^{-\alpha}$ is the leading order term in the asymptotic expansion of $u^\varepsilon(x)$ as $d(x) \to 0^{+}$. If we take the derivative of \eqref{heur1} formally, it becomes
+and $u(x)$, where $d(x)$ is a $\mathrm{C}^2$ extension of the distance function $\mathrm{dist}(x,\partial\Omega)$, $\alpha = (2-p)/(p-1)$ and $C_\alpha\varepsilon^{\alpha+1}d(x)^{-\alpha}$ is the leading order term in the asymptotic expansion of $u^\varepsilon(x)$ as $d(x) \to 0^{+}$. If we take the derivative of \eqref{heur1} formally, it becomes
 \begin{equation}\label{heur2}
     D\psi^\varepsilon(x) =  Du^\varepsilon(x) + C_\alpha\alpha \left(\frac{\varepsilon}{d(x)}\right)^{\alpha+1}Dd(x).
 \end{equation}
@@ -345,28 +341,22 @@ However, to get a useful estimate by the doubling variable, at the maximum point
 \end{rem}
 
 
-As a different approach, the convexity of $|\xi|^p$ and the semiconcavity of the solution to \eqref{eq:PDE0} give us a better one-sided $\mathcal{O}(\varepsilon)$ estimate for compactly supported $f$. Such an one-sided $\mathcal{O}(\varepsilon)$ rate is well known for the case of the Dirichlet boundary problem (see \cite{Bardi1997,tran_hamilton-jacobi_2021}). Moreover, this approach provides us a better local one-sided estimate $\mathcal{O}(\varepsilon^{1/p})$ without using the doubling variable method.
+As a different approach, the convexity of $|\xi|^p$ and the semiconcavity of the solution to \eqref{eq:PDE0} give us a better one-sided $\mathcal{O}(\varepsilon)$ estimate for compactly supported $f$. Such an one-sided $\mathcal{O}(\varepsilon)$ rate is well known for the case of the Dirichlet boundary problem (see \cite{Bardi1997,tran_hamilton-jacobi_2021}). Moreover, this approach provides us with a new proof of the $\mathcal{O}(\sqrt{\varepsilon})$ rate in Theorem \ref{main_thm1} without using the doubling variable method.
 
 
+%As a different approach, if we utilize the convexity of $|\xi|^p$ and the semiconcavity of the solution to \eqref{eq:PDE0} then we have a proof of the $\mathcal{O}(\sqrt{\varepsilon})$ rate without using the doubling variable method. More importantly, this approach gives a better one-sided $\mathcal{O}(\varepsilon)$ estimate for compactly supported $f$. Such an one-sided $\mathcal{O}(\varepsilon)$ rate is well known for the case of Dirichlet boundary problem (see \cite{Bardi1997,tran_hamilton-jacobi_2021}).
 
 \begin{thm}[One-sided $\mathcal{O}(\varepsilon)$ rate for compactly supported data]\label{thm:rate_doubling2} Assume that $f\in \mathrm{C}^2_c(\Omega)$ such that $\mathrm{supp}(f)\subset\Omega_\kappa$ where  $\Omega_\kappa := \{x\in \Omega: \mathrm{dist}(x,\Omega) > \kappa\}$ for some fixed $\kappa \in (0, \delta_{0})$. Let $u^\varepsilon$ be the unique solution to \eqref{eq:PDEeps} and $u$ be the unique solution to \eqref{eq:PDE0}. Then there exists a constant $C$ independent of $\varepsilon$ and $\kappa$ such that
 \begin{equation*}
 \begin{aligned}
-    u^\varepsilon(x) - u(x) &\leq\frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} + C \left(\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1}+\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+2}\right) + nc\varepsilon,  &\quad p <2, \\
-    u^\varepsilon(x) - u(x) & \leq \nu \varepsilon \log\left( \frac{1}{d(x)}\right)+C \left(\left(\frac{\varepsilon}{\kappa}\right)+\left(\frac{\varepsilon}{\kappa}\right)^2\right)+ nc \varepsilon, &\quad p=2.
+    u^\varepsilon(x) - u(x) &\leq\frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} + C\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1} \left(1+ \left(\frac{\varepsilon}{\kappa}\right) +\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1} +\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+2}\right) + nc\varepsilon,  &\quad p <2, \\
+    u^\varepsilon(x) - u(x) & \leq \nu \varepsilon \log\left( \frac{1}{d(x)}\right)+C\left(\frac{\varepsilon}{\kappa}\right) \left(1+\frac{\varepsilon}{\kappa}\right)+ nc \varepsilon, &\quad p=2.
 \end{aligned}
 \end{equation*}
 where $c = \max \big\lbrace  D_{\xi\xi}f(x): |\xi|=1, x\in \overline{\Omega} \big\rbrace\geq 0$.
 \end{thm}
 
-\begin{cor}[One-sided $\mathcal{O}(\varepsilon^{1/p})$ rate]\label{cor:key} Let $p<2$. If $f$ is Lipschitz with $f = 0$ on $\partial\Omega$ then there exists a constant $C$ independent of $\varepsilon\in (0,1)$ such that 
-\begin{align*}
-    &-C\sqrt{\varepsilon}\leq  u^\varepsilon(x) - u(x)\leq C\left(\varepsilon^{1/p}+ \frac{\varepsilon^{\alpha+1}}{d(x)^\alpha}\right)
-\end{align*}
-for all $x\in \Omega$.
-\end{cor}
-
-\begin{rem} While the second approach looks more powerful, we need to know more about the gradient bound $Du^\varepsilon$ (Lemma \ref{lem:boundDu^eps}). On the other hand, the first approach using doubling variable is relatively simple and does not require any explicit asymptotic behavior of $Du^\varepsilon$ except the fact that it is locally bounded. At this moment, we do not know how to generalize to the more general case where $f = 0$ on $\partial\Omega$ in Theorem \ref{thm:rate_doubling2}.
+\begin{rem} As mentioned, Theorem \ref{thm:rate_doubling2} implies Theorem \ref{main_thm1}. While the second approach looks more powerful, we need to know more about the gradient bound $Du^\varepsilon$ (Lemma \ref{lem:boundDu^eps}). On the other hand, the first approach using doubling variable is relatively simple and does not require any explicit asymptotic behavior of $Du^\varepsilon$ except the fact that it is locally bounded. At this moment, we do not know how to generalize to the more general case where $f = 0$ on $\partial\Omega$ in Theorem \ref{thm:rate_doubling2}.
 \end{rem}
 
 
@@ -694,7 +684,7 @@ where $C$ depends on $\mathrm{dist}(K, \partial U)$ and $U$. Recall that $u = 0$
 
 
 
-For the general result of compactly supported data, we have the following theorem.
+For the general case, we have the following theorem.
 
 
 \begin{thm}[Compactly supported data]\label{thm:rate_doubling1} Assume that $f$ is Lipschitz and is compactly supported in $\Omega_{\kappa}$. Let $u^\varepsilon$ be the unique solution to \eqref{eq:PDEeps} and $u$ be the unique solution to \eqref{eq:PDE0}. Then there exists a constant $C$ independent of $\varepsilon\in(0,1)$ and $\kappa$ such that 
@@ -712,7 +702,7 @@ We state the following Lemma as a preparation.
 \begin{equation*}
     \mathrm{dist}(x,\partial\Omega_\kappa) = \kappa - \mathrm{dist}(x,\partial\Omega) \qquad\text{for all}\;x\in U_\kappa.
 \end{equation*}
-As a consequence, $x\mapsto \mathrm{dist}(x,\partial U_\kappa) = \min\big\{\mathrm{dist}(x,\partial \Omega_k),\mathrm{dist}(x,\partial \Omega)\big\}$ is twice continuously differentiable for $x\in \Omega\backslash \overline{\Omega}_{\kappa/2}$. Hence, we can choose 
+As a consequence, $x\mapsto \mathrm{dist}(x,\partial U_\kappa) = \min\big\{\mathrm{dist}(x,\partial \Omega_k),\mathrm{dist}(x,\partial \Omega)\big\}$ is twice continuously differentiable for $x\in \Omega\backslash \overline{\Omega}_{\frac{\kappa}{2}}$. Hence, we can choose 
 \begin{equation}\label{e:delta_kappa}
     \delta_{0,U_\kappa} \geq \frac{\kappa}{4}
 \end{equation}
@@ -916,19 +906,19 @@ Define
 \begin{equation*}
     g_\kappa(x) = 
     \begin{cases}
-        0           &\qquad\text{if}\;0\leq d(x) \leq \kappa/2,\\
-        2L\left(d(x)-\kappa/2\right)       &\qquad\text{if}\;\kappa/2\leq d(x) \leq \kappa.
+        0           &\qquad\text{if}\;0\leq d(x) \leq \frac{\kappa}{2},\\
+        2L\left(d(x)-\frac{\kappa}{2}\right)       &\qquad\text{if}\;\frac{\kappa}{2}\leq d(x) \leq \kappa.
     \end{cases}
 \end{equation*}
 
-%\textcolor{orange}{(A question is why we can assume $f\in C^1(\overline{\Omega})$? If you smooth $f$ up by mollifier, the support of $f$ might go outside of $\Omega$. Another question is I think you want $g_k$ to be $2L(d(x)-\kappa/2)$ if $\kappa/2 \leq d(x) \leq \kappa $. )}
+%\textcolor{orange}{(A question is why we can assume $f\in C^1(\overline{\Omega})$? If you smooth $f$ up by mollifier, the support of $f$ might go outside of $\Omega$. Another question is I think you want $g_k$ to be $2L(d(x)-\frac{\kappa}{2})$ if $\frac{\kappa}{2} \leq d(x) \leq \kappa $. )}
 \noindent
 It is clear that for $x\in \partial\Omega_k$, $g_\kappa(x) = L\kappa \geq f(x)$ since \eqref{e:bound_aa}. Therefore, we can define the following continuous function
 \begin{equation}\label{def_f_kappa}
     f_\kappa(x) = 
     \begin{cases}
-        0             &\qquad\text{if}\;0\leq d(x) \leq \kappa/2,\\
-        \min \left\lbrace g_\kappa(x), f(x) \right\rbrace &\qquad\text{if}\;\kappa/2\leq d(x) \leq \kappa,\\
+        0             &\qquad\text{if}\;0\leq d(x) \leq \frac{\kappa}{2},\\
+        \min \left\lbrace g_\kappa(x), f(x) \right\rbrace &\qquad\text{if}\;\frac{\kappa}{2}\leq d(x) \leq \kappa,\\
         f(x) &\qquad\text{if}\;\kappa \leq d(x).
     \end{cases}
 \end{equation}
@@ -994,22 +984,22 @@ We still assume $f = 0$ on $\partial\Omega$ and $f\geq 0$ such that $f\in \rmC^2
       0 &\qquad\text{if}\;x\notin \overline{\Omega}.
     \end{cases}
 \end{equation*}
-By abuse of notion, we still denote the extension of $f$ (by setting $f= 0$ outside of $\Omega$) on $\R^n$ by itself.
+By abuse of notion, we still denote the extension of $f$ on $\R^n$ by itself.
 
-\begin{lem} If $f = 0$ on $\partial\Omega$, then the extension $\tilde{u}$ is a viscosity solution to
+\begin{lem} If $f = 0$ on $\partial\Omega$ then the extension $\tilde{u}$ is a viscosity solution to
 \begin{equation*}
     \tilde{u}(x)+|D\tilde{u}(x)|^p - f(x) = 0 \qquad\text{in}\;\R^n.
 \end{equation*}
-As a consequence (Theorem \ref{convex}), $-D^2\tilde{u} \succ -c\;\mathbb{I}_n$ in $\R^n$ where
+As a consequence (Theorem \ref{convex}) $-D^2\tilde{u} \succ -c\;\mathbb{I}_n$ in $\R^n$ if $f\in \mathrm{C}_c^2(\R^n)$ and 
 \begin{equation}\label{def_c}
     c = \max \big\lbrace  D_{\xi\xi}f(x): |\xi|=1, x\in \overline{\Omega} \big\rbrace\geq 0.
 \end{equation}
 \end{lem}
-\begin{proof} We only need to check that the viscosity solution test holds for $\tilde{u}(x)$ with $x\in \partial\Omega$. The supersolution test holds trivially since $f = \tilde{u} = 0$ on $\partial\Omega$. If $\varphi\in \mathrm{C}^1(\R^n)$ such that $\tilde{u} - \varphi$ has a local maximum at $x\in \partial\Omega$, then $ \tilde{u}(y) - \tilde{u}(x) \leq  \varphi(y)- \varphi(x)$ for all $y\in \R^n$. Since $\tilde{u}\geq 0$, we deduce that $\varphi$ has a local minimum at $x\in \partial\Omega$. Hence $\tilde{u}(x)+|D\varphi(x)|^p - f(x) = 0$ and thus the viscosity subsolution test is satisfied.
+\begin{proof} We only need to check that the viscosity solution test hold for $\tilde{u}$ as $x\in \partial\Omega$. The supersolution test holds trivially since $f = \tilde{u} = 0$ on $\partial\Omega$. If $\varphi\in \mathrm{C}^1(\R^n)$ such that $\tilde{u} - \varphi$ has a local maximum at $x\in \partial\Omega$, then $\tilde{u}(y) - \tilde{u}(y) \leq - \tilde{u}(x)$ for all $y\in \R^n$. Since $u\geq 0$, we deduce that $\varphi$ has a local minimum at $x\in \partial\Omega$, therefore $\tilde{u}(x)+|D\varphi(x)|^p - f(x) = 0$ and thus the viscosity subsolution test is satisfied.
 \end{proof}
 
 
-The following Lemma is a refined version of the local gradient bound in Theorem \ref{thm:grad_1}. We follow \cite[Theorem 3.1]{Armstrong2015a} where the authors use Bernstein's method inside a doubling variable argument and explicitly keep track of all dependencies. We refer the reader to \cite{barles_weak_1991,capuzzo_dolcetta_holder_2010} and the references therein for related versions of the gradient bound. We believe this result is new in the literature since it is uniform in $\varepsilon$, namely, we give the explicit dependence of the gradient bound on $d(x)$. It also indicates that the boundary layer is the strip of size $\mathcal{O}(\varepsilon)$ from the boundary.
+The following Lemma is a refined version of the local gradient bound in Theorem \ref{thm:grad_1}. We follows \cite[Theorem 3.1]{Armstrong2015a} where the authors use Bernstein's method inside a doubling variables argument and explicitly keep track of all dependencies. We refer the readers to \cite{barles_weak_1991,capuzzo_dolcetta_holder_2010} and the references therein for related versions of the gradient bound. We believe this result is new in the literature since it is uniform in $\varepsilon$. It also indicates that the boundary layer is the strip of size $\mathcal{O}(\varepsilon)$ from the boundary.
 
 
 
@@ -1020,15 +1010,15 @@ The following Lemma is a refined version of the local gradient bound in Theorem 
 \end{lem}
 
 \begin{proof}[Proof of Lemma \ref{lem:boundDu^eps}] %Let us consider $0<\varepsilon < \min\{4\delta_0,1\}$. 
-Fix $x_0 \in \Omega\backslash \Omega_{\delta_0}$. Let $\delta := \frac{1}{4}d(x_0)$ and 
+Let us fix $x_0 \in \Omega\backslash \Omega_{\delta_0}$ and let $\delta = \frac{1}{4}d(x_0)$. Let 
 \begin{equation*}
-    v(x) := \frac{1}{\delta}u^\varepsilon(x_0+\delta x), \qquad x\in B(0,2).   
+    v(x) = \frac{1}{\delta}u^\varepsilon(x_0+\delta x), \qquad x\in B(0,2).   
 \end{equation*}
-Then $v$ solves
+We have $Dv(x) = Du^\varepsilon(x_0+\delta x)$ and $\Delta v(x) = \delta \Delta u^\varepsilon(x_0+\delta x)$ for $x\in B(0,2)$. The equation for $v$ is given by
 \begin{equation*}
     \delta v(x) + |Dv(x)|^p - \tilde{f}(x) - \frac{\varepsilon}{\delta}\Delta v(x) = 0 \qquad\text{in}\;B(0,2),
 \end{equation*}
-where $\tilde{f}(x): = f(x_0+\delta x)$ on $\overline{B(0,2)}$. Note that $\Vert \tilde{f}\Vert_{L^\infty}\leq \Vert f\Vert_{L^\infty}$ and 
+where $\tilde{f}(x) = f(x_0+\delta x)$ defined on $\overline{B(0,2)}$. We note that $\Vert \tilde{f}\Vert_{L^\infty}\leq \Vert f\Vert_{L^\infty}$ and 
 \begin{equation*}
     B(x_0,2\delta)\subset \Omega_{2\delta}\subset\subset\Omega.
 \end{equation*}
@@ -1036,21 +1026,20 @@ By Lemma \ref{lem:super_refined}, there is a constant $C$ independent of $\delta
 \begin{equation*}
      \delta\Vert v\Vert_{L^\infty\left(B\left(0,\frac{3}{2}\right)\right)} \leq \Vert u^\varepsilon\Vert_{L^\infty(\Omega_{2\delta}))} \leq C\left(1 + \frac{\varepsilon^{\alpha+1}}{\delta^\alpha}\right).
 \end{equation*}
-Apply Theorem 3.1 in \cite{Armstrong2015a} to obtain 
+Note that $p = \frac{\alpha+2}{\alpha+1}$ and $\alpha+1 = \frac{1}{p-1}$, we apply Theorem 3.1 in \cite{Armstrong2015a} to obtain 
 \begin{equation*}
 \begin{split}
     \sup_{x\in B(0,1)}|Dv(x)| &\leq C\left[\left(\frac{\varepsilon}{\delta}\right)^{\frac{1}{p-1}} + \left(\Vert f\Vert_{L^\infty}+\delta \Vert v\Vert_{L^\infty\left(B\left(0,\frac{3}{2}\right)\right)}\right)^{\frac{1}{p}}\right] \\
-    &\leq C\left[\left(\frac{\varepsilon}{\delta}\right)^{\alpha+1} + \left(1+\frac{\varepsilon^{\alpha+1}}{\delta^\alpha}\right)^{\frac{\alpha+1}{\alpha+2}}\right]\leq C \left(1+\left(\frac{\varepsilon}{\delta}\right)^{\alpha+1}\right),
+    &\leq C\left[\left(\frac{\varepsilon}{\delta}\right)^{\alpha+1} + \left(1+\frac{\varepsilon^{\alpha+1}}{\delta^\alpha}\right)^{\frac{\alpha+1}{\alpha+2}}\right]\leq C \left(1+\left(\frac{\varepsilon}{\delta}\right)^{\alpha+1}\right).
     %&\leq C\left[\left(\frac{\varepsilon}{\delta}\right)^{\alpha+1} + \left(1+\left(\frac{\alpha+1}{\alpha+2}\right)\frac{\varepsilon^{\alpha+1}}{\delta^\alpha}\right)\right] \leq C\left[1+2\left(\frac{\varepsilon}{\delta}\right)^{\alpha+1} \right]
 \end{split}
 \end{equation*}
-where $p = \frac{\alpha+2}{\alpha+1}$ and $\alpha+1 = \frac{1}{p-1}$.
 %where we use Bernoulli's inequality and the fact that $\delta \leq 1$. 
-Plugging in $\delta = \frac{1}{4}d(x_0)$, we obtain
+Replace $\delta = \frac{1}{4}d(x_0)$ we obtain
 \begin{equation*}
     |Du^\varepsilon(x_0)| = |Dv(0)| \leq C\left(1+ \left(\frac{\varepsilon}{d(x_0)}\right)^{\alpha+1}\right).
 \end{equation*}
-In other words, we have \eqref{eq:es_final} for all $x\in \Omega\backslash\Omega_{\delta_0}$. On the other hand, from Theorem \ref{thm:grad_1}, there exists a constant $C$ independent of $\varepsilon$ such that $|Du^\varepsilon(x)|\leq C$ for all $x\in \Omega_{\delta_0}$. Thus, the proof is complete.
+In other words, we obtain \eqref{eq:es_final} for all $x\in \Omega\backslash\Omega_{\delta_0}$. From Theorem \ref{thm:grad_1} there exists a constant $C$ independent of $\varepsilon$ such that $|Du^\varepsilon(x)|\leq C$ for all $x\in \Omega_{\delta_0}$ and the proof is complete.
 \end{proof}
 
 
@@ -1067,6 +1056,11 @@ for $x\in U_\kappa$. Let
 where $\nu > 1$ is chosen as in Lemma \ref{lem:super_refined}. It is clear that $u-\psi^\varepsilon$ has a local minimum at some point $x_0\in \Omega$ since $\psi^\varepsilon(x)\to -\infty$ as $x\to \partial\Omega$. The normal derivative test gives us 
 \begin{equation*}
     D\psi^\varepsilon(x_0) = Du^\varepsilon(x_0) + \nu C_\alpha\alpha \left(\frac{\varepsilon}{d(x_0)}\right)^{\alpha+1} D d(x_0) \in D^-u(x_0).
+\end{equation*}
+We note that $x_0$ depends on $\nu$. 
+As $u$ is Lipschitz with constant $C_0$, we deduce that
+\begin{equation*}
+    |D\psi^\varepsilon(x_0)| = \left|Du^\varepsilon(x_0) + \nu C_\alpha\alpha \left(\frac{\varepsilon}{d(x_0)}\right)^{\alpha+1} D d(x_0) \right| \leq C_0.
 \end{equation*}
 There are two cases to consider:
 \begin{itemize}
@@ -1104,7 +1098,7 @@ where $C$ is independent of $\varepsilon$. Since $\psi^\varepsilon\in \rmC^2(\Om
 \begin{equation}\label{convex1}
     u(x_0) + \left|Du^\varepsilon(x_0) + \frac{\nu C_\alpha \alpha \varepsilon^{\alpha+1}}{d(x_0)^{\alpha+1}}D d(x_0)\right|^p - f(x_0) \geq 0.
 \end{equation}
-On the other hand, since $u^\varepsilon$ solves \eqref{eq:PDEeps}, we have
+On the other hand, $u^\varepsilon$ solves
 \begin{equation}\label{convex2}
     u^\varepsilon(x_0) + |Du^\varepsilon(x_0)|^p - f(x_0) - \varepsilon \Delta u^\varepsilon(x_0) = 0.
 \end{equation}
@@ -1112,23 +1106,26 @@ Combine \eqref{convex1} and \eqref{convex2} to obtain that
 \begin{align}\label{convex3}
     u^\varepsilon(x_0) - u(x_0) &\leq \left|Du^\varepsilon(x_0) + \frac{\nu C_\alpha \alpha \varepsilon^{\alpha+1}}{d(x_0)^{\alpha+1}}D d(x_0)\right|^p - |Du^\varepsilon(x_0)|^p + \varepsilon\Delta u^\varepsilon(x_0).
 \end{align}
-By Lemma \eqref{lem:boundDu^eps}, we can bound $Du^\varepsilon(x_0)$ as
-\begin{equation}\label{eq:bound_Du^eps}
-    |Du^\varepsilon(x_0)| \leq C + C \left(\frac{\varepsilon}{d(x_0)}\right)^{\alpha+1} \leq C +C\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1}
-\end{equation}
-since $d(x_0)\geq \frac{1}{2}\kappa$. We estimate the gradient terms on the right hand side of \eqref{convex3} using \eqref{eq:bound_Du^eps} as follows.
+Now we estimate the gradient terms on the right hand side of \eqref{convex3}, i.e., 
 \begin{align}\label{convex4}
     &\left|Du^\varepsilon(x_0) + \frac{\nu C_\alpha \alpha \varepsilon^{\alpha+1}}{d(x_0)^{\alpha+1}}D d(x_0)\right|^p - |Du^\varepsilon(x_0)|^p\nonumber \\
     &\qquad \qquad \leq p\left(|Du^\varepsilon(x_0)| + \frac{\nu C_\alpha \alpha \varepsilon^{\alpha+1}}{d(x_0)^{\alpha+1}}\left|D d(x_0)\right|\right)^{p-1} \frac{\nu C_\alpha \alpha \varepsilon^{\alpha+1}}{d(x_0)^{\alpha+1}}|D d(x_0)|\nonumber\\
-    &\qquad \qquad \leq p\left(C + C\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1}\right)^{p-1} C\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1}\leq C\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1}\left(1 + \left(\frac{\varepsilon}{\kappa}\right)\right)
+    &\qquad \qquad \leq p\left(C_\frac{\kappa}{2} + C\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1}\right)^{p-1} C\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1}\nonumber\\
+    &\qquad\qquad\leq CC_\frac{\kappa}{2}\left(1+\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1}\right)^{p-1} \left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1} \leq CC_\frac{\kappa}{2} \left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1}\left(1+ \left(\frac{\varepsilon}{\kappa}\right)\right)
 \end{align}
+where, as is given in the a priori estimate (Theorem \ref{thm:grad_1}),
+\begin{equation}\label{est_Ckappa}
+    |Du^\varepsilon(x)|\leq C_{\frac{\kappa}{2}}, \qquad \;x\in \Omega_{\frac{\kappa}{2}},
+\end{equation}
 and $C$ is a constant that depends only on $\nu$, $\alpha$, and bounds on $d,Dd$ and $\Delta d$. Using \eqref{delta_psi} and \eqref{convex4} in \eqref{convex3}, we get
 \begin{equation*}
-    u^\varepsilon(x_0) - u(x_0) \leq nc\varepsilon + C\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1}\left(1 + \left(\frac{\varepsilon}{\kappa}\right)\right).
+    u^\varepsilon(x_0) - u(x_0) \leq nc\varepsilon + CC_\frac{\kappa}{2} \left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1}\left(1+ \left(\frac{\varepsilon}{\kappa}\right)\right) + C\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+2}.
 \end{equation*}
+%\textcolor{orange}{(I feel you missed some terms when estimating $\epsilon \Delta u^\epsilon$, because $\Delta \psi \neq \Delta u^\epsilon$. But it won't affect the result.)}
+
 Therefore, in this case 
 \begin{equation*}
-    u^\varepsilon(x) - u(x) \leq \frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} +C\left( \left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1} + \left(\frac{\varepsilon}{\kappa}\right)^{\alpha+2}\right) + nc\varepsilon, \qquad x\in \Omega.
+    u^\varepsilon(x) - u(x) \leq \frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} + CC_\frac{\kappa}{2} \left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1}\left(1+ \left(\frac{\varepsilon}{\kappa}\right)\right) + nc\varepsilon, \qquad x\in \Omega.
 \end{equation*}
 \end{itemize}
 %From the two cases, the conclusion follows. 
@@ -1141,26 +1138,17 @@ For $p = 2$, the argument is similar. We take $\psi^\varepsilon(x):=u^\varepsilo
     \end{equation*}
     \item If $\displaystyle d(x_0) \geq \frac{1}{2} \kappa$, then
     \begin{equation*}
-        u^\varepsilon(x)-u(x) \leq \nu \varepsilon \log\left(\frac{1}{d(x)}\right) + C\left(\left( \frac{\varepsilon}{\kappa} \right)+  \left( \frac{\varepsilon}{\kappa} \right)^2\right) + nc\varepsilon, \quad x \in \Omega.
+        u^\varepsilon(x)-u(x) \leq \nu \varepsilon \log\left(\frac{1}{d(x)}\right) + 
+        C C_\frac{\kappa}{2} \left( \frac{\varepsilon}{\kappa} \right) + C \left( \frac{\varepsilon}{\kappa} \right)^2 + nc\varepsilon, \quad x \in \Omega.
     \end{equation*}
 \end{itemize}
-From the two cases, the conclusion for $p=2$ follows.
+Finally, applying Lemma \ref{lem:boundDu^eps} to get rid of the constant $C_{\frac{\kappa}{2}}$ we obtain the conclusion.
 \end{proof}
 
 
-\begin{rem} \quad 
-\begin{itemize}
-    \item We only need the local gradient bound in Theorem \ref{thm:grad_1} to obtain the local rate of convergence $\mathcal{O}(\varepsilon)$ in \eqref{convex4}. However, to get an explicit constant, we need to bound $Du^\varepsilon(x_0)$ as in \eqref{convex4}.
-    \item Another way to get \eqref{eq:bound_Du^eps} without using Lemma \ref{lem:boundDu^eps} (which is true for all $x\in \Omega$) is using the fact that $D\psi^\varepsilon(x_0)\in D^-u(x_0)$, which implies 
-    \begin{equation*}
-        |D\psi^\varepsilon(x_0)| = \left|Du^\varepsilon(x_0) + \nu C_\alpha\alpha \left(\frac{\varepsilon}{d(x_0)}\right)^{\alpha+1} D d(x_0) \right| \leq C_0
-    \end{equation*}
-    since $u$ is Lipschitz with constant $C_0$.
-\end{itemize}
-\end{rem}
 
 
-\begin{proof}[Proof of Corollary \ref{cor:key}] Let $L$ be the Lipschitz constant of $f$. For $0 < \kappa <\delta_0$, define $f_\kappa$ as in \eqref{def_f_kappa}. We have $\mathrm{supp}(f_\kappa)\subset\Omega_{\kappa/2}$ and $0\leq f - f_\kappa \leq L\kappa$. Let $u^\varepsilon_\kappa\in \rmC^2(\Omega)\cap \rmC(\overline{\Omega})$ be the solution to \eqref{eq:PDEeps} and $u_k$ be the solution to \eqref{eq:PDE0} with $f$ replaced by $f_k$, respectively. It is clear that
+\begin{proof}[A different proof of Theorem \ref{main_thm1}] Let $L$ be the Lipschitz constant of $f$. For $0 < \kappa <\delta_0$ we define $f_\kappa$ as in \eqref{def_f_kappa}. We have $\mathrm{supp}(f_\kappa)\subset\Omega_{\frac{\kappa}{2}}$ and $0\leq f - f_\kappa \leq L\kappa$. Let $u^\varepsilon_\kappa\in \rmC^2(\Omega)\cap \rmC(\overline{\Omega})$ be the solution to \eqref{eq:PDEeps} and $u_k$ be the solution to \eqref{eq:PDE0} with $f$ being replaced by $f_k$, respectively. It is clear that
 \begin{equation*}
   0\leq u^\varepsilon(x) - u^\varepsilon_\kappa(x)\leq L\kappa \qquad\text{for}\;x\in \Omega
 \end{equation*}
@@ -1168,33 +1156,39 @@ and
 \begin{equation*}
     0\leq u(x) - u_\kappa(x)\leq L\kappa \qquad\text{for}\;x\in \Omega.
 \end{equation*}
-By Theorem \ref{thm:rate_doubling2}, we have 
+By Theorem \ref{thm:rate_doubling2} we have 
 \begin{equation*}
 \begin{aligned}
-    u_\kappa^\varepsilon(x) - u_\kappa(x) &\leq\frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} + C\left(\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1} +\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+2}\right) + nc\varepsilon,  &\quad p <2, \\
-    u_\kappa^\varepsilon(x) - u_\kappa(x) & \leq \nu \varepsilon \log\left( \frac{1}{d(x)}\right)+C \left(\left(\frac{\varepsilon}{\kappa}\right)+\left(\frac{\varepsilon}{\kappa}\right)^2\right)+ nc \varepsilon, &\quad p=2.
+    u_\kappa^\varepsilon(x) - u_\kappa(x) &\leq\frac{\nu C_\alpha \varepsilon^{\alpha+1}}{d(x)^\alpha} + C\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1} \left(1+ \left(\frac{\varepsilon}{\kappa}\right) +\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+1} +\left(\frac{\varepsilon}{\kappa}\right)^{\alpha+2}\right) + nc\varepsilon,  &\quad p <2, \\
+    u_\kappa^\varepsilon(x) - u_\kappa(x) & \leq \nu \varepsilon \log\left( \frac{1}{d(x)}\right)+C\left(\frac{\varepsilon}{\kappa}\right) \left(1+\frac{\varepsilon}{\kappa}\right)+ nc \varepsilon, &\quad p=2.
 \end{aligned}
 \end{equation*}
-Therefore,
+Therefore
 \begin{equation*}
     u^\varepsilon(x)-u(x)\leq 2L\kappa + \Big(u^\varepsilon_\kappa(x) - u_\kappa(x)\Big).
 \end{equation*} 
-Choose $\kappa = \varepsilon^{\gamma}$ with $\gamma \in (0,1)$. Then 
-\begin{align*}
-    &u^\varepsilon(x) - u(x) \leq C\varepsilon^{\gamma} + C\varepsilon + \frac{C\varepsilon^{\alpha+1}}{d(x)^\alpha} + C\varepsilon^{(1-\gamma)(\alpha+1)}, &\qquad p < 2,\\
-    &u^\varepsilon(x) - u(x) \leq C\varepsilon^{\gamma} + C\varepsilon + C\varepsilon |\log d(x)| + C\varepsilon^{1-\gamma}, &\qquad p = 2.
-\end{align*}
-If $p = 2$, then $\gamma = 1/2$ is the best value, which recovers the $\mathcal{O}(\sqrt{\varepsilon})$ estimate in Theorem \ref{main_thm1}. If $p<2$, by setting $\gamma = (1-\gamma)(\alpha+1)$, we can get the best value of $\gamma$, that is,
-\begin{equation*}
-    \gamma = \frac{\alpha+1}{\alpha+2} = \frac{1}{p} > \frac{1}{2}
-\end{equation*}
-and we obtain a better estimate $\mathcal{O}(\varepsilon^{1/p})$.
+Choose $\kappa = \sqrt{\varepsilon}$ we obtain the conclusion.
 \end{proof}
 
-\setcounter{section}{0}
-\renewcommand\thesection{\Alph{section}}
-\section{Appendix}
-\subsection{Estimates on solutions}
+\section{Something new}
+Assume $f\in \mathrm{C}(\overline{\Omega})\cap W^{1,\infty}(\Omega)$ with $f = 0$ in $\overline{\Omega}_{2\kappa}$ for $0<\kappa \ll \delta_0$. By doing so we can assume that
+\begin{equation*}
+    \delta_{0,\Omega_{2\kappa}} = \frac{1}{2}\delta_{0,\Omega}.
+\end{equation*}
+Let $1<p<2$ and $d_\kappa(x) = \mathrm{dist}(x,\partial\Omega_\kappa)$ for $x\in \Omega_\kappa$. By Theorem \ref{thm:rate_doubling0} we obtain that
+\begin{equation*}
+    0\leq u^\varepsilon(x)\leq C \left(\frac{\varepsilon^{\alpha+1}}{d_\kappa(x)^{\alpha}} + \frac{\varepsilon^{\alpha+2}}{\delta_{0,\Omega_{\kappa}}^{\alpha+2}}\right)
+\end{equation*}
+for some constant $C$ independent of $\varepsilon\in (0,1)$ and $\kappa$.
+
+%\clearpage
+
+
+%\section{Rate of convergence via nonlinear adjoint method}
+
+\begin{appendices}
+%\section*{Appendix}
+\subsection*{Estimates on solutions}
 We present here a proof for the gradient bound of solution to \eqref{eq:PDEeps} using the Bernstein method (see also \cite{Lasry1989,lions_quelques_1985}). Another proof using a different technique is given in \cite{Armstrong2015a}.
 
 \begin{proof}[Proof of Theorem \ref{thm:grad_1}] Let $\theta\in (0,1)$ be chosen later, $\varphi\in \mathrm{C}_c^\infty(\Omega)$, $0\leq \varphi\leq 1$, $\mathrm{supp}\;\varphi\subset \Omega$ and $\varphi = 1$ on $\Omega_\delta$ such that there exists $C = C(\delta,\theta)$,
@@ -1246,7 +1240,7 @@ As a polynomial in $z = (\varphi w)(x_0)$, this implies that $(\varphi w)(x_0)\l
 \end{proof}
 
 
-\subsection{Wellposedness of solutions}
+\subsection*{Wellposedness of solutions}
 \begin{proof} [Proof of Theorem \ref{thm:wellposed1<p<2}] If $p\in (1,2)$, we use the ansatz $ u(x) = C_\varepsilon d(x)^{-\alpha}$ to find a solution for \eqref{eq:PDEeps}. Plug the ansatz into \eqref{eq:PDEeps} and compute 
 \begin{equation*}
 \begin{split}
@@ -1474,7 +1468,7 @@ We have found $\varphi^\varepsilon\in \mathrm{C}^1(\overline{\Omega})$ such that
 We see that $\tilde{u}\in \rmC(\overline{\Omega})$ is a subsolution of \eqref{eq:PDE0} in $\Omega$ with $\tilde{u}(x_0) > u(x_0)$, which is a contradiction. Thus, $u$ is a supersolution of \eqref{eq:PDE0} on $\overline{\Omega}$.
 \end{proof}
 
-\subsection{Semiconcavity}
+
 \begin{thm}\label{convex} Let $H(x,p) = G(p)-f(x)$ where $G\geq 0$ with $G(0) = 0$ is a convex function from $\R^n\to\R^n$ and $f\in \mathrm{C}^2_c(\R^n)$. Let $u\in \mathrm{C}_c(\R^n)$ be a viscosity solution to $u+H(x,Du) = 0$ in $\R^n$. Then $u$ is semiconcave, i.e, $u$ is a viscosity solution of  $-D^2u \succ -c\;\mathbb{I}_n$ in $\R^n$ where 
 \begin{equation*}
     c = \max \big\lbrace  D_{\xi\xi}f(x): |\xi|=1, x\in \overline{\Omega} \big\rbrace\geq 0.
@@ -1559,13 +1553,13 @@ and thus $u$ is semiconcave. It is easy to see that if $\varphi$ is smooth and $
 %\textcolor{orange}{(I double checked the proof of Jeff and I think his proof is fine. Actually we can choose $y_\alpha$ so that $\{y_\alpha\}$ is bounded, only using the fact that $u$ is bounded. But your proof is good too.)}
 
 
-
+\end{appendices}
 
 
 
 \stoptocwriting
 \section*{Acknowledgement}
-The authors would like to express their appreciation to Hung V. Tran for his invaluable guidance. 
+The authors would like to express their appreciation to Hung V. Tran for his invaluable guidance.
 \resumetocwriting
 
 
